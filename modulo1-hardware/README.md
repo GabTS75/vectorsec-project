@@ -15,7 +15,7 @@
 | Soporte Técnico | 2 | Media-alta | Intel Core i5/i7 | 16 GB | SSD 512 GB | Monitorización, acceso remoto a clientes, análisis de logs y alertas del SOC. |
 | Aula de Formación | 6 | Media | Intel Core i5 | 16 GB | SSD 256 GB | Laboratorio de prácticas de pentesting ético y cursos in-company. Uso rotativo, no personal fijo. |
 
-**Total equipos cliente: 16**
+> **Total equipos cliente: 16**
 
 ## 3. Servidores
 
@@ -25,7 +25,7 @@
 | **SRV-APP01** (Aplicaciones/BD) | Software de gestión interna + base de datos de auditorías y clientes | Xeon E-2300 | 64 GB | RAID 10 SSD 1 TB | Centraliza el activo más crítico: informes y datos de clientes (enlaza con Módulo 4). |
 | **SRV-LAB01** (Laboratorio/SOC, aislado) | Entorno de pentesting, análisis de malware controlado, SIEM básico | Xeon E-2300 | 32 GB | SSD 512 GB (aislado) | Requiere aislamiento total de red — justifica la segmentación y ACLs del Módulo 3. |
 
-**Total servidores: 3**
+> **Total servidores: 3**
 
 ## 4. Almacenamiento y copias de seguridad
 
@@ -41,7 +41,7 @@ Requisito mínimo según especificación del proyecto:
 - 2 Switches gestionables + 1 switch de acceso por planta
 - 1 Punto de acceso WiFi (doble SSID: empleados / invitados)
 
-*(Detalle completo de configuración y topología en el Módulo 3 - Redes)*
+> *(Detalle completo de configuración y topología en el Módulo 3 - Redes)*
 
 ## 6. Otros elementos
 
