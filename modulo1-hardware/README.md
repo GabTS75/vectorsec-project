@@ -6,13 +6,13 @@
 
 ## 2. Equipos cliente por departamento
 
-| Departamento | Nº PCs | Gama | CPU | RAM | Almacenamiento | Justificación |
+| Departamento | N.º PCs | Gama | CPU | RAM | Almacenamiento | Justificación |
 | --- | --- | --- | --- | --- | --- | --- |
-| Recepción | 2 | Básica/media | Intel Core i3 | 8 GB | SSD 256 GB | Tareas ofimáticas ligeras: agenda, llamadas, gestión de visitas. |
+| Recepción | 2 | Básica-Media | Intel Core i3 | 8 GB | SSD 256 GB | Tareas ofimáticas ligeras: agenda, llamadas, gestión de visitas. |
 | Administración | 2 | Media | Intel Core i5 | 8 GB | SSD 256 GB | Ofimática, facturación, ERP ligero. |
-| Dirección | 2 | Media-alta | Intel Core i5 | 16 GB | SSD 512 GB | Informes, videoconferencias con clientes, análisis de KPIs. |
+| Dirección | 2 | Media-Alta | Intel Core i5 | 16 GB | SSD 512 GB | Informes, videoconferencias con clientes, análisis de KPIs. |
 | Desarrollo | 2 | Alta | Intel Core i7 | 32 GB | SSD 1 TB | Compilación de código, máquinas virtuales, contenedores para herramientas de auditoría propias. |
-| Soporte Técnico | 2 | Media-alta | Intel Core i5/i7 | 16 GB | SSD 512 GB | Monitorización, acceso remoto a clientes, análisis de logs y alertas del SOC. |
+| Soporte Técnico | 2 | Media-Alta | Intel Core i5/i7 | 16 GB | SSD 512 GB | Monitorización, acceso remoto a clientes, análisis de logs y alertas del SOC. |
 | Aula de Formación | 6 | Media | Intel Core i5 | 16 GB | SSD 256 GB | Laboratorio de prácticas de pentesting ético y cursos in-company. Uso rotativo, no personal fijo. |
 
 > **Total equipos cliente: 16**
@@ -41,7 +41,7 @@ Requisito mínimo según especificación del proyecto:
 - 2 Switches gestionables + 1 switch de acceso por planta
 - 1 Punto de acceso WiFi (doble SSID: empleados / invitados)
 
-> *(Detalle completo de configuración y topología en el Módulo 3 - Redes)*
+> *Detalle completo de configuración y topología en el Módulo 3 - Redes*
 
 ## 6. Otros elementos
 
