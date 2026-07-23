@@ -6,14 +6,14 @@
 
 ## 2. Equipos cliente por departamento
 
-| Departamento | N.º PCs | Gama | CPU | RAM | Almacenamiento | Justificación |
+| Departamento | Nº PCs | Gama | CPU | RAM | Almacenamiento | Justificación |
 | --- | --- | --- | --- | --- | --- | --- |
-| Recepción | 2 | Básica-Media | Intel Core i3 | 8 GB | SSD 256 GB | Tareas ofimáticas ligeras: agenda, llamadas, gestión de visitas. |
-| Administración | 2 | Media | Intel Core i5 | 8 GB | SSD 256 GB | Ofimática, facturación, ERP ligero. |
-| Dirección | 2 | Media-Alta | Intel Core i5 | 16 GB | SSD 512 GB | Informes, videoconferencias con clientes, análisis de KPIs. |
-| Desarrollo | 2 | Alta | Intel Core i7 | 32 GB | SSD 1 TB | Compilación de código, máquinas virtuales, contenedores para herramientas de auditoría propias. |
-| Soporte Técnico | 2 | Media-Alta | Intel Core i5/i7 | 16 GB | SSD 512 GB | Monitorización, acceso remoto a clientes, análisis de logs y alertas del SOC. |
-| Aula de Formación | 6 | Media | Intel Core i5 | 16 GB | SSD 256 GB | Laboratorio de prácticas de pentesting ético y cursos in-company. Uso rotativo, no personal fijo. |
+| **Recepción** | 2 | Básica-Media | Intel Core i3 | 8 GB | SSD 256 GB | Tareas ofimáticas ligeras: agenda, llamadas, gestión de visitas. |
+| **Administración** | 2 | Media | Intel Core i5 | 8 GB | SSD 256 GB | Ofimática, facturación, ERP ligero. |
+| **Dirección** | 2 | Media-Alta | Intel Core i5 | 16 GB | SSD 512 GB | Informes, videoconferencias con clientes, análisis de KPIs. |
+| **Desarrollo** | 2 | Alta | Intel Core i7 | 32 GB | SSD 1 TB | Compilación de código, máquinas virtuales, contenedores para herramientas de auditoría propias. |
+| **Soporte Técnico** | 2 | Media-Alta | Intel Core i5/i7 | 16 GB | SSD 512 GB | Monitorización, acceso remoto a clientes, análisis de logs y alertas del SOC. |
+| **Aula de Formación** | 6 | Media | Intel Core i5 | 16 GB | SSD 256 GB | Laboratorio de prácticas de pentesting ético y cursos in-company. Uso rotativo, no personal fijo. |
 
 > **Total equipos cliente: 16**
 
@@ -45,7 +45,7 @@ Requisito mínimo según especificación del proyecto:
 
 ## 6. Otros elementos
 
-- **SAI (UPS)** en el CPD, para proteger servidores ante cortes eléctricos.
+- **SAI (UPS)** en el **CPD**, para proteger servidores ante cortes eléctricos.
 - **Impresora de red compartida** (Recepción/Administración).
 
 ## 7. Conclusiones
