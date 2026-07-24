@@ -29,7 +29,7 @@
 
 ## 4. Almacenamiento y copias de seguridad
 
-- **NAS dedicado** (RAID 5, 4x4 TB) para backups de SRV-DC01 y SRV-APP01.
+- **NAS dedicado**, RAID 5, 5x4 TB (uno de ellos como Hot Spare) para backups de SRV-DC01 y SRV-APP01.
 - Política de copias: incremental diaria + copia completa semanal.
 - Una empresa que audita la seguridad de terceros debe, por coherencia, proteger primero sus propios datos.
 
