@@ -31,15 +31,19 @@
 
 - **NAS dedicado**, RAID 5, 5x4 TB (uno de ellos como Hot Spare) para backups de SRV-DC01 y SRV-APP01.
 - Política de copias: incremental diaria + copia completa semanal.
-- Una empresa que audita la seguridad de terceros debe, por coherencia, proteger primero sus propios datos.
+- Siendo una empresa que audita la seguridad de terceros debemos, por coherencia, proteger primero nuestros propios datos.
 
 ## 5. Equipamiento de red (resumen)
 
 Requisito mínimo según especificación del proyecto:
 
-- 1 Router Cisco
-- 2 Switches gestionables + 1 switch de acceso por planta
-- 1 Punto de acceso WiFi (doble SSID: empleados / invitados)
+- 1 Router Cisco (Cisco 4321 ISR) — puertos GigabitEthernet en ambos extremos, necesarios para los enlaces troncales hacia los switches de distribución.
+- 4 Switches gestionables Cisco 2960 (2 de distribución + 2 de acceso, uno por planta)
+- 2 Puntos de acceso WiFi, uno para empleados y otro para invitados (SSID: SSID_EMPRESA / SSID_INVITADOS)
+
+**Nota de diseño:** se utiliza el mismo modelo Cisco 2960 en las 4 posiciones (distribución y acceso). Esta decisión fue tomada como una acción intencional, no como una limitación: Al unificar el catálogo de equipos de red, simplificamos el mantenimiento, la gestión de repuestos y la configuración — es un criterio propio, puesto que somos una empresa en fase de crecimiento que optimiza recursos sin sacrificar capacidad técnica (el 2960 soporta VLANs, trunking 802.1Q y port-security).
+
+Los enlaces `PC → switch de acceso` usan `FastEthernet` (suficiente para tráfico de oficina); los enlaces `switch → switch` y `switch → router` usan `GigabitEthernet`, evitando cuellos de botella en el tráfico inter-VLAN agregado.
 
 > *Detalle completo de configuración y topología en el Módulo 3 - Redes*
 
@@ -50,4 +54,4 @@ Requisito mínimo según especificación del proyecto:
 
 ## 7. Conclusiones
 
-El hardware seleccionado responde a las necesidades reales de cada departamento, evitando tanto el infra-equipamiento (que limitaría la operativa) como el sobre-equipamiento injustificado. La incorporación de un tercer servidor de laboratorio aislado no es un requisito mínimo, sino una decisión estratégica que refuerza la identidad de **VectorSec** como empresa de ciberseguridad desde la propia base de su infraestructura.
+El hardware seleccionado responde a las necesidades reales de cada departamento, evitando tanto el **infra-equipamiento** (que limitaría la operativa) como el **sobre-equipamiento** injustificado. La incorporación de **un tercer servidor de laboratorio aislado** no es un requisito mínimo, sino una decisión estratégica que refuerza nuestra identidad, **VectorSec** como empresa de ciberseguridad aporta seguridad desde la propia base de su infraestructura.
