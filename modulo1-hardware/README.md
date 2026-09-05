@@ -93,38 +93,49 @@ Para cerrar este módulo con una evidencia física y no solo teórica de las dec
 Este procedimiento de montaje es aplicable para ambos equipos, con ciertos matices, evidentemente por sus propias características de cada uno.
 
 1. **Preparación y seguridad antiestática**
+
    Antes de abrir cualquier chasis, ***se utiliza una pulsera antiestática*** conectada a una superficie metálica sin pintar. Este paso es idéntico para servidor y PC — una sola descarga electrostática puede dañar la placa base o la CPU de forma irreversible y silenciosa.
 
 2. **Instalación de la CPU en la placa base**
+
    Se abre el retenedor del socket, se alinea la CPU por su marca de referencia (triángulo o muesca dorada) y ***se apoya sin forzar*** — nunca se presiona la CPU hacia el socket. Se cierra el retenedor progresivamente.
 
 3. **Instalación de la memoria RAM**
+
    - *PC-DES:* se instalan los 2 módulos en ***los slots de doble canal (dual channel)*** indicados en el manual (normalmente A2 y B2), no en los dos primeros slots consecutivos, para activar realmente el doble canal.
    - *SRV-APP01:* se instalan los módulos ECC **siguiendo la configuración recomendada por el fabricante** para maximizar el ancho de banda entre los canales de memoria del servidor.
 
 4. **Instalación del sistema de refrigeración de la CPU**
+
    ***Se aplica una pequeña cantidad de pasta térmica*** (tamaño de un grano de arroz, no una capa completa) antes de fijar el disipador. Una cantidad excesiva no mejora la disipación y puede desbordar hacia el socket.
 
 5. **Fijación de la placa base al chasis**
+
    ***Se instalan los separadores metálicos*** (standoffs) en las posiciones correctas antes de atornillar la placa — omitir este paso puede provocar cortocircuitos contra el chasis.
 
 6. **Instalación del almacenamiento**
+
    - *PC-DES:* el **SSD NVMe** se instala directamente en el ***slot M.2*** de la placa base.
    - *SRV-APP01:* los **4 SSD** se instalan en las ***bahías hot-swap frontales del chasis***, conectados a la controladora RAID por hardware — no directamente a la placa base.
 
 7. **Conexión de la fuente de alimentación**
+
    ***Se conectan los cables de placa base*** (24 pines + 4/8 pines de CPU), almacenamiento y, en el caso del servidor, ambas fuentes redundantes a circuitos eléctricos idealmente independientes (o al menos a la misma línea protegida por el SAI del CPD).
 
 8. **Cableado y gestión de cables**
+
    ***Se agrupan y sujetan los cables sobrantes*** para no obstruir el flujo de aire — especialmente importante en el servidor, donde la ventilación frontal-trasera depende de un flujo de aire limpio y sin obstáculos.
 
 9. **Primer encendido y verificación POST**
+
    ***Se enciende el equipo sin sistema operativo instalado*** todavía, únicamente para comprobar que la POST (Power-On Self-Test) se completa sin pitidos de error y que la BIOS/UEFI reconoce toda la RAM y el almacenamiento instalado.
 
 10. **Configuración específica del RAID (solo SRV-APP01)**
+
     ***Se accede a la utilidad de la controladora RAID durante el arranque*** y se configura el array en modo **RAID 10**, verificando que los 4 discos aparecen correctamente agrupados y que el array se inicializa sin errores antes de proceder a instalar el sistema operativo (esto se completará en el Módulo 2).
 
 11. **Verificación final de operatividad**
+
     - Comprobación de temperaturas en reposo desde la BIOS/UEFI (dentro de rango normal, sin picos anómalos)
     - Confirmación de que la RAM funciona en modo dual channel (mediante la información de la BIOS o `CPU-Z` una vez instalado el sistema operativo)
     - *SRV-APP01:* confirmación de que el array RAID 10 aparece como un único volumen lógico saludable
