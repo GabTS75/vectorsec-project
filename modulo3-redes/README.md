@@ -18,7 +18,7 @@ Todas las decisiones de diseño de este módulo parten de una misma idea: ***una
 
 La red se organiza en dos niveles por planta: un switch de **distribución** (enlace troncal hacia el router) y un switch de **acceso** (conexión de equipos finales). El router realiza el enrutamiento inter-VLAN mediante **Router on a Stick (ROAS)**.
 
-![Topología física](./imgs/02.topologia_fisica.png)
+![Topología física](./imgs/topologia_fisica.png)
 
 | Elemento | Modelo | Rol |
 | :--- | :--- | :--- |
@@ -38,8 +38,7 @@ Se descarta el uso de un switch de Capa 3 pese a ofrecer mejor rendimiento y esc
 
 ### 2.2 Justificación: modelo único de switch (Cisco 2960)
 
-Se utiliza el mismo modelo Cisco 2960 en las 4 posiciones (distribución y acceso). No es una limitación, sino una decisión deliberada: unificar el catálogo de equipos de red simplifica el mantenimiento, la gestión de
-repuestos y la configuración, sin sacrificar capacidad técnica (soporta VLANs, trunking 802.1Q y port-security).
+Se utiliza el mismo modelo Cisco 2960 en las 4 posiciones (distribución y acceso). No es una limitación, sino una decisión deliberada: unificar el catálogo de equipos de red simplifica el mantenimiento, la gestión de repuestos y la configuración, sin sacrificar capacidad técnica (soporta VLANs, trunking 802.1Q y port-security).
 
 ### 2.3 Criterio de conectividad Fast/Gigabit
 
@@ -56,7 +55,7 @@ repuestos y la configuración, sin sacrificar capacidad técnica (soporta VLANs,
 
 Se implementan **9 VLANs**: las 7 exigidas para el proyecto, más 2 adicionales justificadas por necesidades reales de seguridad de **VectorSec**.
 
-![Segmentación de VLANs](./imgs/03.segmentacion_vlans.png)
+![Segmentación de VLANs](./imgs/segmentacion_vlans.png)
 
 | VLAN | Nombre | Red / Máscara | Departamento / Uso |
 | :--- | :--- | :--- | :--- |
@@ -154,11 +153,12 @@ Al configurar inicialmente ambas subinterfaces de gestión con la misma subred `
 
 ### 6.1 Criterios generales aplicados a los 4 switches
 
-- Se crean las 9 VLANs en todos los switches (no se usa VTP, por control total y para evitar un vector de error/seguridad habitual).
-- Todos **los puertos no utilizados** se dejan en `shutdown` (buena práctica de seguridad física: tener en cuenta que un puerto libre y activo es una entrada no vigilada).
-- Los enlaces switch-switch y switch-router se configuran en modo `trunk` con encapsulación 802.1Q, permitiendo únicamente las VLANs necesarias en cada tramo (no se permiten VLANs de la otra planta por un trunk donde nunca habrá tráfico de esas VLANs).
+- **Se crean las 9 VLANs en todos los switches** (no se usa VTP, por control total y para evitar un vector de error/seguridad habitual).
+- **Todos los puertos no utilizados** se dejan en `shutdown` (buena práctica de seguridad física: tener en cuenta que un puerto libre y activo es una entrada no vigilada).
+- Los enlaces `switch-switch` y `switch-router` se configuran en modo `trunk` con encapsulación 802.1Q, permitiendo únicamente las VLANs necesarias en cada tramo (no se permiten VLANs de la otra planta por un trunk donde nunca habrá tráfico de esas VLANs).
 
 **Incidencia:** el comando `switchport trunk encapsulation dot1q` no es válido en el Cisco 2960 (`Invalid input detected`), ya que este modelo solo soporta 802.1Q de fábrica, sin alternativa ISL que requiera selección explícita.
+
 **Solución:** Se omite esta línea en todas las configuraciones de trunk.
 
 ### 6.2 SW-ACC-PB — Switch de acceso (planta baja)
@@ -456,7 +456,7 @@ write memory
 
 **Incidencia detectada:** la subinterfaz `gig0/0/0.60` quedó como `unassigned` en `show ip interface brief` pese a haberlo configurado aparentemente bien, provocando `Destination host unreachable` en todas las pruebas hacia la VLAN 60.
 
-![unassigned](./imgs/0.60unassigned.png)
+![unassigned](./imgs/incidents/0.60unassigned.png)
 
 **Solución aplicada:** Se resolvió reintroduciendo el bloque completo de la subinterfaz. Diagnóstico realizado comparando el estado de todas las subinterfaces mediante `show ip interface brief`, aislando el fallo a una única VLAN antes de intervenir.
 
@@ -667,7 +667,7 @@ La subinterfaz `.99` (MGMT) no lleva ACL: es la única red de confianza total, r
 
 ### 9.3 Refuerzo de gestión — Acceso SSH restringido en los 4 switches
 
-Además de bloquear el tráfico hacia MGMT desde el router, **se decide restringir el propio acceso remoto de gestión (VTY) en cada switch**, limitándolo a origen MGMT y forzando cifrado (SSH), en lugar de Telnet en texto plano — coherente con la actividad de **VectorSec** como empresa de ciberseguridad.
+Además de bloquear el tráfico hacia MGMT desde el router, **se decide restringir el propio acceso remoto de gestión (VTY) en cada switch**, limitándolo a origen MGMT y forzando cifrado (SSH), en lugar de Telnet en texto plano — esto refuerza y es coherente con la actividad de **VectorSec** como empresa de ciberseguridad.
 
 ```bash
 ip domain-name vectorsec.local
@@ -687,6 +687,8 @@ line vty 0 15
 ```
 
 Aplicado de forma idéntica en `SW-DIST-PB`, `SW-ACC-PB`, `SW-DIST-P1` y `SW-ACC-P1`.
+
+![SSH restringido](./imgs/sw.ssh.restringido.png)
 
 ---
 
@@ -745,4 +747,4 @@ Como líneas de mejora futura, coherentes con la visión de crecimiento de **Vec
 
 - `DIAGRAMA_VectorSec.pkt` — Archivo de Cisco Packet Tracer con la topología completa
 - `README.md` — Este documento
-- Capturas de configuración y pruebas (carpeta `/imgs`)
+- Capturas de incidencias y pruebas (carpetas `/imgs/incidents` y `/imgs/test`)
