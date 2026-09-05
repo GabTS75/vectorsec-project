@@ -2,12 +2,12 @@
 
 ## 1. Introducción
 
-**VectorSec** es una empresa de ciberseguridad en fase de crecimiento (8-9 empleados), que ofrece servicios de auditoría, pentesting y formación a pymes. Como parte de su proceso de modernización interna, este módulo define y justifica el hardware necesario para dar soporte a sus 6 departamentos, distribuidos en dos plantas, según el modelo de infraestructura definido en el proyecto.
+**VectorSec** es una empresa de ciberseguridad en fase de crecimiento (8-9 empleados), que ofrece servicios de auditoría, pentesting y formación a pymes. Como parte de su proceso de modernización interna, **este módulo define y justifica el hardware necesario** para dar soporte a sus 6 departamentos, distribuidos en dos plantas, según el modelo de infraestructura definido en el proyecto.
 
 ## 2. Equipos cliente por departamento
 
 | Departamento | Nº PCs | Gama | CPU | RAM | Almacenamiento | Justificación |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | :---: | --- | --- | --- | --- | --- |
 | **Recepción** | 2 | Básica-Media | Intel Core i3 | 8 GB | SSD 256 GB | Tareas ofimáticas ligeras: agenda, llamadas, gestión de visitas. |
 | **Administración** | 2 | Media | Intel Core i5 | 8 GB | SSD 256 GB | Ofimática, facturación, ERP ligero. |
 | **Dirección** | 2 | Media-Alta | Intel Core i5 | 16 GB | SSD 512 GB | Informes, videoconferencias con clientes, análisis de KPIs. |
@@ -30,10 +30,10 @@
 
 ## 4. Almacenamiento y copias de seguridad
 
-- El **SRV-NAS** (detallado en la tabla anterior) centraliza las copias de seguridad de SRV-DC01 y SRV-APP01, en RAID 5 con disco de reserva en caliente (Hot Spare).
+- El **SRV-NAS:** (detallado en la tabla anterior) centraliza las copias de seguridad de SRV-DC01 y SRV-APP01, en RAID 5 con disco de reserva en caliente (Hot Spare).
 - **Hot Spare:** ante el fallo de un disco, la reconstrucción del array arranca automáticamente, sin esperar a que un administrador lo detecte manualmente — algo especialmente relevante tratándose de una empresa que audita a terceros la protección de sus propios datos.
-- Política de copias: incremental diaria + copia completa semanal.
-- Capacidad útil real: 3 × 4 TB = 12 TB (el RAID 5 reserva un disco para paridad, y el quinto disco es el Hot Spare, sin aportar capacidad utilizable).
+- **Política de copias:** incremental diaria + copia completa semanal.
+- **Capacidad útil real:** 3 × 4 TB = 12 TB (el RAID 5 reserva un disco para paridad, y el quinto disco es el Hot Spare, sin aportar capacidad utilizable).
 
 ## 5. Equipamiento de red (resumen)
 
@@ -45,15 +45,15 @@ Requisito mínimo según especificación del proyecto:
 
 ### Notas de diseño
 
-**Switches:** Se utiliza el mismo modelo Cisco 2960 en las 4 posiciones (distribución y acceso). Esta decisión fue tomada como una acción intencional, no como una limitación: al unificar el catálogo de equipos de red, simplificamos el mantenimiento, la gestión de repuestos y la configuración — es un criterio propio, puesto que somos una empresa en fase de crecimiento que optimiza recursos sin sacrificar capacidad técnica (el 2960 soporta VLANs, trunking 802.1Q y port-security).
+`Switches:` Se utiliza el mismo modelo Cisco 2960 en las 4 posiciones (distribución y acceso). Esta decisión fue tomada como una acción intencional, no como una limitación: al unificar el catálogo de equipos de red, simplificamos el mantenimiento, la gestión de repuestos y la configuración — es un criterio propio, puesto que somos una empresa en fase de crecimiento que optimiza recursos sin sacrificar capacidad técnica (el 2960 soporta VLANs, trunking 802.1Q y port-security).
 
-**Puntos de Acceso:** se emplean dos puntos de acceso físicos independientes, cada uno con un único SSID, en lugar de un único AP con doble SSID. Los modelos de punto de acceso disponibles en CPT no soportan la asignación de VLAN por SSID sobre un mismo equipo — esa función es propia de hardware empresarial más avanzado. La solución con dos AP resuelve el requisito sin necesidad de ese salto de gama, manteniendo el criterio de no sobredimensionar la inversión (detalle técnico completo en el Módulo 3 - Redes).
+`Puntos de Acceso:` Se emplean dos puntos de acceso físicos independientes, cada uno con un único SSID, en lugar de un único AP con doble SSID. Los modelos de punto de acceso disponibles en CPT no soportan la asignación de VLAN por SSID sobre un mismo equipo — esa función es propia de hardware empresarial más avanzado. La solución con dos AP resuelve el requisito sin necesidad de ese salto de gama, manteniendo el criterio de no sobredimensionar la inversión (detalle técnico completo en el Módulo 3 - Redes).
 
-**Los enlaces:** Al enlazar `PC → switch de acceso` elegímos `FastEthernet` (suficiente para tráfico de oficina); y para los `switch → switch` y `switch → router` seleccionamos `GigabitEthernet`, evitando cuellos de botella en el tráfico inter-VLAN agregado.
+`Los enlaces:` Para enlazar `PC → switch de acceso` elegímos `FastEthernet` (suficiente para tráfico de oficina); y para los `switch → switch` y `switch → router` seleccionamos `GigabitEthernet`, evitando cuellos de botella en el tráfico inter-VLAN agregado.
 
 > *Detalle completo de configuración y topología en el Módulo 3 - Redes*
 
-## 6. Otros elementos
+## 6. Otros elementos importantes
 
 - **SAI (UPS)** en el **CPD**, para proteger servidores ante cortes eléctricos.
 - **Impresora de red compartida** (Recepción/Administración).
@@ -64,7 +64,7 @@ El hardware seleccionado responde a las necesidades reales de cada departamento,
 
 ## 8. Guía de montaje de referencia
 
-Para cerrar este módulo con una evidencia física y no solo teórica de las decisiones tomadas, se documenta a continuación el montaje de dos equipos representativos: **SRV-APP01** (el servidor más exigente de la infraestructura) y **PC-DES** (un equipo cliente de gama alta, departamento de Desarrollo). Se eligen estos dos precisamente porque son los que requieren una justificación técnica más sólida en sus componentes — un montaje "de referencia" tiene más valor demostrativo cuanto más exigente es el caso elegido.
+Para cerrar este módulo con una evidencia física y no solo teórica de las decisiones tomadas, se documenta a continuación el montaje de dos equipos representativos: **SRV-APP01** (el servidor más exigente de la infraestructura) y **PC-DES** (un equipo cliente de gama alta, departamento de Desarrollo). Se eligen estos dos precisamente porque son los que requieren una justificación técnica más sólida en sus componentes — *siendo un montaje "de referencia" tiene mayor valor demostrativo que sea el más exigente de todos los casos*.
 
 ### 8.1 Componentes — `SRV-APP01` (servidor de aplicaciones/BD)
 
@@ -92,49 +92,49 @@ Para cerrar este módulo con una evidencia física y no solo teórica de las dec
 
 Este procedimiento de montaje es aplicable para ambos equipos, con ciertos matices, evidentemente por sus propias características de cada uno.
 
-1. **Preparación y seguridad antiestática**
+1. **Preparación y seguridad antiestática:**
 
    Antes de abrir cualquier chasis, ***se utiliza una pulsera antiestática*** conectada a una superficie metálica sin pintar. Este paso es idéntico para servidor y PC — una sola descarga electrostática puede dañar la placa base o la CPU de forma irreversible y silenciosa.
 
-2. **Instalación de la CPU en la placa base**
+2. **Instalación de la CPU en la placa base:**
 
    Se abre el retenedor del socket, se alinea la CPU por su marca de referencia (triángulo o muesca dorada) y ***se apoya sin forzar*** — nunca se presiona la CPU hacia el socket. Se cierra el retenedor progresivamente.
 
-3. **Instalación de la memoria RAM**
+3. **Instalación de la memoria RAM:**
 
    - *PC-DES:* se instalan los 2 módulos en ***los slots de doble canal (dual channel)*** indicados en el manual (normalmente A2 y B2), no en los dos primeros slots consecutivos, para activar realmente el doble canal.
    - *SRV-APP01:* se instalan los módulos ECC **siguiendo la configuración recomendada por el fabricante** para maximizar el ancho de banda entre los canales de memoria del servidor.
 
-4. **Instalación del sistema de refrigeración de la CPU**
+4. **Instalación del sistema de refrigeración de la CPU:**
 
    ***Se aplica una pequeña cantidad de pasta térmica*** (tamaño de un grano de arroz, no una capa completa) antes de fijar el disipador. Una cantidad excesiva no mejora la disipación y puede desbordar hacia el socket.
 
-5. **Fijación de la placa base al chasis**
+5. **Fijación de la placa base al chasis:**
 
    ***Se instalan los separadores metálicos*** (standoffs) en las posiciones correctas antes de atornillar la placa — omitir este paso puede provocar cortocircuitos contra el chasis.
 
-6. **Instalación del almacenamiento**
+6. **Instalación del almacenamiento:**
 
    - *PC-DES:* el **SSD NVMe** se instala directamente en el ***slot M.2*** de la placa base.
    - *SRV-APP01:* los **4 SSD** se instalan en las ***bahías hot-swap frontales del chasis***, conectados a la controladora RAID por hardware — no directamente a la placa base.
 
-7. **Conexión de la fuente de alimentación**
+7. **Conexión de la fuente de alimentación:**
 
    ***Se conectan los cables de placa base*** (24 pines + 4/8 pines de CPU), almacenamiento y, en el caso del servidor, ambas fuentes redundantes a circuitos eléctricos idealmente independientes (o al menos a la misma línea protegida por el SAI del CPD).
 
-8. **Cableado y gestión de cables**
+8. **Cableado y gestión de cables:**
 
    ***Se agrupan y sujetan los cables sobrantes*** para no obstruir el flujo de aire — especialmente importante en el servidor, donde la ventilación frontal-trasera depende de un flujo de aire limpio y sin obstáculos.
 
-9. **Primer encendido y verificación POST**
+9. **Primer encendido y verificación POST:**
 
    ***Se enciende el equipo sin sistema operativo instalado*** todavía, únicamente para comprobar que la POST (Power-On Self-Test) se completa sin pitidos de error y que la BIOS/UEFI reconoce toda la RAM y el almacenamiento instalado.
 
-10. **Configuración específica del RAID (solo SRV-APP01)**
+10. **Configuración específica del RAID (solo SRV-APP01):**
 
     ***Se accede a la utilidad de la controladora RAID durante el arranque*** y se configura el array en modo **RAID 10**, verificando que los 4 discos aparecen correctamente agrupados y que el array se inicializa sin errores antes de proceder a instalar el sistema operativo (esto se completará en el Módulo 2).
 
-11. **Verificación final de operatividad**
+11. **Verificación final de operatividad:**
 
     - Comprobación de temperaturas en reposo desde la BIOS/UEFI (dentro de rango normal, sin picos anómalos)
     - Confirmación de que la RAM funciona en modo dual channel (mediante la información de la BIOS o `CPU-Z` una vez instalado el sistema operativo)
@@ -150,4 +150,4 @@ Este procedimiento de montaje es aplicable para ambos equipos, con ciertos matic
 - [ ] Sin cables sueltos que obstruyan la ventilación
 - [ ] Fuente(s) de alimentación conectadas y estables
 
-Con este montaje documentado, se pretende manifestar de inicio la coherencia y consistencia con el resto del proyecto, justificando cada elección técnica, puesto que el proyecto deja de sustentarse únicamente en tablas de especificaciones y pasa a incluir evidencia de que **las decisiones de hardware** se han razonado también **a nivel de ensamblaje físico**.
+Con este montaje documentado, se pretende manifestar de inicio la coherencia y consistencia con el resto del proyecto, justificando cada elección técnica, puesto que el proyecto no sólo se sustentará con "tablas de especificaciones", si no que incluye evidencia de que **las decisiones de hardware** se han razonado también **a nivel de ensamblaje físico**.
