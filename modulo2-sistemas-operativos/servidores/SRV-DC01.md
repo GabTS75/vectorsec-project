@@ -19,8 +19,8 @@ Este es el primer servidor a implantar: el resto de equipos (servidores que se u
 ## 2. Plan de implantación
 
 - **Método:** instalación manual e individualizada (no aplica clonación/imagen, al ser un servidor único con configuración propia).
-- **Orden de tareas:** instalación del SO → configuración de red → instalación del rol AD DS → promoción a controlador de dominio → verificación de servicios.
-- **Entorno:** máquina virtual (VirtualBox / Hyper-V), 1 vCPU mínimo (2 recomendado), 4 GB RAM mínimo (8 GB recomendado para Desktop Experience), 60 GB de disco.
+- **Orden de tareas:** instalación del **SO** → configuración de red → instalación del rol **AD DS** → promoción a controlador de dominio → verificación de servicios.
+- **Entorno:** máquina virtual (VirtualBox / Hyper-V), **1 vCPU** mínimo (**2 vCPU** recomendado), **4 GB** de RAM mínimo (**8 GB** recomendado para Desktop Experience), **60 GB** de disco.
 
 ---
 
@@ -28,9 +28,9 @@ Este es el primer servidor a implantar: el resto de equipos (servidores que se u
 
 ### Paso 1 — Arranque desde la ISO
 
-**Acción:** crear la máquina virtual, montar la ISO de Windows Server 2022 y arrancar.
+**Acción:** crear la máquina virtual, montar la **ISO** de **Windows Server 2022** y arrancar.
 
-**Resultado esperado:** pantalla azul de instalación de Windows Server con el selector de idioma, formato horario y teclado.
+**Resultado esperado:** pantalla azul de instalación de **Windows Server** con el selector de idioma, formato horario y teclado.
 
 **Verificación:** el instalador reconoce el disco virtual asignado a la VM sin errores de controlador.
 
@@ -60,7 +60,7 @@ Este es el primer servidor a implantar: el resto de equipos (servidores que se u
 
 **Acción:** establecer la contraseña del usuario `Administrador`, cumpliendo requisitos de complejidad (**mayúsculas**, **minúsculas**, **número** y **símbolo**).
 
-**Resultado esperado:** mensaje ***"Tu contraseña ha sido actualizada"***, seguido de la pantalla de inicio de sesión estándar de `Windows Server` (fondo azul, `Ctrl+Alt+Supr`).
+**Resultado esperado:** mensaje ***"Tu contraseña ha sido actualizada"***, seguido de la pantalla de inicio de sesión estándar de **Windows Server** (fondo azul, `Ctrl+Alt+Supr`).
 
 **Verificación:** inicio de sesión correcto con el usuario `Administrador` y la contraseña establecida.
 
@@ -202,7 +202,7 @@ KDC      Running
 
 ### Paso 11 — Verificar la zona DNS
 
-**Acción (PowerShell):**
+**Acción (`PowerShell`):**
 
 ```powershell
 Get-DnsServerZone
