@@ -8,7 +8,7 @@
 
 **Sector:** `Ciberseguridad`
 
-**Campo de acción:** auditoría de sistemas, pentesting y formación en seguridad informática.
+**Campo de acción:** `auditoría de sistemas`, `pentesting` y `formación en seguridad informática`.
 
 **Historia breve:** VectorSec nace como una empresa joven, fundada por un pequeño equipo de profesionales con experiencia en administración de sistemas y seguridad, que decide ofrecer servicios de auditoría y pentesting a pymes de la región — *un sector que suele quedar desatendido frente a las grandes consultoras*.
 
@@ -17,6 +17,7 @@ Actualmente se encuentra en una fase de crecimiento y consolidación de su propi
 **Tamaño de plantilla:** 8-9 empleados (fase inicial de crecimiento).
 
 **Estructura mínima viable:**
+
 - 1 dirección
 - 1-2 administración/recepción
 - 2 desarrollo
