@@ -14,7 +14,7 @@
 
 >📌 **Sobre no unir este servidor al dominio Active Directory:** a diferencia de los PCs cliente, `SRV-APP01` no requiere unirse al dominio Windows — *Linux gestiona su propia autenticación local y de base de datos de forma independiente*.
 >
-> Forzar la integración con **AD** (vía SSSD/Winbind) añadiría complejidad sin un beneficio real para este servidor en la fase actual de `VectorSec`; se documenta como posible mejora futura si se centralizara la autenticación de administradores Linux más adelante.
+> Forzar la integración con **AD** (vía SSSD/Winbind) añadiría complejidad sin un beneficio real para este servidor en la fase actual de `VectorSec`; se documenta como posible mejora futura **si se centralizara la autenticación de administradores Linux más adelante**.
 
 ---
 
@@ -50,7 +50,16 @@
 
 ### Paso 3 — Particionado y usuario inicial
 
-**Acción:** aceptar el particionado guiado de disco completo → en la pantalla *Profile setup*, crear el usuario administrador local (`vectorsec-admin`) → en *SSH Setup*, marcar **Install OpenSSH server** (necesario para la administración remota posterior).
+**Acción:** aceptar el particionado guiado de disco completo → en la pantalla *Profile setup*, crear el usuario administrador local:
+
+- Your name: `VectorSec Admin`
+- Your server's name: (se dejará como `ubuntu-server` provisional; se corrige en el Paso 6)
+- Pick a username: `vectorsec-admin`
+- Choose a password / Confirm your password: contraseña que cumpla complejidad mínima (ej. `V3ct0rS3c-App!`)
+
+A continuación, en *SSH Setup*, marcar **Install OpenSSH server** (necesario para la administración remota posterior).
+
+> 📌 Sin esta contraseña, el instalador no permite avanzar a la siguiente pantalla — ***es un campo obligatorio**, no opcional, ya que este usuario será la única cuenta local con acceso `sudo` hasta que se gestione de otro modo*.
 
 **Resultado esperado:** pantalla de confirmación del particionado (*Filesystem summary*) mostrando la partición raíz (`/`) sobre el disco virtual completo, seguida de la instalación de paquetes base.
 
@@ -77,6 +86,8 @@ Debe mostrar `Ubuntu 22.04.x LTS` en la línea `Description`.
 ## 4. Configuración inicial post-instalación
 
 ### Paso 5 — Configurar IP estática (Netplan)
+
+> 📌 **¿Qué es `enp0s3`?** Es el nombre que Linux asigna a la tarjeta de red siguiendo el estándar de *nomenclatura predecible de interfaces* (`en` = Ethernet, `p0` = bus PCI 0, `s3` = slot 3). Sustituye a los antiguos nombres genéricos tipo `eth0`, que podían cambiar de una interfaz a otra entre reinicios en sistemas con varias tarjetas de red. El nombre exacto lo asigna el propio sistema según el hardware virtual detectado — *se confirma con `ip a` antes de editar la configuración, ya que puede variar ligeramente según el hipervisor (VirtualBox/Hyper-V)*.
 
 **Acción:**
 
@@ -327,7 +338,7 @@ psql -h 192.168.60.11 -U app_vectorsec -d vectorsec_gestion
 psql -h 192.168.60.11 -U app_vectorsec -d vectorsec_gestion
 ```
 
-**Resultado esperado:** la conexión debe fallar, ya sea por el bloqueo de la ACL del router (Módulo 3 — Desarrollo no tiene regla de bloqueo directa hacia Servidores, por lo que en este caso el filtrado real lo aporta `pg_hba.conf`) o por rechazo explícito de PostgreSQL.
+**Resultado esperado:** la conexión debe fallar, ya sea por el bloqueo de la ACL del router (Módulo 3 — Desarrollo no tiene regla de bloqueo directa hacia Servidores, por lo que en este caso el filtrado real lo aporta `pg_hba.conf`) o por rechazo explícito de PostgreSQL, *¡Ojo!*.
 
 **Verificación:** el mensaje de error esperado es:
 
@@ -336,7 +347,7 @@ psql: error: connection to server at "192.168.60.11", port 5432 failed:
 FATAL: no pg_hba.conf entry for host "192.168.30.X", ...
 ```
 
-Este resultado confirma que la capa de seguridad a nivel de base de datos funciona de forma independiente a las ACLs de red — es la prueba clave de la defensa en profundidad mencionada en el Paso 10.
+Este resultado confirma que **la capa de seguridad a nivel de base de datos** funciona de forma independiente a las ACLs de red — *es la prueba clave de la defensa en profundidad mencionada en el Paso 10*.
 
 ---
 
