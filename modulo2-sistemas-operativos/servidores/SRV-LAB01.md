@@ -246,7 +246,7 @@ ssh soc-admin@192.168.70.10
 
 ---
 
-### Paso 12 — Acceso bloqueado desde Administración
+### Paso 12 — Acceso bloqueado desde Administración/Recepción
 
 **Acción (desde `PC-ADM1`, VLAN 10):**
 
@@ -254,7 +254,7 @@ ssh soc-admin@192.168.70.10
 ssh soc-admin@192.168.70.10
 ```
 
-**Resultado esperado:** la conexión debe fallar por `timeout`, ya que la ACL `ACL-ADMIN-IN` no bloquea explícitamente el destino VLAN 70, pero es **`ACL-LAB-IN`** *—aplicada en sentido de salida desde el laboratorio—* la que impediría una respuesta si el laboratorio intentase iniciar tráfico de vuelta; en este sentido de entrada (Administración → LAB), el firewall local (`ufw`) es la barrera real, al no incluir `192.168.10.0/24` entre los orígenes permitidos.
+**Resultado esperado:** la conexión debe fallar por `timeout`, ya que la ACL `ACL-ADMIN-IN` no bloquea explícitamente el destino VLAN 70, pero es **`ACL-LAB-IN`** *—aplicada en sentido de salida desde el laboratorio—* la que impediría una respuesta si el laboratorio intentase iniciar tráfico de vuelta; en este sentido de entrada (Administración/Recepción → LAB), el firewall local (`ufw`) es la barrera real, al no incluir `192.168.10.0/24` entre los orígenes permitidos.
 
 **Verificación:**
 
@@ -263,6 +263,12 @@ ssh: connect to host 192.168.70.10 port 22: Connection timed out
 ```
 
 Este resultado, comparado con el éxito del Paso 11, demuestra que el control de acceso depende del **firewall local** en este sentido concreto (**entrante**), reforzando por qué la defensa en profundidad importa: *si el firewall de host no estuviera bien configurado, cualquier VLAN podría intentar acceder por SSH sin que la ACL de red lo evitara en este sentido*.
+
+> **Observación importante:** no hay diferencia entre Administración y Recepción en este caso — *ambos comparten exactamente la misma VLAN 10 (192.168.10.0/24), tal como se ve desde el Módulo 3  - Redes ("Recepción comparte rango con Administración, mismo nivel de confianza")*. Ni la ACL del router ni el firewall local de `SRV-LAB01` distinguen entre departamentos dentro de una misma VLAN — *ambos filtran por red de origen, no por identidad del equipo*.
+>
+> Así que **el escenario real sería:** cualquier equipo de VLAN 10 (tanto Recepción como Administración) intentaría lo mismo, y ambos serían bloqueados igual por el firewall local. Esto es un buen ejemplo de por qué la decisión de "fusionar" Recepción y Administración en la misma VLAN tiene una consecuencia directa aquí: ***comparten literalmente las mismas reglas de seguridad, para bien (mismo permiso a Servidores) y para mal (mismo bloqueo hacia el laboratorio)***.
+>
+> Si en el futuro quisiéramos que Recepción tuviera un nivel de confianza distinto a Administración, habría que separarlas en VLANs propias.
 
 ---
 
