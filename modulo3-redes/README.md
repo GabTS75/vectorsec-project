@@ -1,10 +1,10 @@
 # Módulo 3 — Planificación y Administración de Redes
 
-**Empresa:** VectorSec
-**Sector:** Ciberseguridad — auditoría, pentesting y formación en seguridad informática
-**Entorno de simulación:** Cisco Packet Tracer
+**Empresa:** `VectorSec`
 
----
+**Sector:** `Ciberseguridad` — `auditoría, pentesting y formación en seguridad informática`
+
+**Entorno de simulación:** Cisco Packet Tracer
 
 ## 1. Introducción
 

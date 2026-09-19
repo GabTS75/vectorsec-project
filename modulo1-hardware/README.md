@@ -1,5 +1,11 @@
 # Módulo 1 - Fundamentos de Hardware
 
+Nombre: `VectorSec`
+
+Sector: `Ciberseguridad`
+
+Campo de acción: `auditoría de sistemas, pentesting y formación en seguridad informática`
+
 ## 1. Introducción
 
 **VectorSec** es una empresa de ciberseguridad en fase de crecimiento (8-9 empleados), que ofrece servicios de auditoría, pentesting y formación a pymes. Como parte de su proceso de modernización interna, **este módulo define y justifica el hardware necesario** para dar soporte a sus 6 departamentos, distribuidos en dos plantas, según el modelo de infraestructura definido en el proyecto.
