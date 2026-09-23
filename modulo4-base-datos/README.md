@@ -93,8 +93,15 @@ erDiagram
 ### Breve explicación de las relaciones en Mermaid
 
 Quizás lo que ves en el diagrama (la notación de Mermaid) puede confundir bastante al principio porque se lee "al revés" de lo que uno esperaría intuitivamente, es decir, **¿Cómo leer `||--o{`?**, veamos:
-Cada símbolo describe una restricción, pero no sobre la entidad a la que está pegado, sino sobre la entidad del otro lado, ejemplo: `||` (dos barras verticales) = "uno y solo uno" y `o{` (círculo + llaves) = "cero o muchos". Tomaremos como ejemplo: `CLIENTES → PROYECTOS`
-**La clave es** que el símbolo colocado junto a `CLIENTES` no describe cuántos clientes hay — *describe **cuántos clientes le corresponden a cada proyecto***. Y el símbolo junto a `PROYECTOS` describe cuántos proyectos le corresponden a cada cliente.
+
+Cada símbolo describe una restricción, pero no sobre la entidad a la que está pegado, sino sobre la entidad del otro lado, ejemplo:
+
+- `||` (dos barras verticales) = "uno y solo uno"
+- `o{` (círculo + llaves) = "cero o muchos".
+
+Tomaremos como ejemplo: `CLIENTES → PROYECTOS`
+
+**La clave es** que el símbolo colocado junto a `CLIENTES` no describe cuántos clientes hay — *describe **cuántos clientes le corresponden a cada proyecto***. Y el símbolo junto a `PROYECTOS` describe ***cuántos proyectos le corresponden a cada cliente***.
 
 ```text
 CLIENTES ||--o{ PROYECTOS : contrata
