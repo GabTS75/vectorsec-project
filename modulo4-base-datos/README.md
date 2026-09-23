@@ -94,7 +94,7 @@ erDiagram
 
 Quizás lo que ves en el diagrama (la notación de Mermaid) puede confundir bastante al principio porque se lee "al revés" de lo que uno esperaría intuitivamente, es decir, **¿Cómo leer `||--o{`?**, veamos:
 
-Cada símbolo describe una restricción, pero no sobre la entidad a la que está pegado, sino sobre la entidad del otro lado, ejemplo:
+Cada símbolo describe una restricción, pero no sobre la entidad a la que está pegado, sino sobre la entidad del otro lado:
 
 - `||` (dos barras verticales) = "uno y solo uno"
 - `o{` (círculo + llaves) = "cero o muchos".
