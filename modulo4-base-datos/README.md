@@ -88,6 +88,23 @@ erDiagram
     }
 ```
 
+---
+
+### Breve explicación de las relaciones en Mermaid
+
+Quizás lo que ves en el diagrama (la notación de Mermaid) puede confundir bastante al principio porque se lee "al revés" de lo que uno esperaría intuitivamente, es decir, **¿Cómo leer `||--o{`?**, veamos:
+Cada símbolo describe una restricción, pero no sobre la entidad a la que está pegado, sino sobre la entidad del otro lado, ejemplo: `||` (dos barras verticales) = "uno y solo uno" y `o{` (círculo + llaves) = "cero o muchos". Tomaremos como ejemplo: `CLIENTES → PROYECTOS`
+**La clave es** que el símbolo colocado junto a `CLIENTES` no describe cuántos clientes hay — *describe **cuántos clientes le corresponden a cada proyecto***. Y el símbolo junto a `PROYECTOS` describe cuántos proyectos le corresponden a cada cliente.
+
+```text
+CLIENTES ||--o{ PROYECTOS : contrata
+         ↑    ↑
+         |    └─ "cada CLIENTE tiene cero o muchos PROYECTOS"
+         └─ "cada PROYECTO tiene uno y solo un CLIENTE"
+```
+
+> 📌 **Traduciendo:** *"**uno-y-solo-uno** pegado a Clientes, **cero-a-muchos** pegado a Proyectos"* es precisamente la forma de representar **"un Cliente, muchos Proyectos"** *(un cliente puede contratar varios proyectos... un proyecto pertenece a un único cliente)*.
+
 ### 3.1 Justificación de las relaciones
 
 - **Clientes → Proyectos (1:N):** un cliente puede contratar varios proyectos a lo largo del tiempo; un proyecto pertenece a un único cliente.
