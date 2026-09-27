@@ -1,8 +1,6 @@
-# VectorSec — Project
+# VectorSec — Project | Proyecto Intermodular
 
-## Proyecto Intermodular
-
-### Ficha de empresa
+## Ficha de empresa
 
 **Nombre:** `VectorSec`
 
@@ -46,7 +44,7 @@ El aula de formación y el CPD se usan de forma compartida por el resto del equi
 
 ---
 
-### Alumno 👨‍💻
+### Estudiante 👨‍💻
 
 - **Nombre:** JOSÉ GABRIEL TERNERO SIFUENTES
 
@@ -55,5 +53,12 @@ El aula de formación y el CPD se usan de forma compartida por el resto del equi
 - **Máster:** CIBERSEGURIDAD — *Prometeo Cyber*
 
 - **GitHub:** [GabTS75](https://github.com/GabTS75)
+
+---
+
+<p align="center">
+  <sub><code>SYSTEM STATUS: ONLINE</code></sub><br>
+  <img src="https://komarev.com/ghpvc/?username=GabTS75&color=blue&style=plastic&label=Access_Logs" />
+</p>
 
 > ✨ « Siempre parece imposible hasta que se consigue » ✨
