@@ -56,8 +56,8 @@ flowchart TD
     ONPREM[SRV-APP01 on-premise<br/>vectorsec_gestion completa] -.->|Sincronización controlada<br/>solo metadatos + PDF final| RDS
     NAS[SRV-NAS on-premise<br/>backups Módulo 1] -.->|Réplica offsite<br/>cifrada| S3B[Amazon S3<br/>Backup Glacier]
 
-    style ONPREM fill:#e0e0e0,stroke:#666
-    style NAS fill:#e0e0e0,stroke:#666
+    style ONPREM fill:#a0a0a0,stroke:#777
+    style NAS fill:#a0a0a0,stroke:#777
 ```
 
 ### 3.1 Cómo funciona, paso a paso
