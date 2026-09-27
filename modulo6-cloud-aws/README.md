@@ -10,9 +10,9 @@
 
 ## 1. Planteamiento: ¿Qué se lleva a la nube y qué no?
 
-Antes de elegir servicios, hay que responder una pregunta previa: ***¿tiene sentido migrar toda la infraestructura de VectorSec a AWS?***. La respuesta, razonada, es que no — *y explicarlo es en sí mismo parte del análisis que pide este módulo*.
+Antes de elegir servicios, hay que responder una pregunta previa: ***¿tiene sentido migrar toda la infraestructura de VectorSec a AWS?***. La respuesta, razonada, es que **no** — *y vamos a explicarlo, puesto que es parte del análisis que nos pide este módulo*.
 
-`VectorSec` es una empresa de ciberseguridad. Su activo más sensible — los datos de auditorías, hallazgos y clientes (`vectorsec_gestion`, Módulo 4) — vive de forma deliberada en infraestructura propia, con acceso restringido por VLAN, ACLs y permisos de base de datos (Módulos 2, 3 y 4). Trasladar esos datos a un proveedor externo sin una razón de negocio real contradiría la misma lógica de control y responsabilidad que la empresa aplica sobre sí misma — teniendo en cuenta el mismo criterio que ya justificó, por ejemplo, aislando `SRV-LAB01` en su propia VLAN.
+`VectorSec` es una empresa de ciberseguridad. Su activo más sensible — *los datos de auditorías, hallazgos y clientes (`vectorsec_gestion`, Módulo 4), vive de forma deliberada en su infraestructura propia, con acceso restringido por VLAN, ACLs y permisos de base de datos (Módulos 2, 3 y 4)*. Trasladar esos datos a un proveedor externo sin una razón de negocio real contradiría la misma lógica de control y responsabilidad que la empresa aplica sobre sí misma — *teniendo en cuenta el mismo criterio que ya se justificó, por ejemplo, aislando `SRV-LAB01` en su propia VLAN*.
 
 Lo que **sí** tiene sentido llevar a la nube es aquello que se beneficia genuinamente de las ventajas del cloud (**alcance público, elasticidad, redundancia geográfica**) sin comprometer esa premisa:
 
@@ -56,17 +56,17 @@ flowchart TD
     ONPREM[SRV-APP01 on-premise<br/>vectorsec_gestion completa] -.->|Sincronización controlada<br/>solo metadatos + PDF final| RDS
     NAS[SRV-NAS on-premise<br/>backups Módulo 1] -.->|Réplica offsite<br/>cifrada| S3B[Amazon S3<br/>Backup Glacier]
 
-    style ONPREM fill:#e8e8e8,stroke:#666
-    style NAS fill:#e8e8e8,stroke:#666
+    style ONPREM fill:#e0e0e0,stroke:#666
+    style NAS fill:#e0e0e0,stroke:#666
 ```
 
 ### 3.1 Cómo funciona, paso a paso
 
 1. El cliente accede al portal mediante un dominio público (ej. `portal.vectorsec.es`), resuelto por **Route 53** (DNS) y servido a través de **CloudFront**, que cachea contenido estático y reduce la carga sobre los servidores de aplicación.
-2. El **Application Load Balancer** reparte las peticiones entre dos instancias **EC2** (para evitar un punto único de fallo — mismo principio de redundancia ya aplicado en `SRV-NAS` con el Hot Spare, Módulo 1).
-3. Las instancias EC2 ejecutan la aplicación del portal, que consulta una base de datos **RDS** — pero esta base de datos **no es una copia de `vectorsec_gestion`**: contiene únicamente los metadatos necesarios para el portal (*qué informes existen, a qué cliente pertenecen, fecha*), nunca los hallazgos de seguridad detallados ni datos internos de proyectos en curso.
+2. El **Application Load Balancer** reparte las peticiones entre dos instancias **EC2** (para evitar un punto único de fallo — *mismo principio de redundancia ya aplicado en `SRV-NAS` con el Hot Spare, Módulo 1)*.
+3. Las instancias EC2 ejecutan la aplicación del portal, que consulta una base de datos **RDS** — *pero esta base de datos **no es una copia de*** `vectorsec_gestion`, esta base de datos contiene únicamente los metadatos necesarios para el portal (*qué informes existen, a qué cliente pertenecen, fecha*), nunca los hallazgos de seguridad detallados ni datos internos de proyectos en curso.
 4. Los informes en PDF se almacenan y descargan desde **S3**, con acceso controlado por credenciales temporales (URLs firmadas), sin exponer el bucket públicamente.
-5. La sincronización entre `SRV-APP01` (on-premise) y la base de datos del portal (RDS) es **unidireccional y selectiva**: solo se envían metadatos de proyectos ya finalizados, nunca el conjunto completo de la base de datos interna.
+5. La sincronización entre `SRV-APP01` (on-premise) y la base de datos del portal (RDS) es **unidireccional y selectiva**, es decir, solo se envían metadatos de proyectos ya finalizados, nunca el conjunto completo de la base de datos interna.
 6. En paralelo, `SRV-NAS` replica sus copias de seguridad (Módulo 1) hacia un *bucket S3* con clase de almacenamiento **Glacier**, pensado para datos de recuperación ante desastres que rara vez se necesitan leer.
 
 > 📌 **Por qué esto es coherente con el resto del proyecto:** la arquitectura respeta exactamente la misma frontera de confianza que ya se estableció con las VLANs y las ACLs del Módulo 3 — *el dato sensible (hallazgos, detalle de auditorías) nunca sale del perímetro de `VectorSec`; lo único que cruza hacia la nube es lo estrictamente necesario para el servicio público*.
