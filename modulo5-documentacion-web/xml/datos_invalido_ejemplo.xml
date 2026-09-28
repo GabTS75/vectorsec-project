@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Ejemplo DELIBERADAMENTE inválido, usado únicamente para demostrar
-  que esquema.xsd valida de verdad y no es un adorno.
+  que esquema.xsd valida de verdad y no es "un adorno".
 
   Errores introducidos a propósito (ver evidencias/validacion_incorrecta.log
   para la salida real de xmllint sobre cada uno):
@@ -17,7 +17,7 @@
 
   <Proyecto id="1" estado="Finalizado">
     <Cliente>
-      <NombreEmpresa>Clínica Dental Sonrisa S.L.</NombreEmpresa>
+      <NombreEmpresa>Clínica Dental Sonrisas S.L.</NombreEmpresa>
       <CIF>12345671</CIF>
       <Sector>Sanidad</Sector>
     </Cliente>
@@ -34,7 +34,7 @@
     </Hallazgos>
     <Informe version="1.0" fecha="2026-04-14">
       <Autor>Sara Iglesias</Autor>
-      <RutaArchivo>/informes/2026/clinica-sonrisa-auditoria-v1.pdf</RutaArchivo>
+      <RutaArchivo>/informes/2026/clinica-sonrisas-auditoria-v1.pdf</RutaArchivo>
     </Informe>
   </Proyecto>
 
