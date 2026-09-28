@@ -59,7 +59,7 @@ El fichero `esquema.xsd` no se limita a comprobar que las etiquetas existan: val
 | `Informe` (cardinalidad) | `minOccurs="0" maxOccurs="unbounded"` | Un proyecto puede tener 0, 1 o varios informes (preliminar + final) |
 | `Proyecto` (cardinalidad) | `minOccurs="1" maxOccurs="unbounded"` | Una exportación debe traer al menos un proyecto |
 
-> 📌 **Limitación conocida y asumida:** el XSD no puede expresar la regla "todo proyecto en estado `Finalizado` debe tener al menos un `Informe`" — eso sería una validación condicional entre un atributo y la cardinalidad de un elemento hermano, algo que XSD 1.0 no soporta de forma nativa (requeriría XSD 1.1 con `<xs:assert>`, o una validación adicional en Schematron). Se documenta como **mejora futura**, con el mismo criterio ya aplicado a otras limitaciones del proyecto (*por ejemplo, el switch de Capa 3 en el Módulo 3*): **una carencia identificada y explicada, no ocultada**.
+> 📌 **Limitación conocida y asumida:** el XSD no puede expresar la regla "todo proyecto en estado `Finalizado` debe tener al menos un `Informe`" — eso sería una validación condicional entre un atributo y la cardinalidad de un elemento hermano, algo que XSD 1.0 no soporta de forma nativa (*requeriría XSD 1.1 con `<xs:assert>`, o una validación adicional en Schematron*). Se documenta como **mejora futura**, con el mismo criterio ya aplicado a otras limitaciones del proyecto (*por ejemplo, el switch de Capa 3 en el Módulo 3*): **una carencia identificada y explicada, no ocultada**.
 
 ---
 
