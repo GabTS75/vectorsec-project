@@ -54,11 +54,11 @@ El aula de formación y el CPD se usan de forma compartida por el resto del equi
 
 - **GitHub:** [GabTS75](https://github.com/GabTS75)
 
+> ✨ « Siempre parece imposible hasta que se consigue » ✨
+
 ---
 
 <p align="center">
   <sub><code>SYSTEM STATUS: ONLINE</code></sub><br>
   <img src="https://komarev.com/ghpvc/?username=GabTS75&color=blue&style=plastic&label=Access_Logs" />
 </p>
-
-> ✨ « Siempre parece imposible hasta que se consigue » ✨
