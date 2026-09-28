@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VectorSec — Ciberseguridad para empresas que no pueden permitirse un fallo</title>
+<meta name="description" content="Auditorías de seguridad, pentesting, formación y cumplimiento normativo para pymes. VectorSec: la ciberseguridad profesional, a tu alcance.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#inicio" class="logo">Vector<span>Sec</span></a>
+
+    <nav class="nav-desktop" aria-label="Navegación principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#metodologia">Metodología</a>
+      <a href="#nosotros">Sobre nosotros</a>
+      <a href="#contacto" class="nav-cta">Contactar</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" id="navMobile" aria-label="Navegación móvil">
+    <a href="#servicios">Servicios</a>
+    <a href="#metodologia">Metodología</a>
+    <a href="#nosotros">Sobre nosotros</a>
+    <a href="#contacto">Contactar</a>
+  </nav>
+</header>
+
+<main id="inicio">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Encontramos los fallos de tu empresa antes de que lo haga alguien sin buenas intenciones.</h1>
+        <p class="hero-sub">
+          Auditamos, atacamos y formamos con la misma disciplina que exigimos a nuestra propia infraestructura.
+          Ciberseguridad seria, pensada para empresas que están creciendo, no para gigantes con presupuesto ilimitado.
+        </p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-primary">Solicita una auditoría</a>
+          <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="finding-card">
+          <div class="finding-card__head">
+            <span class="finding-card__id">HALLAZGO #014</span>
+            <span class="severity severity--alta">Alta</span>
+          </div>
+          <p class="finding-card__title">Puerto de administración remota expuesto a Internet</p>
+          <dl class="finding-card__meta">
+            <div><dt>Proyecto</dt><dd>Auditoría perimetral</dd></div>
+            <div><dt>Detectado</dt><dd>04&nbsp;jun&nbsp;2026</dd></div>
+            <div><dt>Estado</dt><dd>En remediación</dd></div>
+          </dl>
+        </div>
+        <div class="finding-card finding-card--ghost">
+          <div class="finding-card__head">
+            <span class="finding-card__id">HALLAZGO #009</span>
+            <span class="severity severity--media">Media</span>
+          </div>
+          <p class="finding-card__title">Certificado TLS próximo a caducar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust">
+    <div class="wrap trust-grid">
+      <p>Metodología alineada con <strong>OWASP</strong> y el <strong>ENS</strong></p>
+      <p>Primer contacto en <strong>menos de 48h</strong></p>
+      <p>Todo proyecto bajo <strong>acuerdo de confidencialidad</strong></p>
+      <p>Equipo propio, <strong>sin subcontratas</strong></p>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="servicios">
+    <div class="wrap">
+      <h2>Cuatro formas de reducir tu superficie de riesgo</h2>
+      <p class="section-lead">No vendemos paquetes cerrados. Cada servicio responde a una necesidad concreta, y se dimensiona al tamaño real de tu empresa.</p>
+
+      <div class="servicios-grid">
+        <article class="servicio-card servicio-card--auditoria">
+          <h3>Auditoría de seguridad</h3>
+          <p>Revisamos tu infraestructura perimetral e interna para encontrar configuraciones débiles antes de que alguien más lo haga. Informe priorizado por severidad, sin jerga innecesaria.</p>
+        </article>
+
+        <article class="servicio-card servicio-card--pentest">
+          <h3>Test de intrusión (pentesting)</h3>
+          <p>Atacamos tus sistemas y aplicaciones web como lo haría un adversario real, con tu autorización explícita y unas reglas de juego claras desde el primer día.</p>
+        </article>
+
+        <article class="servicio-card servicio-card--formacion">
+          <h3>Formación y concienciación</h3>
+          <p>El eslabón más débil suele ser humano, no técnico. Formamos a tus equipos con casos reales, no con diapositivas genéricas que nadie recuerda al día siguiente.</p>
+        </article>
+
+        <article class="servicio-card servicio-card--consultoria">
+          <h3>Cumplimiento RGPD / ENS</h3>
+          <p>Te acompañamos a cumplir la normativa que te aplica de verdad, sin inflar el alcance para justificar horas de consultoría que no necesitas.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- METODOLOGÍA -->
+  <section id="metodologia" class="metodologia">
+    <div class="wrap">
+      <h2>Cómo trabajamos</h2>
+      <ol class="pasos">
+        <li>
+          <span class="paso-num">1</span>
+          <div>
+            <h3>Análisis del alcance</h3>
+            <p>Definimos juntos qué se audita, qué queda fuera y qué constituye éxito para el proyecto.</p>
+          </div>
+        </li>
+        <li>
+          <span class="paso-num">2</span>
+          <div>
+            <h3>Ejecución técnica</h3>
+            <p>Trabajo de campo: escaneo, análisis manual y, si aplica, explotación controlada de vulnerabilidades.</p>
+          </div>
+        </li>
+        <li>
+          <span class="paso-num">3</span>
+          <div>
+            <h3>Registro de hallazgos</h3>
+            <p>Cada incidencia se documenta con severidad, evidencia y recomendación de remediación concreta.</p>
+          </div>
+        </li>
+        <li>
+          <span class="paso-num">4</span>
+          <div>
+            <h3>Informe y presentación</h3>
+            <p>Entregamos un informe priorizado y lo explicamos en una sesión con tu equipo técnico o de dirección.</p>
+          </div>
+        </li>
+        <li>
+          <span class="paso-num">5</span>
+          <div>
+            <h3>Seguimiento de remediación</h3>
+            <p>Verificamos que las correcciones aplicadas cierran el hallazgo de verdad, no solo sobre el papel.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="nosotros" class="nosotros">
+    <div class="wrap nosotros-grid">
+      <div>
+        <h2>Una empresa joven, con reglas de empresa madura</h2>
+        <p>
+          VectorSec nace para dar a las pymes el mismo nivel de rigor en ciberseguridad que hasta ahora
+          solo estaba al alcance de las grandes consultoras. Aplicamos sobre nuestra propia infraestructura
+          exactamente los mismos criterios que exigimos a nuestros clientes: si no confiamos en algo dentro
+          de nuestra propia red, no te lo vamos a recomendar en la tuya.
+        </p>
+        <p>
+          Seguimos creciendo, y lo hacemos invirtiendo primero en lo que sostiene el trabajo bien hecho:
+          procesos claros, un equipo que entiende lo que audita, y clientes a los que podemos mirar a la cara.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTACTO -->
+  <section id="contacto" class="cta-contacto">
+    <div class="wrap">
+      <h2>¿Sabes realmente qué expone tu empresa hoy?</h2>
+      <div class="terminal" aria-hidden="true">
+        <span class="terminal__prompt">vectorsec@auditoria</span><span class="terminal__sep">:~$</span>
+        <span class="terminal__cmd"> solicitar_auditoria --empresa="TuEmpresa"</span><span class="terminal__cursor"></span>
+      </div>
+      <a href="mailto:contacto@vectorsec.es" class="btn btn-primary btn-large">Escríbenos a contacto@vectorsec.es</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="logo logo--footer">Vector<span>Sec</span></p>
+      <p>Ciberseguridad aplicada, sin humo.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#metodologia">Metodología</a>
+      <a href="#nosotros">Sobre nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+  <p class="footer-copy">© 2026 VectorSec. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('navMobile');
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>

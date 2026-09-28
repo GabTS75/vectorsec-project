@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Ejemplo DELIBERADAMENTE inválido, usado únicamente para demostrar
+  que esquema.xsd valida de verdad y no es un adorno.
+
+  Errores introducidos a propósito (ver evidencias/validacion_incorrecta.log
+  para la salida real de xmllint sobre cada uno):
+
+  1) severidad="Urgente" en el Hallazgo id="1" — no está en la
+     enumeración tipoSeveridad (Critica | Alta | Media | Baja)
+  2) CIF="12345671" en el Cliente del Proyecto — no cumple el patrón
+     [A-Z][0-9]{8} (falta la letra inicial)
+  3) El Proyecto no incluye <FechaInicio> — el XSD la exige
+     (no tiene minOccurs="0")
+-->
+<VectorSecExport fechaExportacion="2026-06-01" origen="SRV-APP01 - vectorsec_gestion">
+
+  <Proyecto id="1" estado="Finalizado">
+    <Cliente>
+      <NombreEmpresa>Clínica Dental Sonrisa S.L.</NombreEmpresa>
+      <CIF>12345671</CIF>
+      <Sector>Sanidad</Sector>
+    </Cliente>
+    <Servicio>
+      <NombreServicio>Auditoría de seguridad perimetral</NombreServicio>
+      <Tipo>Auditoria</Tipo>
+    </Servicio>
+    <FechaFinReal>2026-04-14</FechaFinReal>
+    <Hallazgos>
+      <Hallazgo id="1" severidad="Urgente" estado="Cerrado">
+        <Titulo>Puerto RDP expuesto a Internet</Titulo>
+        <FechaDeteccion>2026-04-05</FechaDeteccion>
+      </Hallazgo>
+    </Hallazgos>
+    <Informe version="1.0" fecha="2026-04-14">
+      <Autor>Sara Iglesias</Autor>
+      <RutaArchivo>/informes/2026/clinica-sonrisa-auditoria-v1.pdf</RutaArchivo>
+    </Informe>
+  </Proyecto>
+
+</VectorSecExport>

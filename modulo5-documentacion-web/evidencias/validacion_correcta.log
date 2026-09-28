@@ -1,0 +1,3 @@
+=== VALIDACIÓN 1: datos.xml contra esquema.xsd ===
+datos.xml validates
+Código de salida: 0

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+  <!-- ============================================================
+       VectorSec — esquema.xsd
+       Valida la exportación de proyectos finalizados (con sus
+       hallazgos e informes) desde vectorsec_gestion (Módulo 4).
+       ============================================================ -->
+
+  <!-- ============ Tipos simples reutilizables ============ -->
+
+  <!-- CIF español: una letra + 8 dígitos (formato usado en Módulo 4) -->
+  <xs:simpleType name="tipoCIF">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z][0-9]{8}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Severidad de un hallazgo — mismos valores que el CHECK de PostgreSQL
+       (sql/01_creacion_tablas.sql, Módulo 4), para que el XSD nunca
+       acepte un valor que la base de datos rechazaría -->
+  <xs:simpleType name="tipoSeveridad">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Critica"/>
+      <xs:enumeration value="Alta"/>
+      <xs:enumeration value="Media"/>
+      <xs:enumeration value="Baja"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Estado de un hallazgo — mismos valores que el CHECK de PostgreSQL -->
+  <xs:simpleType name="tipoEstadoHallazgo">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Abierto"/>
+      <xs:enumeration value="En remediacion"/>
+      <xs:enumeration value="Cerrado"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Estado de un proyecto — mismos valores que el CHECK de PostgreSQL -->
+  <xs:simpleType name="tipoEstadoProyecto">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Planificado"/>
+      <xs:enumeration value="En curso"/>
+      <xs:enumeration value="Finalizado"/>
+      <xs:enumeration value="Cancelado"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Tipo de servicio — mismos valores que el CHECK de PostgreSQL -->
+  <xs:simpleType name="tipoServicio">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Auditoria"/>
+      <xs:enumeration value="Pentesting"/>
+      <xs:enumeration value="Formacion"/>
+      <xs:enumeration value="Consultoria"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Versión de informe: número.número (ej. 1.0, 0.1) -->
+  <xs:simpleType name="tipoVersion">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]+\.[0-9]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Título de hallazgo: mismo límite que VARCHAR(150) en PostgreSQL -->
+  <xs:simpleType name="tipoTitulo">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="5"/>
+      <xs:maxLength value="150"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ============ Tipos complejos ============ -->
+
+  <xs:complexType name="tipoCliente">
+    <xs:sequence>
+      <xs:element name="NombreEmpresa" type="xs:string"/>
+      <xs:element name="CIF" type="tipoCIF"/>
+      <xs:element name="Sector" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipoServicioInfo">
+    <xs:sequence>
+      <xs:element name="NombreServicio" type="xs:string"/>
+      <xs:element name="Tipo" type="tipoServicio"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipoHallazgo">
+    <xs:sequence>
+      <xs:element name="Titulo" type="tipoTitulo"/>
+      <xs:element name="FechaDeteccion" type="xs:date"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="severidad" type="tipoSeveridad" use="required"/>
+    <xs:attribute name="estado" type="tipoEstadoHallazgo" use="required"/>
+  </xs:complexType>
+
+  <!-- Contenedor de hallazgos: 0 o más — un proyecto de Consultoría,
+       por ejemplo, puede legítimamente no tener ningún hallazgo -->
+  <xs:complexType name="tipoHallazgos">
+    <xs:sequence>
+      <xs:element name="Hallazgo" type="tipoHallazgo" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipoInforme">
+    <xs:sequence>
+      <xs:element name="Autor" type="xs:string"/>
+      <xs:element name="RutaArchivo" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="tipoVersion" use="required"/>
+    <xs:attribute name="fecha" type="xs:date" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="tipoProyecto">
+    <xs:sequence>
+      <xs:element name="Cliente" type="tipoCliente"/>
+      <xs:element name="Servicio" type="tipoServicioInfo"/>
+      <xs:element name="FechaInicio" type="xs:date"/>
+      <xs:element name="FechaFinReal" type="xs:date" minOccurs="0"/>
+      <xs:element name="Hallazgos" type="tipoHallazgos" minOccurs="0"/>
+      <!-- Un proyecto puede tener más de un informe (ej. preliminar + final,
+           ver criterio de versionado en Módulo 4) -->
+      <xs:element name="Informe" type="tipoInforme" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="estado" type="tipoEstadoProyecto" use="required"/>
+  </xs:complexType>
+
+  <!-- ============ Elemento raíz ============ -->
+
+  <xs:element name="VectorSecExport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Proyecto" type="tipoProyecto" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="fechaExportacion" type="xs:date" use="required"/>
+      <xs:attribute name="origen" type="xs:string" use="required" fixed="SRV-APP01 - vectorsec_gestion"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

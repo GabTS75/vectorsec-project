@@ -1,0 +1,14 @@
+=== VALIDACIÓN 2: datos_invalido_ejemplo.xml contra esquema.xsd ===
+(XML deliberadamente incorrecto — se espera que la validación FALLE)
+
+datos_invalido_ejemplo.xml:21: element CIF: Schemas validity error : Element 'CIF': [facet 'pattern'] The value '12345671' is not accepted by the pattern '[A-Z][0-9]{8}'.
+datos_invalido_ejemplo.xml:28: element FechaFinReal: Schemas validity error : Element 'FechaFinReal': This element is not expected. Expected is ( FechaInicio ).
+datos_invalido_ejemplo.xml fails to validate
+Código de salida: 3
+
+=== VALIDACIÓN 3: aislando el error de enumeración (severidad='Urgente') ===
+(CIF y FechaInicio ya corregidos, para aislar únicamente este error)
+
+/tmp/datos_invalido_severidad.xml:16: element Hallazgo: Schemas validity error : Element 'Hallazgo', attribute 'severidad': [facet 'enumeration'] The value 'Urgente' is not an element of the set {'Critica', 'Alta', 'Media', 'Baja'}.
+/tmp/datos_invalido_severidad.xml fails to validate
+Código de salida: 3
