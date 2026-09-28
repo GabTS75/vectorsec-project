@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VectorSecExport fechaExportacion="2026-06-01" origen="SRV-APP01 - vectorsec_gestion">
 
-  <!-- Proyecto 1: Clínica Dental Sonrisa — Auditoría de seguridad perimetral
+  <!-- Proyecto 1: Clínica Dental Sonrisas — Auditoría de seguridad perimetral
        Datos idénticos a los insertados en sql/02_insercion_datos.sql (Módulo 4) -->
   <Proyecto id="1" estado="Finalizado">
     <Cliente>
-      <NombreEmpresa>Clínica Dental Sonrisa S.L.</NombreEmpresa>
+      <NombreEmpresa>Clínica Dental Sonrisas S.L.</NombreEmpresa>
       <CIF>B12345671</CIF>
       <Sector>Sanidad</Sector>
     </Cliente>
@@ -27,7 +27,7 @@
     </Hallazgos>
     <Informe version="1.0" fecha="2026-04-14">
       <Autor>Sara Iglesias</Autor>
-      <RutaArchivo>/informes/2026/clinica-sonrisa-auditoria-v1.pdf</RutaArchivo>
+      <RutaArchivo>/informes/2026/clinica-sonrisas-auditoria-v1.pdf</RutaArchivo>
     </Informe>
   </Proyecto>
 
