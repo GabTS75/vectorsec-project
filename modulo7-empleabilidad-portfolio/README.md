@@ -1,6 +1,6 @@
 # Módulo 7 — Itinerario Personal para la Empleabilidad (Portfolio Profesional)
 
-Este módulo no evalúa código — *evalúa cómo me presento como futuro profesional*. Todo lo generado aquí se apoya en el trabajo real hecho en los Módulos 1 a 6 del proyecto `VectorSec`.
+Entiendo que este módulo, no evalúa el desarrollo del propio proyecto en sí, es decir, considero que evalúa *"cómo me presento como futuro profesional"*. Por lo tanto, todo lo generado aquí, en este módulo 7, se apoya en el trabajo real hecho en los Módulos 1 al 6 del proyecto `VectorSec`.
 
 ## Entregables en `modulo7-empleabilidad-portfolio/docs`
 
