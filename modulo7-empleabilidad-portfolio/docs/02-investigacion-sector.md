@@ -22,11 +22,11 @@ Antes de terminar de definir mi perfil, he investigado el sector al que quiero d
 
 **Qué hace:** empresa española especializada en ciberofensiva — *pentesting, red team, threat hunting (MDR) e ingeniería inversa*. A diferencia de S2 Grupo (más generalista y volcada en infraestructuras críticas), Tarlogic está centrada casi en exclusiva en la parte más técnica y ofensiva de la seguridad.
 
-**Qué tipo de perfiles contrata:** pentesters, analistas de red team, especialistas en ingeniería inversa y threat hunters — perfiles muy técnicos y especializados.
+**Qué tipo de perfiles contrata:** pentesters, analistas de red team, especialistas en ingeniería inversa y threat hunters — *perfiles muy técnicos y especializados*.
 
 **Qué tecnologías utilizan:** metodologías alineadas con estándares europeos (TIBER-EU, NIS2, DORA), pruebas de seguridad en aplicaciones web/móviles, infraestructura, IoT y Bluetooth.
 
-**Por qué la elegí:** representa la vertiente más "ofensiva" del sector (el pentesting), que es justo la parte de `VectorSec` que más he disfrutado documentar en mi proyecto.
+**Por qué la elegí:** representa la vertiente más "ofensiva" del sector (el pentesting), que es justo la parte de `VectorSec` (*la defensa en profundidad*) que más he disfrutado documentar en mi proyecto.
 
 ---
 
@@ -38,7 +38,7 @@ Antes de terminar de definir mi perfil, he investigado el sector al que quiero d
 
 **Qué tecnologías utilizan:** entrenamientos 100% prácticos sobre hacking ético, respuesta a incidentes y análisis forense, con laboratorios propios.
 
-**Por qué la elegí:** es la que más se parece al modelo completo de `VectorSec` — combina servicio técnico y formación, los dos pilares que también definí para mi empresa ficticia.
+**Por qué la elegí:** es la que más se parece al modelo completo de `VectorSec` — *combina servicio técnico y formación, los dos pilares que también definí para mi empresa ficticia*.
 
 ---
 
@@ -62,4 +62,4 @@ Antes de terminar de definir mi perfil, he investigado el sector al que quiero d
 
 **Qué habilidades destaca:** dominio técnico de pentesting de redes y sistemas, y *—esto es lo que más valoro—* la capacidad de enseñar el proceso completo en abierto, no solo el resultado final.
 
-**Por qué lo sigo:** es el tipo de perfil más cercano a lo que yo mismo quiero poder hacer pronto: no solo usar herramientas de seguridad, sino entender y construir las mías propias, y documentar el proceso como ya he empezado a hacer en `VectorSec`.
+**Por qué lo sigo:** es el tipo de perfil más cercano a lo que yo mismo quiero poder hacer pronto: no solo usar herramientas de seguridad, sino entender y construir las mías propias, y documentar el proceso como ya he empezado a hacer en `VectorSec` y con alguno que otro proyecto menor desde mi reinvención.
