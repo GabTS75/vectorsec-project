@@ -2,7 +2,7 @@
 
 Este módulo no evalúa código — *evalúa cómo me presento como futuro profesional*. Todo lo generado aquí se apoya en el trabajo real hecho en los Módulos 1 a 6 del proyecto `VectorSec`.
 
-## Entregables en `modulo7-empleabilidad-portfolio`
+## Entregables en `modulo7-empleabilidad-portfolio/docs`
 
 | Documento | Contenido |
 | :--- | :--- |
