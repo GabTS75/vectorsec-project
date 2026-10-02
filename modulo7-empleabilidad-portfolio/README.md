@@ -6,12 +6,12 @@ Este módulo no evalúa código — *evalúa cómo me presento como futuro profe
 
 | Documento | Contenido |
 | :--- | :--- |
-| [`01-perfil-profesional.md`](empleabilidad-docs/01-perfil-profesional.md) | Qué estudio, qué me gusta, qué estoy aprendiendo, dónde me quiero especializar |
-| [`02-investigacion-sector.md`](empleabilidad-docs/02-investigacion-sector.md) | 3 empresas reales del sector ciberseguridad (S2 Grupo, Tarlogic, Securízame) + 2 perfiles profesionales a seguir |
-| [`03-perfil-github.md`](empleabilidad-docs/03-perfil-github.md) | Evaluación honesta de mi propio perfil de GitHub, con mejoras pendientes |
-| [`04-presentacion-proyecto.md`](empleabilidad-docs/04-presentacion-proyecto.md) | `VectorSec` presentado como en una entrevista técnica |
-| [`05-portfolio-basico.md`](empleabilidad-docs/05-portfolio-basico.md) | Estructura mínima del portfolio y enlazada a mi web real |
-| [`06-reflexion-final.md`](empleabilidad-docs/06-reflexion-final.md) | Qué he aprendido, Qué se me ha dado mejor, Qué me ha costado más, Qué mejoraría, Qué pasos quiero dar para acercarme al perfil profesional que me interesa |
+| [`01-perfil-profesional.md`](./docs/01-perfil-profesional.md) | Qué estudio, qué me gusta, qué estoy aprendiendo, dónde me quiero especializar |
+| [`02-investigacion-sector.md`](./docs/02-investigacion-sector.md) | 3 empresas reales del sector ciberseguridad (S2 Grupo, Tarlogic, Securízame) + 2 perfiles profesionales a seguir |
+| [`03-perfil-github.md`](./docs/03-perfil-github.md) | Evaluación honesta de mi propio perfil de GitHub, con mejoras pendientes |
+| [`04-presentacion-proyecto.md`](./docs/04-presentacion-proyecto.md) | `VectorSec` presentado como en una entrevista técnica |
+| [`05-portfolio-basico.md`](./docs/05-portfolio-basico.md) | Estructura mínima del portfolio y enlazada a mi web real |
+| [`06-reflexion-final.md`](./docs/06-reflexion-final.md) | Qué he aprendido, Qué se me ha dado mejor, Qué me ha costado más, Qué mejoraría, Qué pasos quiero dar para acercarme al perfil profesional que me interesa |
 
 ## Portfolio web
 
@@ -20,5 +20,5 @@ Este módulo no evalúa código — *evalúa cómo me presento como futuro profe
 
 ## Material de candidatura (propuestas)
 
-- [`CV_Gabriel_Ternero.pdf`](CV_Gabriel_Ternero.pdf) — formato fórmula X-Y-Z de Google + ATS **PENDIENTE**
-- [`Carta_Presentación_Gabriel_Ternero.pdf`](Carta_Presentacion_Gabriel_Ternero.pdf) — Ejemplo orientado a las prácticas profesionales. **PENDIENTE**
+- [`CV_Gabriel_Ternero.pdf`](./cv/CV_Gabriel_Ternero.pdf) — formato fórmula X-Y-Z de Google + ATS 👉 **(PENDIENTE)**
+- [`Carta_Presentación_Gabriel_Ternero.pdf`](./cv/Carta_Presentacion_Gabriel_Ternero.pdf) — Ejemplo orientado a las prácticas profesionales. 👉 **(PENDIENTE)**
