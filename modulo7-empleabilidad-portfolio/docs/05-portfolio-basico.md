@@ -24,4 +24,4 @@ Este proyecto tiene además su propia sección destacada como `"Proyecto Insigni
 
 ## Qué he aprendido (resumen)
 
-A diseñar una infraestructura completa razonando como un administrador real, a aplicar seguridad en varias capas en vez de confiar en una sola, y a documentar con la misma honestidad los errores que los aciertos — *detalle ampliado en la reflexión final* ([`06-reflexion-final.md`](06-reflexion-final.md)).
+A diseñar una infraestructura completa razonando como un administrador real, a aplicar seguridad en varias capas en vez de confiar en una sola, y a documentar con la misma honestidad tanto los errores como los aciertos — *detalle ampliado en mi reflexión final* ([`06-reflexion-final.md`](06-reflexion-final.md)).
