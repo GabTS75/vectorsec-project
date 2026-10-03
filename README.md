@@ -44,6 +44,12 @@ El aula de formación y el CPD se usan de forma compartida por el resto del equi
 
 ---
 
+## Detalle del proyecto
+
+Para mayor información, haz clic en 👉 [`VectorSec` — Infraestructura IT integral]()
+
+---
+
 ### Estudiante 👨‍💻
 
 - **Nombre:** JOSÉ GABRIEL TERNERO SIFUENTES
@@ -51,8 +57,6 @@ El aula de formación y el CPD se usan de forma compartida por el resto del equi
 - **Curso:** 2º ASIR — PROMETEO FP *by The Power*
 
 - **Máster:** CIBERSEGURIDAD — *Prometeo Cyber*
-
-- **GitHub:** [GabTS75](https://github.com/GabTS75)
 
 > ✨ « Siempre parece imposible hasta que se consigue » ✨
 
