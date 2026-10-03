@@ -4,7 +4,7 @@
 
 ### 1. Qué es este proyecto
 
-En este repositorio documento el diseño, despliegue y documentación de la infraestructura IT completa de **VectorSec**, una empresa de ciberseguridad ficticia (pero deliberadamente realista) en fase de crecimiento, dedicada a servicios de auditoría de seguridad, pentesting, consultoría de cumplimiento normativo (RGPD/ENS) y formación in-company para pymes.
+En este repositorio documento el diseño, despliegue y documentación de la infraestructura IT completa de **`VectorSec`**, una empresa de ciberseguridad ficticia (pero deliberadamente realista) en fase de crecimiento, dedicada a servicios de auditoría de seguridad, pentesting, consultoría de cumplimiento normativo (RGPD/ENS) y formación in-company para pymes.
 
 No es una colección de siete ejercicios independientes. Es **un único proyecto**, con una empresa, unos datos y unas decisiones de diseño que se arrastran y se referencian de un módulo a otro: *el mismo esquema de VLANs que separa el laboratorio de pentesting del resto de la red (Módulo 3) es el que justifica un servidor aislado para ese laboratorio (Módulo 1); los mismos datos de clientes y hallazgos que se insertan en PostgreSQL (Módulo 4) son los que se exportan y validan en XML (Módulo 5) y los que viajarían hacia el portal cloud (Módulo 6)*.
 
@@ -15,7 +15,7 @@ El objetivo es doble:
 
 ---
 
-### 2. La empresa: VectorSec
+### 2. La empresa: `VectorSec`
 
 | | |
 | :--- | :--- |

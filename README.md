@@ -46,7 +46,7 @@ El aula de formación y el CPD se usan de forma compartida por el resto del equi
 
 ## Detalle del proyecto
 
-Para mayor información, haz clic en 👉 [`VectorSec` — Infraestructura IT integral]()
+Para mayor información, haz clic en 👉 [`VectorSec` — Infraestructura IT integral](/vectorsec-infraestructura.md)
 
 ---
 
