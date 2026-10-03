@@ -8,6 +8,10 @@
 
 **Campo de acción:** `auditoría de sistemas`, `pentesting` y `formación en seguridad informática`
 
+---
+
+### Resumen del proyecto
+
 **Historia breve:** VectorSec nace como una empresa joven, fundada por un pequeño equipo de profesionales con experiencia en administración de sistemas y seguridad, que decide ofrecer servicios de auditoría y pentesting a pymes de la región — *un sector que suele quedar desatendido frente a las grandes consultoras*.
 
 Actualmente se encuentra en una fase de crecimiento y consolidación de su propia infraestructura interna, invirtiendo en modernizar su red, sus sistemas y sus procesos para poder escalar sus servicios a clientes más grandes en el corto-medio plazo.
@@ -44,9 +48,9 @@ El aula de formación y el CPD se usan de forma compartida por el resto del equi
 
 ---
 
-## Detalle del proyecto
+### Detalle del proyecto
 
-Para mayor información, haz clic en 👉 [`VectorSec` — Infraestructura IT integral](/vectorsec-infraestructura.md)
+Para mayor información, clic en 👉 [`VectorSec` — Infraestructura IT integral](/vectorsec-infraestructura.md)
 
 ---
 
