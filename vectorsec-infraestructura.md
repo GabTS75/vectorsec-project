@@ -86,7 +86,7 @@ Diseña una **extensión**, no una migración, de la infraestructura hacia AWS: 
 
 #### [Módulo 7 — Itinerario Personal para la Empleabilidad](modulo7-empleabilidad-portfolio/)
 
-Este convierte el trabajo técnico anterior en un **perfil profesional competitivo**: una carta de presentación en primera persona y un CV reescrito con la fórmula X-Y-Z, además incluyo una nueva sección para mi portfolio profesional mostrando este proyecto, y los seis entregables de empleabilidad exigidos (perfil profesional, investigación de sector, perfil de GitHub, presentación del proyecto, portfolio básico y una reflexión final honesta sobre el proceso).
+Este convierte el trabajo técnico anterior en un **perfil profesional competitivo**: una carta de presentación en primera persona y un CV reescrito con la fórmula X-Y-Z, además incluyo una nueva sección para mi portfolio profesional mostrando este proyecto, y los seis entregables de empleabilidad exigidos (*perfil profesional, investigación de sector, perfil de GitHub, presentación del proyecto, portfolio básico y una reflexión final honesta sobre el proceso*).
 
 > La carta de presentación y el nuevo CV van orientados a modo de ejemplo para **las próximas prácticas profesionales y futuras contrataciones**, no obstante se modificaría según cada oferta laboral.
 
@@ -108,7 +108,7 @@ Un criterio (*coherencia y consistencia*) que he mantenido en los siete módulos
 
 - Dos incidencias reales de configuración de red (*solapamiento de subredes, subinterfaz sin IP*) con su proceso de diagnóstico completo, no solo la solución.
 - Limitaciones técnicas reconocidas explícitamente, como la imposibilidad de expresar en XSD 1.0 una regla de validación condicional entre atributos (Módulo 5), o la decisión de no usar un switch de Capa 3 pese a su mejor rendimiento (Módulo 3).
-- Datos y campos marcados como **placeholder** cuando corresponde (por ejemplo, CV pendiente en el Módulo 7, o algunos enlaces también por definir en este mismo repositorio), en lugar de inventarlo para que el documento "parezca" más terminado de lo que está.
+- Datos y campos marcados como **placeholder** cuando corresponde (*por ejemplo, CV pendiente en el Módulo 7, o algunos enlaces también por definir en este mismo repositorio*), en lugar de inventarlo para que el documento "parezca" más terminado de lo que está.
 
 Este criterio **no es** un formalismo: es, en sí mismo, una demostración de "cómo se documenta un proyecto de infraestructura en un entorno profesional real".
 
@@ -131,15 +131,10 @@ Este criterio **no es** un formalismo: es, en sí mismo, una demostración de "c
 ### 8. Sobre el autor
 
 - **Nombre completo:** José Gabriel Ternero Sifuentes
-
 - **Ciclo Formativo:** Grado Superior de Administración de Sistemas Informáticos en Red
-
 - **Máster:** Especialización en Ciberseguridad
-
 - **Localidad:** Valencia
-
 - **Portfolio:** [gabts75.github.io/gabrielternero](https://gabts75.github.io/gabrielternero/)
-
 - **GitHub:** [github.com/GabTS75](https://github.com/GabTS75)
 
 > Más contexto profesional, investigación de sector y reflexión personal sobre este proyecto en el 👉 [Módulo 7](modulo7-empleabilidad-portfolio/).
