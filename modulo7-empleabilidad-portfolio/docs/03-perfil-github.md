@@ -10,7 +10,7 @@ Revisión de mi propio perfil (`github.com/GabTS75`), con lo que ya tengo bien y
 
 ## Lo que voy a mejorar
 
-- **Repositorio `VectorSec`:** este es, con diferencia, mi proyecto más completo hasta la fecha, y todavía no está terminado con un README principal a la altura del resto de documentación que he generado durante el proyecto. Es la primera tarea pendiente que tengo, incluso antes de tocar algo más.
+- **Repositorio `VectorSec`:** este es, con diferencia, mi proyecto más completo hasta la fecha, aunque reconozco que todavía tiene margen de mejora en muchos aspectos, avances que iré tratando poco a poco con el mismo entusiasmo y rigor con el que comencé. Considero que dejar que evolucione de forma natural con las diferentes observaciones y "feedbacks" que vengo recibiendo, es enriquecedor para lograr mis objetivos.
 - **README de cada proyecto individual:** algunos de mis repositorios más antiguos (*los primeros Proyectos del ciclo*) tienen README más simples y escuetos que los que he aprendido a escribir ahora. Los iré revisando y ampliando con el mismo criterio que he usado en `VectorSec`: **qué es, qué problema resuelve, qué aprendí**.
 - **Pin de repositorios:** quiero fijar en mi perfil los *4-6 proyectos que mejor me representan** (*empezando por* `VectorSec`) en vez de dejar que se mezclen con pruebas o ejercicios.
 
