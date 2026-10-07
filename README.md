@@ -62,6 +62,8 @@ Para mayor información, clic en 👉 [`VectorSec — Infraestructura IT integra
 
 - **Máster:** CIBERSEGURIDAD — *Prometeo Cyber*
 
+- **CV Profesional:** 👉 [`CV-Gabriel-Ternero.pdf`](./modulo7-empleabilidad-portfolio/cv/CV-Gabriel-Ternero.pdf)
+
 > ✨ « Siempre parece imposible hasta que se consigue » ✨
 
 ---
