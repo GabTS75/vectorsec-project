@@ -18,7 +18,6 @@ Entiendo que este módulo, no evalúa el desarrollo del propio proyecto en sí, 
 - Sección `"Proyecto Insignia: 🏆 Proyecto Intermodular · Ciclo ASIR 1er. curso"` listo e integrado en el portfolio.
 - Portfolio real: 👉 [gabts75.github.io/gabrielternero](https://gabts75.github.io/gabrielternero/)
 
-## Material de candidatura (propuestas)
+## Material de candidatura
 
-- [`CV_Gabriel_Ternero.pdf`](./cv/CV_Gabriel_Ternero.pdf) — formato fórmula X-Y-Z de Google + ATS 👉 **(PENDIENTE)**
-- [`Carta_Presentación_Gabriel_Ternero.pdf`](./cv/Carta_Presentacion_Gabriel_Ternero.pdf) — Ejemplo orientado a las prácticas profesionales. 👉 **(PENDIENTE)**
+- [`CV-Gabriel-Ternero.pdf`](./cv/CV-Gabriel-Ternero.pdf) — formato fórmula X-Y-Z de Google + ATS
