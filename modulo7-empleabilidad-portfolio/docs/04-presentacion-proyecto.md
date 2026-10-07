@@ -32,5 +32,5 @@ Dos cosas, una técnica y otra de método.
 
 ## Enlaces
 
-- Repositorio completo: [`VectorSec` — pendiente de terminar](https://github.com/GabTS75/vectorsec-project)
+- Repositorio completo: [`VectorSec`](https://github.com/GabTS75/vectorsec-project)
 - Portfolio: [gabts75.github.io/gabrielternero](https://gabts75.github.io/gabrielternero/)
