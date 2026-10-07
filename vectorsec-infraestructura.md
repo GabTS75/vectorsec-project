@@ -136,5 +136,6 @@ Este criterio **no es** un formalismo: es, en sí mismo, una demostración de "c
 - **Localidad:** Valencia
 - **Portfolio:** [gabts75.github.io/gabrielternero](https://gabts75.github.io/gabrielternero/)
 - **GitHub:** [github.com/GabTS75](https://github.com/GabTS75)
+- **CV Profesional:** 👉 [`CV-Gabriel-Ternero.pdf`](./modulo7-empleabilidad-portfolio/cv/CV-Gabriel-Ternero.pdf)
 
 > Más contexto profesional, investigación de sector y reflexión personal sobre este proyecto en el 👉 [Módulo 7](modulo7-empleabilidad-portfolio/).
