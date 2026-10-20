@@ -33,6 +33,7 @@ Esa última **idea** *—la coherencia interna como principio de diseño, no com
 
 ```text
 vectorsec-project/
+├── mejoras-futuras/                    → Propuestas de mejora a futuro, basadas en la revisión luego de finalizar de este proyecto
 ├── modulo1-hardware/                   → Equipos cliente, servidores, almacenamiento y red (catálogo y justificación)
 ├── modulo2-sistemas-operativos/        → Instalación y configuración de cada servidor, imagen de los 16 clientes, AD y permisos
 ├── modulo3-redes/                      → Topología, VLANs, direccionamiento, ACLs, hardening SSH, evidencia de pruebas
