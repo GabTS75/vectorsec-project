@@ -12,7 +12,7 @@
 
 ### Resumen del proyecto
 
-**Historia breve:** VectorSec nace como una empresa joven, fundada por un pequeño equipo de profesionales con experiencia en administración de sistemas y seguridad, que decide ofrecer servicios de auditoría y pentesting a pymes de la región — *un sector que suele quedar desatendido frente a las grandes consultoras*.
+**Historia breve:** `VectorSec` nace como una empresa joven, fundada por un pequeño equipo de profesionales con experiencia en administración de sistemas y seguridad, que decide ofrecer servicios de auditoría y pentesting a pymes de la región — *un sector que suele quedar desatendido frente a las grandes consultoras*.
 
 Actualmente se encuentra en una fase de crecimiento y consolidación de su propia infraestructura interna, invirtiendo en modernizar su red, sus sistemas y sus procesos para poder escalar sus servicios a clientes más grandes en el corto-medio plazo.
 
@@ -44,7 +44,8 @@ El aula de formación y el CPD se usan de forma compartida por el resto del equi
 
 **Misión:** *"Hacer accesible la ciberseguridad profesional a empresas que, hasta ahora, quedaban fuera del alcance de las grandes consultoras."*
 
-**Visión a futuro:** **VectorSec** proyecta ampliar sus servicios a auditorías más complejas y clientes de mayor tamaño, invirtiendo progresivamente en la modernización de su infraestructura interna (parte de la cual documentamos en este mismo proyecto) y en la incorporación de servicios cloud como apoyo a su crecimiento.
+**Visión a futuro:** `VectorSec` proyecta ampliar sus servicios a auditorías más complejas y clientes de mayor tamaño, invirtiendo progresivamente en la modernización de su infraestructura interna (parte de la cual documentamos en este mismo proyecto) y en la incorporación de servicios cloud como apoyo a su crecimiento, además de mantener el control y la seguridad en su infraestructura como eje principal.
+> En ese sentido, luego de la finalización y presentación de este proyecto, se ha dispuesto de una carpeta de "[mejoras-futuras](/mejoras-futuras/)" para su observación.
 
 ---
 
