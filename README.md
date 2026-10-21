@@ -59,9 +59,9 @@ Para mayor información, clic en 👉 [`VectorSec — Infraestructura IT integra
 
 - **Nombre:** JOSÉ GABRIEL TERNERO SIFUENTES
 
-- **Curso:** 2º ASIR — PROMETEO FP *by The Power*
+- **CFGS:** ASIR — PROMETEO FP *by The Power*
 
-- **Máster:** CIBERSEGURIDAD — *Prometeo Cyber*
+- **Especialidad:** CIBERSEGURIDAD — *Prometeo Cyber*
 
 - **CV Profesional:** 👉 [`CV-Gabriel-Ternero.pdf`](./modulo7-empleabilidad-portfolio/cv/CV-Gabriel-Ternero.pdf)
 

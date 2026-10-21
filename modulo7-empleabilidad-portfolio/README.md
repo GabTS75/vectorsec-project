@@ -15,7 +15,7 @@ Entiendo que este módulo, no evalúa el desarrollo del propio proyecto en sí, 
 
 ## Portfolio web
 
-- Sección `"Proyecto Insignia: 🏆 Proyecto Intermodular · Ciclo ASIR 1er. curso"` listo e integrado en el portfolio.
+- Sección `"Proyecto Insignia: 🏆 Proyecto Intermodular · Ciclo ASIR · 2026"` listo e integrado en el portfolio.
 - Portfolio real: 👉 [gabts75.github.io/gabrielternero](https://gabts75.github.io/gabrielternero/)
 
 ## Material de candidatura
