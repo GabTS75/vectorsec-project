@@ -133,7 +133,7 @@ Este criterio **no es** un formalismo: es, en sí mismo, una demostración de "c
 
 - **Nombre completo:** José Gabriel Ternero Sifuentes
 - **Ciclo Formativo:** Grado Superior de Administración de Sistemas Informáticos en Red
-- **Máster:** Especialización en Ciberseguridad
+- **Especialización:** Ciberseguridad
 - **Localidad:** Valencia
 - **Portfolio:** [gabts75.github.io/gabrielternero](https://gabts75.github.io/gabrielternero/)
 - **GitHub:** [github.com/GabTS75](https://github.com/GabTS75)
