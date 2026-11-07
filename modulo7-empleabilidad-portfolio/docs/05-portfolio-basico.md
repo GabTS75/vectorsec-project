@@ -16,11 +16,11 @@ Ver [`04-presentacion-proyecto.md`](04-presentacion-proyecto.md) para la explica
 
 ## Enlace al repositorio
 
-[`Repositorio de VectorSec` — pendiente de terminar](https://github.com/GabTS75/vectorsec-project)
+[`Repositorio de VectorSec`](https://github.com/GabTS75/vectorsec-project)
 
 ## Dónde verlo también
 
-Este proyecto tiene además su propia sección destacada como `"Proyecto Insignia: 🏆 Proyecto Intermodular · Ciclo ASIR 1er. curso"` en mi **portfolio web personal**, por encima del resto de proyectos: 👉 [gabts75.github.io/gabrielternero](https://gabts75.github.io/gabrielternero/)
+Este proyecto tiene además su propia sección destacada como `"🏆 Proyecto Intermodular · Ciclo ASIR · 2026"` en mi **portfolio web personal**, por encima del resto de proyectos: 👉 [gabts75.github.io/gabrielternero](https://gabts75.github.io/gabrielternero/)
 
 ## Qué he aprendido (resumen)
 
