@@ -46,7 +46,7 @@ El aula de formación y el CPD se usan de forma compartida por el resto del equi
 
 **Visión a futuro:** `VectorSec` proyecta ampliar sus servicios a auditorías más complejas y clientes de mayor tamaño, invirtiendo progresivamente en la modernización de su infraestructura interna (parte de la cual documentamos en este mismo proyecto) y en la incorporación de servicios cloud como apoyo a su crecimiento, además de mantener el control y la seguridad en su infraestructura como eje principal.
 
-**Mejoras futuras:** En ese sentido, luego de finalizar este proyecto, he dispuesto de la carpeta "[mejoras-futuras](/mejoras-futuras/)", en la que detallo las mismas para su observación.
+**Mejoras futuras:** En ese sentido, luego de finalizar este proyecto, he dispuesto una carpeta de "[mejoras-futuras](/mejoras-futuras/)", en la que detallo las mismas para su observación.
 
 ---
 
