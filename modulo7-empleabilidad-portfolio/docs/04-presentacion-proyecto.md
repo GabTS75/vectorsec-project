@@ -8,7 +8,7 @@ Así es como presentaría mi proyecto intermodular si me lo preguntaran en una e
 
 ## ¿Qué problema resuelve?
 
-En realidad, no resuelve un problema de un cliente real, pero sí resuelve el problema que tenía yo como estudiante: demostrar que sé diseñar una infraestructura completa razonando como lo haría un administrador de sistemas real, no solo ejecutando pasos sueltos de cada asignatura por separado. Cada decisión técnica *—desde cuántos servidores necesita la empresa hasta si migrar o no a la nube—* está tomada con una justificación de negocio detrás, no solo "porque toca hacerlo".
+En realidad, no resuelve un problema de un cliente real, pero sí resuelve el problema que tenía yo como estudiante *"demostrar que sé diseñar una infraestructura completa razonando como lo haría un administrador de sistemas real, no solo ejecutando pasos sueltos de cada asignatura por separado"*. Cada decisión técnica *—desde cuántos servidores necesita la empresa hasta decidir si migrar o no a la nube—* está tomada con una justificación de negocio detrás, no solo "porque toca hacerlo" sin más.
 
 ## ¿Para quién está pensado?
 
