@@ -1,10 +1,10 @@
 # Mejora futura 02 — Aplicación de gestión centralizada, ampliación del diseño de datos y blog corporativo
 
-**Estado:** propuesta documentada (diseño de datos incluido), **no implementada** en esta versión del proyecto.
-**Origen:** feedback recibido por la profesora Olga M. al revisar este proyecto intermodular.
-**Afecta a:** [Módulo 4](../modulo4-base-datos/README.md) · [Módulo 2](../modulo2-sistemas-operativos/README.md) · [Módulo 5](../modulo5-documentacion-web/README.md) · [Módulo 6](../modulo6-cloud-aws/README.md)
+- **Estado:** propuesta documentada (diseño de datos incluido), **no implementada** en esta versión del proyecto.
+- **Origen:** feedback recibido al revisar este proyecto intermodular.
+- **Afecta a:** [Módulo 4](../modulo4-base-datos/README.md) · [Módulo 2](../modulo2-sistemas-operativos/README.md) · [Módulo 5](../modulo5-documentacion-web/README.md) · [Módulo 6](../modulo6-cloud-aws/README.md)
 
-> *Agradecimiento especial a la profesora Olga M. por la observación. Me hizo considerar el hecho de que mi base de datos sustenta bien el **trabajo técnico** de VectorSec, pero todavía no el **negocio** alrededor (clientes que se comunican, facturas, tareas, departamentos). Lo recojo aquí con el mismo criterio que usé con la DMZ: diseñarlo con rigor y decir con claridad qué es lo que queda fuera.*
+> *Agradecimiento especial a la profesora Olga M. por la observación. Me hizo considerar el hecho de que mi base de datos sustenta bien el **trabajo técnico** de `VectorSec`, pero todavía no el **negocio** alrededor (clientes que se comunican, facturas, tareas, departamentos). Lo menciono aquí con el mismo criterio que usé con la DMZ, diseñarlo con rigor y decir con claridad qué es lo que queda fuera.*
 
 ---
 
@@ -31,7 +31,7 @@ Haciendo una analogía, sería como decir que la base de datos es **el archivo d
 
 ## Un poquito de honestidad
 
-Mis README de los Módulos 2 y 4 dicen que la base de datos "sustenta la aplicación de gestión interna" alojada en `SRV-APP01`. Es cierto **como diseño** (la cuenta `app_vectorsec` y los permisos están preparados), pero **la aplicación como tal no está desarrollada**. Lo dejo escrito aquí para que nadie lo lea como si estuviera funcionando. Y el portal del Módulo 6 hoy es de **solo lectura** y de **un solo sentido** (on-premise → nube): los clientes pueden *ver* informes, no *escribir* a `VectorSec`.
+Mis README de los Módulos 2 y 4 dicen que la base de datos "sustenta la aplicación de gestión interna" alojada en `SRV-APP01`. Es cierto **como diseño** (la cuenta `app_vectorsec` y los permisos están preparados), pero **la aplicación como tal no está desarrollada**. *Lo dejo escrito aquí para que nadie lo lea como si estuviera funcionando*. Y el portal del Módulo 6 hoy es de **solo lectura** y de **un solo sentido** (on-premise → nube): los clientes pueden *ver* informes, no *escribir* a `VectorSec`.
 
 ## 3. Propuesta
 
@@ -64,7 +64,7 @@ erDiagram
     TICKETS ||--o{ TAREAS : "origina"
 ```
 
-Un esquema de las dos tablas más delicadas, para mostrar que el diseño está pensado:
+Un esquema de las dos tablas más delicadas, para mostrar que el diseño se ha pensado:
 
 ```sql
 CREATE TABLE tickets (
@@ -95,7 +95,7 @@ CREATE TABLE tareas (
 );
 ```
 
-> *Esto es un **planteamiento de diseño**, no un script que haya podido verificar, no lo he ejecutado contra PostgreSQL como sí hice con los cuatro scripts del Módulo 4. Antes de implementarlo habría que probarlo, añadir índices (como `idx_proyectos_cliente`) y datos de ejemplo.*
+> *Esto es un **planteamiento de diseño**, no un script que haya podido verificar, no lo he ejecutado contra PostgreSQL como sí hice con los cuatro scripts del Módulo 4. Antes de implementarlo habría que probarlo, añadir índices y datos de ejemplo.*
 
 **Permisos:** Seguiría el criterio actual, es decir, `rol_lectura` solo consulta; `rol_consultor` crearía y actualizaría `tickets`, `tareas` y comentarios; la **facturación** quedaría solo para un rol administrativo nuevo (`rol_administracion`), porque un consultor no debería tocar facturas. Eso si, **nadie borra**, se anula o se cierra.
 
@@ -108,10 +108,10 @@ CREATE TABLE tareas (
 
 | Módulo | Qué cambiaría |
 | :--- | :--- |
-| [Módulo 4 — BBDD](../modulo4-base-datos/README.md#4-modelo-relacional) | Nuevas tablas, la columna `id_departamento`, nuevos roles y scripts adicionales (`05_…`). Habría que **actualizar el diagrama E-R**. |
-| [Módulo 2 — Sistemas Operativos](../modulo2-sistemas-operativos/servidores/SRV-APP01.md) | Instalar la aplicación en `SRV-APP01` y abrir en UFW solo el puerto necesario, igual que con PostgreSQL. |
-| [Módulo 5 — Documentación web](../modulo5-documentacion-web/README.md) | Valorar si el XML/XSD debe incluir facturas o tickets. **Solo si hace falta**: hoy exporta proyectos finalizados y funciona. |
-| [Módulo 6 — Cloud](../modulo6-cloud-aws/README.md) | Ampliar el portal con la entrada de tickets y el flujo inverso, sin exponer la base de datos interna. |
+| [Módulo 4: BBDD](../modulo4-base-datos/README.md#4-modelo-relacional) | Nuevas tablas, la columna `id_departamento`, nuevos roles y scripts adicionales (`05_…`). Habría que **actualizar el diagrama E-R**. |
+| [Módulo 2: Sistemas Operativos](../modulo2-sistemas-operativos/servidores/SRV-APP01.md) | Instalar la aplicación en `SRV-APP01` y abrir en UFW solo el puerto necesario, igual que con PostgreSQL. |
+| [Módulo 5: Documentación web](../modulo5-documentacion-web/README.md) | Valorar si el XML/XSD debe incluir facturas o tickets. **Solo si hace falta**: hoy exporta proyectos finalizados y funciona. |
+| [Módulo 6: Cloud](../modulo6-cloud-aws/README.md) | Ampliar el portal con la entrada de tickets y el flujo inverso, sin exponer la base de datos interna. |
 
 ### 3.3 Blog en WordPress
 
