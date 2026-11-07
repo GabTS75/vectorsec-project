@@ -62,4 +62,4 @@ Antes de terminar de definir mi perfil, he investigado el sector al que quiero d
 
 **Qué habilidades destaca:** dominio técnico de pentesting de redes y sistemas, y *—esto es lo que más valoro—* la capacidad de enseñar el proceso completo en abierto, no solo el resultado final.
 
-**Por qué lo sigo:** es el tipo de perfil más cercano a lo que yo mismo quiero poder hacer pronto: no solo usar herramientas de seguridad, sino entender y construir las mías propias, y documentar el proceso como ya he empezado a hacer en `VectorSec` y con alguno que otro proyecto menor desde mi reinvención.
+**Por qué lo sigo:** es el tipo de perfil más cercano a lo que yo mismo quisiera poder hacer pronto, no solo usar herramientas de seguridad, sino entender y construir las mías propias, y documentar el proceso como ya he empezado a hacer en `VectorSec` y con alguno que otro proyecto menor desde mi reinvención.
