@@ -4,7 +4,7 @@
 
 | Parámetro | Valor | Origen / Justificación |
 | :--- | :--- | :--- |
-| Rol | Controlador de dominio (AD DS) + DNS | Punto central de autenticación y resolución de nombres de VectorSec |
+| Rol | Controlador de dominio (AD DS) + DNS | Punto central de autenticación y resolución de nombres de `VectorSec` |
 | Sistema operativo | Windows Server 2022 Standard (Desktop Experience) | Estándar de facto para directorio activo en entornos empresariales; imprescindible para que los PCs cliente Windows 11 Pro puedan unirse a un dominio |
 | Nombre de host | `SRV-DC01` | Consistente con el diagrama de red del Módulo 3 |
 | Nombre de dominio AD | `vectorsec.local` | Reutiliza el dominio ya definido en la configuración SSH de los switches (Módulo 3), para mantener coherencia en toda la infraestructura |
@@ -42,7 +42,7 @@ Este es el primer servidor a implantar: el resto de equipos (servidores que se u
 
 **Resultado esperado:** pantalla "Selecciona el sistema operativo que deseas instalar", con la edición Desktop Experience resaltada tras la selección.
 
-**Verificación:** confirmamos la edición *Desktop Experience* y no *Core* — *necesaria para gestionar el servidor con interfaz gráfica en este proyecto*.
+**Verificación:** confirmamos la edición *Desktop Experience* y no *Core* *(necesaria para gestionar el servidor con interfaz gráfica en este proyecto)*.
 
 ---
 
@@ -109,7 +109,7 @@ PrefixOrigin      : Manual
 Test-Connection 192.168.60.1 -Count 2
 ```
 
-Debe responder correctamente (2 de 2 paquetes recibidos) — *confirma conectividad hacia el gateway del router ROAS, validando que la integración con el Módulo 3 es correcta*.
+Debe responder correctamente (2 de 2 paquetes recibidos), *confirma conectividad hacia el gateway del router ROAS, validando que la integración con el Módulo 3 es correcta*.
 
 ---
 
@@ -167,11 +167,11 @@ Install-ADDSForest `
   -SafeModeAdministratorPassword (ConvertTo-SecureString "VectorSecDSRM2026!" -AsPlainText -Force)
 ```
 
-**Resultado esperado:** el asistente solicita confirmación (`Confirm`, escribir `Y`) y muestra advertencias no bloqueantes esperables en un entorno de laboratorio, como la ausencia de un servidor DNS delegable superior — *normal al ser el primer y único DC del bosque*. Al finalizar, el proceso reinicia automáticamente la VM.
+**Resultado esperado:** el asistente solicita confirmación (`Confirm`, escribir `Y`) y muestra advertencias no bloqueantes esperables en un entorno de laboratorio, como la ausencia de un servidor DNS delegable superior *(normal al ser el primer y único DC del bosque)*. Al finalizar, el proceso reinicia automáticamente la VM.
 
 **Verificación:** tras el reinicio, la pantalla de inicio de sesión debe mostrar `VECTORSEC\Administrador` (o `vectorsec.local\Administrador`) en lugar del inicio de sesión local — *confirma que el servidor ya opera como controlador de dominio*.
 
-> 📌 **Observación sobre `-InstallDns:$true`:** instala el **rol DNS** como parte del mismo proceso de promoción, evitando un paso separado — *es la práctica estándar, ya que un controlador de dominio casi siempre aloja también la zona DNS de su propio dominio*.
+> 📌 **Observación sobre `-InstallDns:$true`:** instala el **rol DNS** como parte del mismo proceso de promoción, evitando un paso separado *(es la práctica estándar, ya que un controlador de dominio casi siempre aloja también la zona DNS de su propio dominio)*.
 
 ---
 
@@ -224,11 +224,13 @@ dcdiag /v
 
 **Resultado esperado:** una lista extensa de pruebas (`Connectivity`, `Advertising`, `FrsEvent`, `DFSREvent`, `SysVolCheck`, `KccEvent`, `NCSecDesc`, `NetLogons`, `ObjectsReplicated`, `Replications`, `RidManager`, `Services`, `SystemLog`, `VerifyReferences`, entre otras), cada una finalizando en `......................... SRV-DC01 passed test <nombre>`.
 
-**Verificación:** ninguna prueba debe devolver `failed`. Es normal ver advertencias (`warning`) relacionadas con la ausencia de un segundo controlador de dominio para redundancia — *se documenta como mejora futura, con el mismo criterio ya aplicado al switch de Capa 3 en el Módulo 3 (mejora identificada y justificada, no aplicada por no ser necesaria en la fase actual de VectorSec)*.
+**Verificación:** ninguna prueba debe devolver `failed`. Es normal ver advertencias (`warning`) relacionadas con la ausencia de un segundo controlador de dominio para redundancia. *Se documenta como mejora futura, con el mismo criterio que se aplica al switch de Capa 3 en el Módulo 3 (mejora identificada y justificada, no aplicada por no ser necesaria en la fase actual de `VectorSec`)*.
 
 ---
 
 ## 7. Checklist de verificación final
+
+Listado de comprobación luego de montar el servidor:
 
 - [ ] Windows Server 2022 (Desktop Experience) instalado, `hostname` = `SRV-DC01`
 - [ ] IP estática `192.168.60.10/24`, gateway `192.168.60.1` respondiendo a `Test-Connection`
