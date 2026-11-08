@@ -1,8 +1,8 @@
 # Mejora futura 01 — DMZ y firewall de host "desde el minuto cero"
 
-**Estado:** propuesta documentada, **no implementada** en esta versión del proyecto.
-**Origen:** feedback del profesorado durante la revisión del proyecto intermodular.
-**Afecta a:** [Módulo 1](../modulo1-hardware/README.md) · [Módulo 2](../modulo2-sistemas-operativos/README.md) · [Módulo 3](../modulo3-redes/README.md)
+- **Estado:** propuesta documentada, **no implementada** en esta versión del proyecto.
+- **Origen:** feedback recibido luego de la revisión del proyecto intermodular.
+- **Afecta a:** [Módulo 1](../modulo1-hardware/README.md) · [Módulo 2](../modulo2-sistemas-operativos/README.md) · [Módulo 3](../modulo3-redes/README.md)
 
 > **Reconocimiento:** Agradecimiento especial a la profesora Olga, por su su tiempo y dedicación, es gracias a profesores como ella que mejoramos en lo profesional y personal.
 
@@ -24,14 +24,14 @@ Esto es lo que ya hay en el proyecto, sin maquillajes:
 | Equipo | Firewall de host | Dónde está documentado |
 | :--- | :--- | :--- |
 | `SRV-APP01` (Ubuntu) | Activo (UFW): solo SSH y PostgreSQL desde VLAN 10 | [SRV-APP01 · Paso 11](../modulo2-sistemas-operativos/servidores/SRV-APP01.md#paso-11--configurar-el-firewall-ufw) |
-| `SRV-LAB01` (Kali) | Activo (UFW): `deny incoming` por defecto, solo VLAN 40 | [SRV-LAB01 · apartado 6](../modulo2-sistemas-operativos/servidores/SRV-LAB01.md) |
+| `SRV-LAB01` (Kali) | Activo (UFW): `deny incoming` por defecto, solo VLAN 40 | [SRV-LAB01 · apartado 6](../modulo2-sistemas-operativos/servidores/SRV-LAB01.md#6-restricción-de-acceso--firewall-local-defensa-en-profundidad) |
 | `SRV-DC01` (Windows Server) | **No documentado** | [SRV-DC01](../modulo2-sistemas-operativos/servidores/SRV-DC01.md) |
-| `SRV-NAS` (OpenMediaVault) | Solo restricción de SMB por red; **sin cortafuegos de host documentado** | [SRV-NAS · Paso 13](../modulo2-sistemas-operativos/servidores/SRV-NAS.md) |
+| `SRV-NAS` (OpenMediaVault) | Solo restricción de SMB por red; **sin cortafuegos de host documentado** | [SRV-NAS · Paso 13](../modulo2-sistemas-operativos/servidores/SRV-NAS.md#paso-13--limitar-el-acceso-smb-por-red) |
 | 16 PCs cliente (Windows 11) | **No documentado** | [equipos-cliente](../modulo2-sistemas-operativos/equipos-cliente.md) |
 
-**Un poquito de honestidad:** el Firewall de Windows viene activado por defecto, así que **"no documentado"** no significa **"desprotegido"**. Significa que no hay una configuración *deliberada, verificada y justificada*, que es lo que un proyecto de seguridad debería enseñar.
-
-**En cuanto a la DMZ:** la red actual ([Módulo 3](../modulo3-redes/README.md#3-segmentación-lógica--vlans)) **no tiene ningún servicio expuesto a Internet en local**. La web corporativa es estática y vive fuera, y el portal de clientes se resolvió en la nube ([Módulo 6](../modulo6-cloud-aws/README.md)). Una DMZ sin nada dentro no estaría justificada, y por eso no lo consideré.
+> **Un poquito de honestidad:** el Firewall de Windows viene activado por defecto, así que **"no documentado"** no significa **"desprotegido"**. Significa que no hay una configuración *deliberada, verificada y justificada*, que es lo que un proyecto de seguridad debería enseñar.
+>
+> **En cuanto a la DMZ:** la red actual [Módulo 3](../modulo3-redes/README.md#3-segmentación-lógica--vlans) **no tiene ningún servicio expuesto a Internet en local**. La web corporativa es estática y vive fuera, y el portal de clientes se resolvió en la nube [Módulo 6](../modulo6-cloud-aws/README.md). Una DMZ sin nada dentro no estaría justificada, y por eso no lo consideré.
 
 ## 3. Propuesta
 
@@ -48,9 +48,9 @@ Para que la **DMZ** tenga una razón de ser real, propongo un servicio acorde al
 
 | Módulo | Qué cambiaría |
 | :--- | :--- |
-| [Módulo 3 — Redes](../modulo3-redes/README.md#9-políticas-de-acceso--acls) | Nueva VLAN de DMZ (ID 90, libre en el plan actual) con su subinterfaz en el router. Reglas: Internet → DMZ solo el puerto del servicio VPN; DMZ → LAN **denegado por defecto**, con excepciones mínimas y explícitas; LAN → DMZ solo gestión desde la VLAN 99. |
-| [Módulo 1 — Hardware](../modulo1-hardware/README.md#3-servidores) | Un servidor adicional pequeño (`SRV-VPN01`) o una máquina virtual dedicada. Pasaría de 4 a 5 servidores. |
-| [Módulo 2 — Sistemas Operativos](../modulo2-sistemas-operativos/README.md) | Instalación y bastionado del servidor VPN, con firewall de host activo desde la primera configuración y verificación cruzada con las ACL, como en `SRV-LAB01`. |
+| [Módulo 3: Redes](../modulo3-redes/README.md#9-políticas-de-acceso--acls) | Nueva VLAN de DMZ (ID 90, libre en el plan actual) con su subinterfaz en el router. Reglas: Internet → DMZ solo el puerto del servicio VPN; DMZ → LAN **denegado por defecto**, con excepciones mínimas y explícitas; LAN → DMZ solo gestión desde la VLAN 99. |
+| [Módulo 1: Hardware](../modulo1-hardware/README.md#3-servidores) | Un servidor adicional pequeño (`SRV-VPN01`) o una máquina virtual dedicada. Pasaría de 4 a 5 servidores. |
+| [Módulo 2: Sistemas Operativos](../modulo2-sistemas-operativos/README.md) | Instalación y bastionado del servidor VPN, con firewall de host activo desde la primera configuración y verificación cruzada con las ACL, como en `SRV-LAB01`. |
 
 ## 4. Por qué la dejo como mejora futura y no la implemento ahora
 
