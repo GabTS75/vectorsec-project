@@ -4,9 +4,9 @@
 
 | Parámetro | Valor | Justificación |
 | :--- | :--- | :--- |
-| Sistema operativo | Windows 11 Pro | La edición **Pro** (no Home) es obligatoria: solo Pro permite unirse a un dominio Active Directory, aplicar políticas de grupo (GPO) y usar BitLocker — funciones imprescindibles en una empresa con AD ya desplegado (`SRV-DC01`) |
+| Sistema operativo | Windows 11 Pro | La edición **Pro** (no Home) es obligatoria: solo Pro permite unirse a un dominio Active Directory, aplicar políticas de grupo (GPO) y usar BitLocker, *funciones imprescindibles en una empresa con AD ya desplegado (`SRV-DC01`)* |
 | Dominio | `vectorsec.local` | Todos los equipos se unen al dominio creado en `SRV-DC01.md`, heredando la gestión centralizada de usuarios y permisos |
-| Direccionamiento IP | DHCP | Los pools DHCP por VLAN ya están configurados y verificados desde el Módulo 3 — no se requiere ninguna configuración de red adicional en el equipo cliente |
+| Direccionamiento IP | DHCP | Los pools DHCP por VLAN ya están configurados y verificados desde el Módulo 3 (no se requiere ninguna configuración de red adicional en el equipo cliente) |
 | Equipos afectados | 16 PCs: Recepción (2), Administración (2), Dirección (2), Desarrollo (2), Soporte Técnico (2), Aula de Formación (6) | Según el Módulo 1 |
 
 ### 1.1 ¿Por qué no instalar Windows 16 veces, una por equipo?
@@ -15,15 +15,15 @@ Porque sería repetir exactamente el mismo trabajo 16 veces sin necesidad. En su
 
 ### 1.2 ¿Qué equipo usamos como referencia?
 
-Se elige **`PC-ADM1`** (Administración, Intel Core i5, 8 GB RAM) como equipo de referencia. La razón es que su especificación es la más "intermedia" del catálogo del Módulo 1 — *ni la más básica (Recepción, i3) ni la más potente (Desarrollo, i7)* — lo que reduce el riesgo de que, al aplicar la misma imagen en equipos con hardware distinto, aparezcan conflictos de controladores (drivers). Este mismo equipo, una vez terminado el proceso, se queda siendo el propio `PC-ADM1` definitivo — *no se "gasta" ni se descarta, simplemente es el primero en estar listo*.
+Se elige **`PC-ADM1`** (Administración, Intel Core i5, 8 GB RAM) como equipo de referencia. La razón es que su especificación es la más "intermedia" del catálogo del Módulo 1 —*ni la más básica (Recepción, i3) ni la más potente (Desarrollo, i7)*— lo que reduce el riesgo de que, al aplicar la misma imagen en equipos con hardware distinto, aparezcan conflictos de controladores (drivers). Este mismo equipo, una vez terminado el proceso, se queda siendo el propio `PC-ADM1` definitivo *(no se "gasta" ni se descarta, simplemente es el primero en estar listo)*.
 
 ### 1.3 Asunción de diseño sobre el hardware
 
-Se asume que los 16 equipos, aunque con configuraciones de CPU/RAM distintas según el departamento, **provienen del mismo proveedor y comparten una base de hardware compatible** (misma familia de placa base/chipset). Windows 11 gestiona razonablemente bien pequeñas diferencias de hardware dentro de una misma familia mediante sus controladores genéricos y Windows Update, por lo que una única imagen resulta viable. Si en la práctica existiera hardware de fabricantes muy distintos entre departamentos, sería necesario crear más de una imagen de referencia — *se documenta esta asunción de forma explícita, con el mismo criterio de transparencia aplicado en el resto del proyecto*.
+Se asume que los 16 equipos, aunque con configuraciones de CPU/RAM distintas según el departamento, **provienen del mismo proveedor y comparten una base de hardware compatible** (misma familia de placa base/chipset). Windows 11 gestiona razonablemente bien pequeñas diferencias de hardware dentro de una misma familia mediante sus controladores genéricos y Windows Update, por lo que una única imagen resulta viable. Si en la práctica existiera hardware de fabricantes muy distintos entre departamentos, sería necesario crear más de una imagen de referencia. *Se documenta esta asunción de forma explícita, con el mismo criterio de transparencia aplicado en el resto del proyecto*.
 
 ### 1.4 Si VectorSec fuera una empresa mucho más grande
 
-Con 16 equipos, el proceso manual que se describe en este documento (una imagen, aplicada equipo por equipo) es perfectamente razonable. Si **VectorSec** creciera a, por ejemplo, 200 o 2000 equipos, el proceso adecuado cambiaría hacia herramientas de **despliegue centralizado** como **Microsoft Deployment Toolkit (MDT)** o **Microsoft Intune**, que permiten: desplegar la imagen a muchos equipos a la vez por red (sin ir uno por uno con un USB), detectar automáticamente el modelo de hardware e inyectar los drivers correctos para cada uno, e instalar automáticamente el software específico de cada departamento según reglas predefinidas (en vez de hacerlo a mano, como se hace aquí). Se documenta como posible mejora futura, coherente con la visión de crecimiento de **VectorSec** ya mencionada en módulos anteriores.
+Con 16 equipos, el proceso manual que se describe en este documento (una imagen, aplicada equipo por equipo) es perfectamente razonable. Si **VectorSec** creciera a, por ejemplo, 200 o 2000 equipos, el proceso adecuado cambiaría hacia herramientas de **despliegue centralizado** como **Microsoft Deployment Toolkit (MDT)** o **Microsoft Intune**, que permiten: desplegar la imagen a muchos equipos a la vez por red (sin ir uno por uno con un USB), detectar automáticamente el modelo de hardware e inyectar los drivers correctos para cada uno, e instalar automáticamente el software específico de cada departamento según reglas predefinidas (en vez de hacerlo a mano, como se hace aquí). *Se documenta como posible mejora futura, coherente con la visión de crecimiento de `VectorSec` ya mencionada en módulos anteriores*.
 
 ---
 
@@ -45,7 +45,7 @@ Con 16 equipos, el proceso manual que se describe en este documento (una imagen,
 
 **Acción:** arrancar `PC-ADM1` desde la ISO de instalación de **Windows 11 Pro** → seleccionar idioma ***Español** (España)* → **Instalar ahora**.
 
-> 📌 **Sobre la clave de producto:** las ISOs "retail" (las que se descargan normalmente para uso doméstico) piden obligatoriamente una clave de producto y ya no siempre ofrecen la opción de omitirla. Para evitar tener algún inconveniente en el desarrollo de este proyecto, la solución estándar sería — *y es la que usaremos en este documento* — descargar la [ISO de evaluación de Windows 11 Enterprise](https://www.microsoft.com/es-es/evalcenter/evaluate-windows-11-enterprise) desde el propio sitio de **Microsoft** (pensada para pruebas, formación y entornos de laboratorio): esta versión **no pide ninguna clave durante la instalación** y funciona con todas las funciones activas durante el periodo de evaluación (**90 días**, prorrogables).
+> 📌 **Sobre la clave de producto:** las ISOs "retail" (las que se descargan normalmente para uso doméstico) piden obligatoriamente una clave de producto y ya no siempre ofrecen la opción de omitirla. Para evitar tener algún inconveniente en el desarrollo de este proyecto, la solución estándar sería *(y es la que usaremos en este documento)* descargar la [ISO de evaluación de Windows 11 Enterprise](https://www.microsoft.com/es-es/evalcenter/evaluate-windows-11-enterprise) desde el propio sitio de **Microsoft** (pensada para pruebas, formación y entornos de laboratorio): esta versión **no pide ninguna clave durante la instalación** y funciona con todas las funciones activas durante el periodo de evaluación (**90 días**, prorrogables).
 
 **Resultado esperado:** el instalador avanza directamente a la aceptación de términos de licencia, sin pantalla de introducción de clave.
 
@@ -68,15 +68,15 @@ Con 16 equipos, el proceso manual que se describe en este documento (una imagen,
 Aquí está el cambio más importante respecto a un uso doméstico habitual de Windows, y merece una explicación aparte y detallada.
 
 **¿Qué es el Modo Auditoría y por qué lo usamos?**
-Si completases el asistente de bienvenida normal (el que pide crear un usuario, conectar a Internet, etc.), Windows te obligaría a crear una cuenta de usuario real en ese momento. El problema es que esa cuenta quedaría "grabada" dentro de la instalación, y si luego clonas esa instalación a otros 15 equipos, **los 16 acabarían compartiendo exactamente el mismo usuario y la misma contraseña** — *algo nada recomendable en seguridad (y más en una empresa de ciberseguridad)*.
+Si completases el asistente de bienvenida normal (el que pide crear un usuario, conectar a Internet, etc.), Windows te obligaría a crear una cuenta de usuario real en ese momento. El problema es que esa cuenta quedaría "grabada" dentro de la instalación, y si luego clonas esa instalación a otros 15 equipos, **los 16 acabarían compartiendo exactamente el mismo usuario y la misma contraseña**, *algo nada recomendable en seguridad (y más en una empresa de ciberseguridad)*.
 
-El **Modo Auditoría** es un modo especial, pensado precisamente para este caso: te deja entrar directamente al escritorio de Windows usando la cuenta **Administrador integrada** (una cuenta técnica del propio sistema, no una cuenta de usuario "real"), sin necesidad de crear ningún usuario. Así, cuando más adelante se ejecute **`Sysprep`**, no hay ningún usuario personalizado que limpiar — *el problema desaparece de raíz en vez de tener que "arreglarse" después*.
+El **Modo Auditoría** es un modo especial, pensado precisamente para este caso: te deja entrar directamente al escritorio de Windows usando la cuenta **Administrador integrada** (una cuenta técnica del propio sistema, no una cuenta de usuario "real"), sin necesidad de crear ningún usuario. Así, cuando más adelante se ejecute **`Sysprep`**, no hay ningún usuario personalizado que limpiar, *el problema desaparece de raíz en vez de tener que "arreglarse" después*.
 
 **Acción:** en la pantalla de bienvenida ***"¿Cuál es tu país o región?"***, pulsar la combinación de teclas **`Ctrl + Shift + F3`**. 👈
 
 **Resultado esperado:** el equipo se reinicia automáticamente y entra directo al escritorio de Windows, con una ventana de **`Sysprep`** ya abierta de fondo (se cerrará sin hacer nada por ahora, la usaremos más adelante en el Paso 8) y una marca de agua en la esquina indicando **"Modo Auditoría"**.
 
-**Verificación:** la esquina inferior derecha del escritorio muestra el texto **"Modo de auditoría"** — *si no aparece, significa que la combinación de teclas no se pulsó a tiempo (solo funciona en esa pantalla concreta del asistente ¡ojo!)*.
+**Verificación:** la esquina inferior derecha del escritorio muestra el texto **"Modo de auditoría"**, *si no aparece, significa que la combinación de teclas no se pulsó a tiempo (solo funciona en esa pantalla concreta del asistente ¡ojo!)*.
 
 ---
 
@@ -86,7 +86,7 @@ El **Modo Auditoría** es un modo especial, pensado precisamente para este caso:
 
 **Acción:** en Modo Auditoría, instalar el software que **todos** los departamentos necesitan por igual:
 
-- Navegador (ej. Microsoft Edge actualizado, o Chrome/Firefox según política interna)
+- Navegador (por ejemplo: Microsoft Edge actualizado, o Chrome/Firefox según política interna)
 - Suite ofimática
 - Cliente de escritorio remoto / VPN corporativa (si aplica)
 
@@ -94,7 +94,7 @@ El **Modo Auditoría** es un modo especial, pensado precisamente para este caso:
 
 **Verificación:** cada aplicación abre correctamente.
 
-> 📌 **El software específico de cada departamento, como por ejemplo: herramientas de desarrollo en Desarrollo, herramientas de pentesting en el Aula de Formación, etc., no se instala aquí.** Se instalarán después, de manera individual y solo en los equipos que lo necesiten — *instalarlo en la imagen común significaría que hasta el PC de Recepción tendría herramientas de desarrollo instaladas, lo cual no tiene sentido ni es seguro*.
+> 📌 **El software específico de cada departamento, como por ejemplo: herramientas de desarrollo en Desarrollo, herramientas de pentesting en el Aula de Formación, etc., no se instala aquí.** Se instalarán después, de manera individual y solo en los equipos que lo necesiten, *instalarlo en la imagen común significaría que hasta el PC de Recepción tendría herramientas de desarrollo instaladas, lo cual no tiene sentido ni es seguro*.
 
 ---
 
@@ -116,13 +116,13 @@ Debe mostrar las actualizaciones instaladas más recientes.
 
 ## 5. Generalización con Sysprep (explicación completa)
 
-> Mayor información en la página oficial de Microsoft — [Sysprep: System Preparation Tool](https://learn.microsoft.com/es-es/windows-hardware/manufacture/desktop/sysprep--system-preparation--overview?view=windows-11) 👈
+> Mayor información en la página oficial de Microsoft: [Sysprep: System Preparation Tool](https://learn.microsoft.com/es-es/windows-hardware/manufacture/desktop/sysprep--system-preparation--overview?view=windows-11)
 
 ### 5.1 ¿Qué es un SID y por qué es un problema al clonar?
 
-Cada instalación de Windows genera, durante su instalación, un identificador único e interno llamado **SID (Security Identifier)** — algo así como el "DNI" que **Windows** y **Active Directory** usan internamente para reconocer a ese equipo concreto y a sus cuentas de usuario locales.
+Cada instalación de Windows genera, durante su instalación, un identificador único e interno llamado **SID (Security Identifier)**, algo así como el "DNI" que **Windows** y **Active Directory** usan internamente para reconocer a ese equipo concreto y a sus cuentas de usuario locales.
 
-**El problema:** si clonas una instalación de Windows tal cual a otros 15 equipos, **los 16 tendrían exactamente el mismo SID** (Esto sucedió en una clase práctica de ISO). Para **Active Directory** esto es un problema serio, porque necesita identificar a cada equipo del dominio de forma única — *con SIDs duplicados, el dominio no podría distinguir entre `PC-ADM1` y, por ejemplo, `PC-DES1`, lo que provocaría fallos de autenticación y de aplicación de políticas de grupo impredecibles*.
+**El problema:** si clonas una instalación de Windows tal cual a otros 15 equipos, **los 16 tendrían exactamente el mismo SID** (Esto sucedió en una clase práctica de ISO). Para **Active Directory** esto es un problema serio, porque necesita identificar a cada equipo del dominio de forma única, *con SIDs duplicados, el dominio no podría distinguir entre `PC-ADM1` y, por ejemplo, `PC-DES1`, lo que provocaría fallos de autenticación y de aplicación de políticas de grupo impredecibles*.
 
 ### 5.2 ¿Qué hace Sysprep?
 
@@ -186,7 +186,7 @@ Al arrancar por primera vez, cada uno de los 15 clones pasaría por el mismo asi
 
 **Resultado esperado:** un archivo de texto plano guardado con extensión `.xml` (no `.txt`).
 
-**Verificación:** al abrir el archivo en un navegador web (arrastrándolo a una pestaña), debe mostrarse como un árbol de etiquetas XML bien formado (sabemos que es muy estrícto), sin mensajes de error de "documento no válido" — *es una forma sencilla de comprobar que no hay etiquetas mal cerradas sin necesidad de herramientas adicionales*.
+**Verificación:** al abrir el archivo en un navegador web (arrastrándolo a una pestaña), debe mostrarse como un árbol de etiquetas XML bien formado (sabemos que es muy estrícto), sin mensajes de error de "documento no válido", *es una forma sencilla de comprobar que no hay etiquetas mal cerradas sin necesidad de herramientas adicionales*.
 
 **Acción final:** copiar este archivo a la ruta `C:\Windows\System32\Sysprep\unattend.xml` del equipo de referencia.
 
@@ -200,11 +200,11 @@ Al arrancar por primera vez, cada uno de los 15 clones pasaría por el mismo asi
 - Marcar la casilla **Generalize**
 - **Shutdown Options:** *Shutdown*
 
-Pulsar **OK**.
+Pulsar **"OK"**.
 
 **Resultado esperado:** el equipo muestra brevemente *"Preparando dispositivo para su primer uso"* y se apaga automáticamente (no reinicia).
 
-**Verificación:** el equipo se apaga limpiamente, sin ventanas de error. Un error habitual en este paso (`Sysprep was not able to validate your Windows installation`) casi siempre indica que se completó el asistente de bienvenida normal en vez de entrar en Modo Auditoría, o que quedó algún usuario adicional creado — *si esto ocurre, se recomienda repetir la instalación desde el Paso 2, prestando especial atención al Paso 3*.
+**Verificación:** el equipo se apaga limpiamente, sin ventanas de error. Un error habitual en este paso (`Sysprep was not able to validate your Windows installation`) casi siempre indica que se completó el asistente de bienvenida normal en vez de entrar en Modo Auditoría, o que quedó algún usuario adicional creado, *si esto ocurre, se recomienda repetir la instalación desde el Paso 2, prestando especial atención al Paso 3*.
 
 ---
 
@@ -212,9 +212,9 @@ Pulsar **OK**.
 
 ### 6.1 ¿Por qué Clonezilla y no herramientas de línea de comandos?
 
-Existen varias formas de "clonar" un disco. La que usan los departamentos de IT de grandes empresas suele apoyarse en **WinPE + DISM** (un mini-sistema operativo de Microsoft junto con comandos específicos de captura y aplicación de imágenes) — *es muy potente y flexible, pero requiere escribir varios comandos exactos y entender conceptos adicionales (particiones, letras de unidad, gestores de arranque...). Es la herramienta correcta cuando se automatiza el despliegue de cientos de equipos, pero no es la más intuitiva para una primera toma de contacto*.
+Existen varias formas de "clonar" un disco. La que usan los departamentos de IT de grandes empresas suele apoyarse en **WinPE + DISM** (un mini-sistema operativo de Microsoft junto con comandos específicos de captura y aplicación de imágenes), *es muy potente y flexible, pero requiere escribir varios comandos exactos y entender conceptos adicionales (particiones, letras de unidad, gestores de arranque...). Es la herramienta correcta cuando se automatiza el despliegue de cientos de equipos, pero no es la más intuitiva para una primera toma de contacto*.
 
-**Clonezilla** es una alternativa gratuita y de código abierto que hace exactamente lo mismo (clonar un disco completo) pero mediante un **menú de texto guiado**, sin necesidad de escribir comandos — *se navega con las flechas del teclado y se confirma con Intro. Para este proyecto, es la opción más adecuada tanto por su sencillez como porque el resultado final (una imagen del disco, aplicable a otros equipos) es equivalente*.
+**Clonezilla** es una alternativa gratuita y de código abierto que hace exactamente lo mismo (clonar un disco completo) pero mediante un **menú de texto guiado**, sin necesidad de escribir comandos *(se navega con las flechas del teclado y se confirma con Intro)*. Para este proyecto, es la opción más adecuada tanto por su sencillez como porque el resultado final (una imagen del disco, aplicable a otros equipos) es equivalente.
 
 ### Paso 7 — Arrancar Clonezilla en el equipo de referencia
 
@@ -384,6 +384,8 @@ Debe devolver un número de versión válido.
 ---
 
 ## 9. Checklist de verificación final
+
+Listado de verificación para cuando se realice:
 
 - [ ] Equipo de referencia (`PC-ADM1`) instalado en Modo Auditoría, sin usuarios personalizados creados
 - [ ] Software base común instalado y actualizado
