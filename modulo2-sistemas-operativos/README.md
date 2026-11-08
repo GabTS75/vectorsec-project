@@ -4,7 +4,7 @@
 
 **Sector:** `Ciberseguridad` — `auditoría, pentesting y formación en seguridad informática`
 
-**Entorno de trabajo:** documentación conceptual detallada, verificable en VirtualBox/Hyper-V
+**Entorno de trabajo:** documentación conceptual detallada, verificable en VirtualBox/Hyper-V (si se llega a desplegar)
 
 ## 1. Introducción
 
@@ -55,20 +55,20 @@ Los servidores Linux (`SRV-APP01`, `SRV-LAB01`, `SRV-NAS`) se implantan en paral
 
 | Grupo | Método | Motivo |
 | :--- | :--- | :--- |
-| 4 servidores | Instalación manual, individualizada | Cada uno tiene un rol y una configuración de servicios distinta — *no hay nada que clonar entre ellos* |
-| 16 PCs cliente | Imagen de referencia (Modo Auditoría + Sysprep) + clonación (Clonezilla) | Mismo sistema operativo y base común en los 16 equipos — *instalar manualmente 16 veces repetiría el mismo trabajo sin necesidad* |
+| 4 servidores | Instalación manual, individualizada | Cada uno tiene un rol y una configuración de servicios distinta *(no hay nada que clonar entre ellos)* |
+| 16 PCs cliente | Imagen de referencia (Modo Auditoría + Sysprep) + clonación (Clonezilla) | Mismo sistema operativo y base común en los 16 equipos *(instalar manualmente 16 veces repetiría el mismo trabajo sin necesidad)* |
 
 ---
 
 ## 4. Coherencia con los módulos ya construidos
 
-Este módulo no se ha desarrollado de forma aislada — *cada decisión reutiliza o refuerza algo ya definido en módulos anteriores*:
+Este módulo no se ha desarrollado de forma aislada *(cada decisión reutiliza o refuerza algo ya definido en módulos anteriores)*:
 
 - **Direccionamiento IP:** todos los servidores usan las IPs ya fijadas en la tabla de direccionamiento del Módulo 3, sin ninguna reasignación.
 - **Nombre de dominio:** `vectorsec.local` ya se había introducido en el Módulo 3 (configuración SSH de los switches) y se reutiliza aquí como dominio de Active Directory, en lugar de introducir un segundo nombre de dominio sin motivo.
-- **Defensa en profundidad:** las políticas de acceso ya aplicadas por ACL en el router (Módulo 3) se refuerzan a nivel de host en `SRV-APP01` (`pg_hba.conf`), `SRV-LAB01` (firewall UFW) y `SRV-NAS` (restricción SMB por red) — *la misma política de seguridad, aplicada en dos capas independientes*.
+- **Defensa en profundidad:** las políticas de acceso ya aplicadas por ACL en el Módulo 3 (router) se refuerzan a nivel de host en `SRV-APP01` (`pg_hba.conf`), `SRV-LAB01` (firewall UFW) y `SRV-NAS` (restricción SMB por red) *(la misma política de seguridad, aplicada en dos capas independientes)*.
 - **DHCP:** se decide explícitamente no migrarlo a Windows Server, por estar ya implementado y verificado en el Módulo 3 (detalle en `servicios.md`, apartado 3).
-- **Segmentación por departamento:** la estructura de OUs y grupos de Active Directory replica la misma segmentación por departamento ya usada en VLANs (Módulo 3) y en hardware (Módulo 1) — *mismo criterio organizativo en toda la infraestructura*.
+- **Segmentación por departamento:** la estructura de OUs y grupos de Active Directory replica la misma segmentación por departamento ya usada en el Módulo 3 (VLANs) y en el Módulo 1 (Hardware), *mismo criterio organizativo en toda la infraestructura*.
 
 ---
 
@@ -88,7 +88,7 @@ Este módulo no se ha desarrollado de forma aislada — *cada decisión reutiliz
 
 ## 6. Conclusiones
 
-La implantación de sistemas operativos de VectorSec combina Windows y Linux según el rol de cada equipo, evitando tanto la *homogeneidad forzada* (todo Windows, o todo Linux, "porque sí") como la *dispersión sin criterio*. Cada decisión de sistema operativo, método de despliegue y configuración de seguridad queda justificada y, siempre que ha sido posible, verificada con una prueba concreta y reproducible — *desde el bloqueo de acceso no autorizado a PostgreSQL, hasta la comprobación de que el laboratorio aislado no puede iniciar tráfico hacia el resto de la red ni siquiera a nivel de sistema operativo*.
+La implantación de sistemas operativos de VectorSec combina Windows y Linux según el rol de cada equipo, evitando tanto la *homogeneidad forzada* (todo Windows, o todo Linux, "porque sí") como la *dispersión sin criterio*. Cada decisión de sistema operativo, método de despliegue y configuración de seguridad queda justificada y, siempre que ha sido posible, verificada con una prueba concreta y reproducible, *desde el bloqueo de acceso no autorizado a PostgreSQL, hasta la comprobación de que el laboratorio aislado no puede iniciar tráfico hacia el resto de la red ni siquiera a nivel de sistema operativo*.
 
 Como en los módulos anteriores, las limitaciones del entorno de simulación (imposibilidad de provocar un fallo de disco real en el NAS, por ejemplo) se han documentado de forma explícita en lugar de omitirse, *manteniendo la misma coherencia y honestidad técnica aplicada durante todo el proyecto*.
 
@@ -97,4 +97,4 @@ Como en los módulos anteriores, las limitaciones del entorno de simulación (im
 ## 7. Entregables
 
 - Los 7 documentos listados en el apartado 5, organizados en la carpeta `modulo2-sistemas-operativos/`
-- Capturas de configuración y verificación (carpeta `/imgs`, a incorporar si se implementa siguiendo cada guía paso a paso)
+- Las capturas de configuración y verificación (en la carpeta `/imgs` se incorporarían, si se implementa siguiendo cada guía paso a paso)
