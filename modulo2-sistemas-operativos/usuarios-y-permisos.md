@@ -10,7 +10,7 @@ Una **Unidad Organizativa (OU)** es, dicho de forma sencilla, una "carpeta" dent
 
 ### 1.2 Usuarios y equipos en OUs separadas
 
-Hemos considerado antes de construir este documento, separar **las OUs de usuarios y de equipos**, en lugar de mezclarlos en **una única OU por departamento**. La razón es que una **GPO** siempre tiene dos mitades — *configuración de equipo y configuración de usuario* — y aplicarla sobre una **OU mixta** procesa ambas mitades sobre todo lo que hay dentro, aunque solo se necesite una. Separarlas permite enlazar cada **GPO** exactamente donde corresponde.
+Hemos considerado antes de construir este documento, separar **las OUs de usuarios y de equipos**, en lugar de mezclarlos en **una única OU por departamento**. La razón es que una **GPO** siempre tiene dos mitades *(configuración de equipo y configuración de usuario)* y aplicarla sobre una **OU mixta** procesa ambas mitades sobre todo lo que hay dentro, aunque solo se necesite una. Separarlas permite enlazar cada **GPO** exactamente donde corresponde.
 
 ### 1.3 Estructura completa
 
@@ -47,7 +47,7 @@ Cada usuario se crea con el patrón `nombre.apellido` (ejemplo: `Juan Pérez` �
 
 1. Crear la estructura de OUs (`VectorSec` → `Usuarios`/`Equipos`/`Grupos`, con sus subcarpetas por departamento).
 2. Crear los grupos de seguridad, uno por departamento.
-3. Crear los usuarios mediante importación desde un **archivo CSV** (evita repetir 16 veces el mismo comando manualmente — *mismo criterio de eficiencia ya aplicado al clonar los equipos cliente*).
+3. Crear los usuarios mediante importación desde un **archivo CSV** *(evita repetir 16 veces el mismo comando manualmente, mismo criterio de eficiencia ya aplicado al clonar los equipos cliente)*.
 4. Mover cada uno de los 16 equipos, ya unidos al dominio, desde la OU `Computers` por defecto a su OU de equipos correspondiente.
 5. Crear y enlazar las GPOs de equipo y de usuario, por departamento.
 6. Configurar permisos NTFS sobre las carpetas compartidas, basados en los grupos de seguridad creados.
@@ -93,7 +93,7 @@ foreach ($dep in $departamentos) {
 }
 ```
 
-> 📌 **Sobre este bucle `foreach`:** en lugar de escribir 12 comandos `New-ADOrganizationalUnit` a mano (6 departamentos × 2 ramas), se recorre la lista de departamentos una sola vez y se crea la OU correspondiente en ambas ramas — *el mismo principio de "no repetir manualmente lo que se puede automatizar" que ya aplicamos al clonar los equipos cliente*.
+> 📌 **Sobre este bucle `foreach`:** en lugar de escribir 12 comandos `New-ADOrganizationalUnit` a mano (6 departamentos × 2 ramas), se recorre la lista de departamentos una sola vez y se crea la OU correspondiente en ambas ramas *(el mismo principio de "no repetir manualmente lo que se puede automatizar" que ya aplicamos al clonar los equipos cliente)*.
 
 **Resultado esperado:** sin errores durante la ejecución del bucle.
 
@@ -140,7 +140,7 @@ Debe listar los 6 grupos creados (`GG_Recepcion`, `GG_Administracion`, `GG_Direc
 
 ### 5.1 ¿Por qué un `CSV` en lugar de crear cada usuario manualmente?
 
-Con 16 usuarios (uno por cada uno de los 16 equipos, mínimo — *puede haber más de un usuario por equipo compartido, como en el Aula*) repetir el mismo comando `New-ADUser` uno por uno es tedioso y propenso a errores de transcripción. Un archivo **CSV** (valores separados por comas, como una hoja de cálculo simplificada) permite definir todos los usuarios de una vez, y un único script los crea a todos leyendo ese archivo — *el mismo enfoque de "plantilla + datos" que ya usamos con la imagen de referencia de los equipos cliente*.
+Con 16 usuarios *(uno por cada uno de los 16 equipos, mínimo son 16, pero puede haber más de un usuario por equipo compartido, como en el Aula)* repetir el mismo comando `New-ADUser` uno por uno es tedioso y propenso a errores de transcripción. Un archivo **CSV** (valores separados por comas, como una hoja de cálculo simplificada) permite definir todos los usuarios de una vez, y un único script los crea a todos leyendo ese archivo *(el mismo enfoque de "plantilla + datos" que ya usamos con la imagen de referencia de los equipos cliente)*.
 
 ### Paso 4 — Crear el archivo `usuarios.csv`
 
@@ -191,7 +191,7 @@ foreach ($u in $usuarios) {
 }
 ```
 
-> 📌 **Sobre `-ChangePasswordAtLogon $true`:** la contraseña `VectorSec2026!` es solo una contraseña **temporal e idéntica para todos** en el momento de la creación — *el parámetro obliga a cada usuario a cambiarla por una propia en su primer inicio de sesión, evitando el mismo problema de "credencial compartida" que identificamos y resolvimos al preparar la imagen de los equipos cliente (Modo Auditoría), aplicado aquí a nivel de **cuentas de usuario***.
+> 📌 **Sobre `-ChangePasswordAtLogon $true`:** la contraseña `VectorSec2026!` es solo una contraseña **temporal e idéntica para todos** en el momento de la creación, *el parámetro obliga a cada usuario a cambiarla por una propia en su primer inicio de sesión, evitando el mismo problema de "credencial compartida" que identificamos y resolvimos al preparar la imagen de los equipos cliente (Modo Auditoría), aplicado aquí a nivel de **cuentas de usuario***.
 
 **Resultado esperado:** sin errores durante la ejecución del bucle; cada usuario queda creado en la OU de su departamento y añadido a su grupo de seguridad correspondiente.
 
@@ -262,7 +262,7 @@ Siguiendo el patrón de nomenclatura acordado, se crean GPOs separadas de equipo
 | `GPO_Usuarios_Direccion` | `OU=Direccion` (bajo Usuarios) | Redirección de la carpeta "Documentos" hacia el recurso compartido de `SRV-NAS` |
 | `GPO_Usuarios_Base` | `OU=Usuarios` (toda la rama) | Fondo de escritorio corporativo, ocultar unidades no autorizadas del Explorador de archivos |
 
-> 📌 Por brevedad, este documento detalla **la creación de una GPO de cada tipo (equipo y usuario)** como ejemplo replicable — *el resto de GPOs de la tabla se crean siguiendo el mismo patrón exacto, cambiando únicamente el nombre y la OU de enlace*.
+> 📌 Por brevedad, este documento detalla **la creación de una GPO de cada tipo (equipo y usuario)** como ejemplo replicable *(el resto de GPOs de la tabla se crean siguiendo el mismo patrón exacto, cambiando únicamente el nombre y la OU de enlace)*.
 
 ---
 
@@ -323,7 +323,7 @@ Editar desde `gpmc.msc`:
 | `GG_Desarrollo` | `\\SRV-NAS\Desarrollo` | Modificar |
 | Todos los grupos | `\\SRV-NAS\Comun` | Lectura |
 
-> 📌 **Por qué por grupo y no por usuario:** si mañana se contrata a una nueva persona en Dirección, basta con añadirla al grupo `GG_Direccion` para que herede automáticamente todos sus permisos — *sin tener que revisar y modificar manualmente cada carpeta compartida una por una*. Es el mismo principio de "gestionar por categoría, no por caso individual" que venimos aplicando en **ACLs de red (Módulo 3)** y en las GPOs de este mismo documento.
+> 📌 **Por qué por grupo y no por usuario:** si mañana se contrata a una nueva persona en Dirección, basta con añadirla al grupo `GG_Direccion` para que herede automáticamente todos sus permisos *(sin tener que revisar y modificar manualmente cada carpeta compartida una por una)*. Es el mismo principio de "gestionar por categoría, no por caso individual" que venimos aplicando en **ACLs de red (Módulo 3)** y en las GPOs de este mismo documento.
 
 **Resultado esperado:** cada grupo aparece en la lista de permisos NTFS de su carpeta correspondiente, con el nivel de acceso indicado.
 
@@ -338,6 +338,8 @@ Debe devolver `True` con acceso de escritura confirmado (crear un archivo de pru
 ---
 
 ## 9. Checklist de verificación final
+
+Lista de verificación al realizar estas configuraciones:
 
 - [ ] Estructura de OUs creada (`VectorSec` → `Usuarios`/`Equipos`/`Grupos`, con 6 subcarpetas de departamento en cada rama)
 - [ ] 6 grupos de seguridad `GG_*` creados
