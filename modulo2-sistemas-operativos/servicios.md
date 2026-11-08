@@ -28,11 +28,11 @@ Este documento consolida, en una única vista, todos los servicios activos en la
 
 | Servicio | Ubicación | Motivo de no migrarlo |
 | :--- | :--- | :--- |
-| DHCP | Router `R1-ROAS` (Módulo 3) | Ya está implementado, probado y funcionando correctamente desde el Módulo 3; moverlo a Windows Server no aporta ningún beneficio técnico real en la fase actual de VectorSec — sería un cambio sin justificación, rompiendo algo que ya funciona |
+| DHCP | Router `R1-ROAS` (Módulo 3) | Ya está implementado, probado y funcionando correctamente desde el Módulo 3; moverlo a Windows Server no aporta ningún beneficio técnico real en la fase actual de `VectorSec` *(sería un cambio sin justificación, rompiendo algo que ya funciona)* |
 
 ## 4. Matriz de dependencias entre servicios
 
-Esta tabla resume qué servicio depende de qué otro para funcionar correctamente — útil para entender el orden de arranque de la infraestructura y para diagnosticar fallos en cascada:
+Esta tabla resume qué servicio depende de qué otro para funcionar correctamente *(útil para entender el orden de arranque de la infraestructura y para diagnosticar fallos en cascada)*:
 
 | Servicio | Depende de |
 | :--- | :--- |
@@ -50,7 +50,3 @@ Esta tabla resume qué servicio depende de qué otro para funcionar correctament
 - [x] Decisión de no migrar el DHCP justificada y no contradicha en ningún otro documento
 - [x] Las restricciones de red de cada servicio son coherentes con las ACLs ya aplicadas en el Módulo 3
 - [x] Ningún servicio queda "huérfano" (sin equipo asignado) ni duplicado entre servidores
-
-## 6. Próximos pasos relacionados
-
-- El README principal del módulo, que enlaza a todos estos documentos con una visión general, se encuentra en [`README.md`](README.md).
