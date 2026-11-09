@@ -1,14 +1,14 @@
 # Módulo 4 — Gestión de Base de Datos
 
-**Empresa:** VectorSec
-**Sistema gestor:** PostgreSQL 14 (sobre `SRV-APP01`, Módulo 2)
-**Base de datos:** `vectorsec_gestion`
+- **Empresa:** `VectorSec`
+- **Sistema gestor:** PostgreSQL 14 (sobre `SRV-APP01`, Módulo 2)
+- **Base de datos:** `vectorsec_gestion`
 
 ---
 
 ## 1. Introducción
 
-Este módulo diseña, implementa y administra la base de datos que sustenta la aplicación de gestión interna de VectorSec, ya anticipada en el Módulo 2 (`servidores/SRV-APP01.md`) como el "activo más crítico" de la empresa. En consecuencia, se modela específicamente lo que una consultora de ciberseguridad necesita gestionar: *clientes, proyectos de auditoría/pentesting, hallazgos de seguridad detectados y los informes que se entregan como resultado*.
+Este módulo diseña, implementa y administra la base de datos que sustenta la aplicación de gestión interna de `VectorSec`, ya anticipada en el Módulo 2 (`servidores/SRV-APP01.md`) como el "activo más crítico" de la empresa. En consecuencia, se modela específicamente lo que una consultora de ciberseguridad necesita gestionar: *clientes, proyectos de auditoría/pentesting, hallazgos de seguridad detectados y los informes que se entregan como resultado*.
 
 ---
 
@@ -16,11 +16,11 @@ Este módulo diseña, implementa y administra la base de datos que sustenta la a
 
 | Entidad | Qué es | Por qué es necesaria | Relación con el funcionamiento del sistema |
 | :--- | :--- | :--- | :--- |
-| **Clientes** | Empresas que contratan servicios a VectorSec | Es el origen de todo proyecto — *sin un cliente registrado, no puede existir un proyecto* | Cada proyecto pertenece a un cliente; permite facturar y hacer seguimiento comercial |
+| **Clientes** | Empresas que contratan servicios a VectorSec | Es el origen de todo proyecto *(sin un cliente registrado, no puede existir un proyecto)* | Cada proyecto pertenece a un cliente; permite facturar y hacer seguimiento comercial |
 | **Servicios** | Catálogo de lo que VectorSec ofrece (auditoría, pentesting, formación, consultoría normativa) | Estandariza qué tipo de trabajo se está realizando en cada proyecto | Cada proyecto se clasifica según el servicio contratado, útil para informes de actividad por línea de negocio |
 | **Empleados** | Consultores, analistas SOC y formadores de VectorSec | Permite saber quién es responsable de cada trabajo | Se asignan a proyectos (relación muchos-a-muchos, un proyecto puede tener varios consultores) |
-| **Proyectos** | Un trabajo concreto para un cliente (una auditoría, un pentest, un curso) | Es el núcleo de la actividad de VectorSec — *todo gira en torno a proyectos* | Conecta cliente, servicio y equipo asignado; tiene fechas y estado de seguimiento |
-| **Hallazgos** | Vulnerabilidades o incidencias de seguridad detectadas durante un proyecto | Es el resultado técnico real de una auditoría — *sin esto, el proyecto no tiene contenido* | Cada hallazgo pertenece a un proyecto, con severidad y estado de remediación |
+| **Proyectos** | Un trabajo concreto para un cliente (una auditoría, un pentest, un curso) | Es el núcleo de la actividad de VectorSec *(todo gira en torno a proyectos)* | Conecta cliente, servicio y equipo asignado; tiene fechas y estado de seguimiento |
+| **Hallazgos** | Vulnerabilidades o incidencias de seguridad detectadas durante un proyecto | Es el resultado técnico real de una auditoría *(sin esto, el proyecto no tiene contenido)* | Cada hallazgo pertenece a un proyecto, con severidad y estado de remediación |
 | **Informes** | Documento final entregado al cliente, generado a partir de los hallazgos de un proyecto | Es el entregable que el cliente realmente recibe y paga | Vinculado a un proyecto y al empleado que lo redacta |
 
 ---
@@ -101,7 +101,7 @@ Cada símbolo describe una restricción, pero no sobre la entidad a la que está
 
 Tomaremos como ejemplo: `CLIENTES → PROYECTOS`
 
-**La clave es** que el símbolo colocado junto a `CLIENTES` no describe cuántos clientes hay — *describe **cuántos clientes le corresponden a cada proyecto***. Y el símbolo junto a `PROYECTOS` describe ***cuántos proyectos le corresponden a cada cliente***.
+**La clave es** que el símbolo colocado junto a `CLIENTES` no describe cuántos clientes hay, describe ***cuántos clientes le corresponden a cada proyecto***. Y el símbolo junto a `PROYECTOS`, describe ***cuántos proyectos le corresponden a cada cliente***.
 
 ```text
 CLIENTES ||--o{ PROYECTOS : contrata
@@ -116,11 +116,11 @@ CLIENTES ||--o{ PROYECTOS : contrata
 
 - **Clientes → Proyectos (1:N):** un cliente puede contratar varios proyectos a lo largo del tiempo; un proyecto pertenece a un único cliente.
 - **Servicios → Proyectos (1:N):** cada proyecto se clasifica según un único tipo de servicio del catálogo.
-- **Empleados ↔ Proyectos (N:M, vía `PROYECTO_EMPLEADOS`):** un proyecto de auditoría suele requerir varios consultores, y un consultor participa en varios proyectos a la vez — *una relación **1:N** no podría representar esto, de ahí que es necesaria la tabla intermedia*.
+- **Empleados ↔ Proyectos (N:M, vía `PROYECTO_EMPLEADOS`):** un proyecto de auditoría suele requerir varios consultores, y un consultor participa en varios proyectos a la vez *(una relación **1:N** no podría representar esto, de ahí que es necesaria la tabla intermedia)*.
 - **Proyectos → Hallazgos (1:N):** un proyecto genera varios hallazgos (normalmente varias vulnerabilidades por auditoría); un hallazgo pertenece a un único proyecto.
 - **Proyectos → Informes (1:N):** se permite más de un informe por proyecto (por ejemplo, un informe preliminar y uno final), cada uno redactado por un empleado.
 
-> 📌 **Sobre `usuario_ad` en Empleados:** este campo guarda el nombre de usuario de Active Directory (`nombre.apellido`, Módulo 2), sin duplicar la gestión de identidades — *la base de datos no gestiona contraseñas ni autenticación de los empleados, eso ya lo resuelve AD*. Es solo una referencia cruzada entre ambos sistemas.
+> 📌 **Sobre `usuario_ad` en Empleados:** este campo guarda el nombre de usuario de Active Directory (`nombre.apellido`, Módulo 2), sin duplicar la gestión de identidades *(la base de datos no gestiona contraseñas ni autenticación de los empleados, eso ya lo resuelve AD)*. Es solo una referencia cruzada entre ambos sistemas.
 
 ---
 
@@ -148,7 +148,7 @@ INFORMES(id_informe PK, id_proyecto FK → PROYECTOS, id_empleado_autor FK → E
          fecha_generacion, version, ruta_archivo)
 ```
 
-La tabla `PROYECTO_EMPLEADOS` tiene **clave primaria compuesta** (`id_proyecto` + `id_empleado`), ya que su única función es representar la relación **N:M** — *no necesita un identificador propio adicional*.
+La tabla `PROYECTO_EMPLEADOS` tiene **clave primaria compuesta** (`id_proyecto` + `id_empleado`), ya que su única función es representar la relación **N:M** *(no necesita un identificador propio adicional)*.
 
 ---
 
@@ -165,7 +165,7 @@ Los scripts completos están en la carpeta [`sql/`](sql/), organizados en el ord
 
 ### 5.1 Sobre la cantidad de datos de ejemplo
 
-El enunciado del proyecto pide "unos 20 registros" aproximadamente como ejemplo. Al tratarse de 7 tablas relacionadas entre sí (no una tabla aislada), se reparten aproximadamente así para que las relaciones tengan sentido real y se puedan probar consultas con JOIN significativas:
+Para este proyecto se esperaba "unos 20 registros" aproximadamente como ejemplo. Al tratarse de 7 tablas relacionadas entre sí (no una tabla aislada), se reparten aproximadamente así para que las relaciones tengan sentido real y se puedan probar consultas con JOIN significativas:
 
 | Tabla | Nº registros |
 | :--- | :---: |
@@ -188,13 +188,13 @@ Se aplica el mismo principio de **mínimo privilegio** que ya se usó en las **A
 
 | Rol PostgreSQL | Perfil destinado | Permisos |
 | :--- | :--- | :--- |
-| `rol_lectura` | Dirección — *consulta de KPIs y seguimiento, sin necesidad de modificar datos* | `SELECT` en todas las tablas |
+| `rol_lectura` | Dirección *(consulta de KPIs y seguimiento, sin necesidad de modificar datos)* | `SELECT` en todas las tablas |
 | `rol_consultor` | Consultores/analistas que registran su propio trabajo | `SELECT`, `INSERT`, `UPDATE` en `PROYECTOS`, `HALLAZGOS`, `INFORMES`, `PROYECTO_EMPLEADOS`. Sin `DELETE`, sin acceso de escritura a `CLIENTES` |
 | `app_vectorsec` (ya creado en Módulo 2) | Cuenta de servicio de la propia aplicación de gestión | Acceso completo, ya que la aplicación es la capa que aplica su propia lógica de permisos por usuario final |
 
-> 📌 **Muy importante: *¿Por qué ningún rol tiene permiso* `DELETE` *salvo la cuenta de aplicación?*** en un entorno de auditoría de seguridad, borrar un hallazgo o un proyecto por error (o intencionadamente) es exactamente el tipo de acción que debe quedar restringida y trazada — *se prioriza marcar registros como **"cerrado"/"cancelado"** mediante* `UPDATE` *del campo* `estado`*, en lugar de eliminarlos físicamente*.
+> 📌 **Muy importante: *¿Por qué ningún rol tiene permiso* `DELETE` *salvo la cuenta de aplicación?*** en un entorno de auditoría de seguridad, borrar un hallazgo o un proyecto por error (o intencionadamente) es exactamente el tipo de acción que debe quedar restringida y trazada *(se prioriza marcar registros como **"cerrado"/"cancelado"** mediante* `UPDATE` *del campo* `estado`*, en lugar de eliminarlos físicamente)*.
 
-Detalle completo de creación de roles en [`sql/04_usuarios_permisos.sql`](sql/04_usuarios_permisos.sql). 👈
+Detalle completo de creación de roles en [`sql/04_usuarios_permisos.sql`](sql/04_usuarios_permisos.sql).
 
 ---
 
@@ -204,7 +204,7 @@ Detalle completo de creación de roles en [`sql/04_usuarios_permisos.sql`](sql/0
 
 La base de datos se respalda mediante `pg_dump`, integrándose con la política de copias ya definida desde el Módulo 1 (incremental diaria + completa semanal) y con el recurso de almacenamiento centralizado `SRV-NAS` (Módulo 2).
 
-**Script de backup:** [`scripts/backup_vectorsec_gestion.sh`](scripts/backup_vectorsec_gestion.sh) 👈
+**Script de backup:** [`scripts/backup_vectorsec_gestion.sh`](scripts/backup_vectorsec_gestion.sh).
 
 **Funcionamiento:**
 
@@ -246,6 +246,8 @@ El parámetro `--clean` elimina los objetos existentes antes de recrearlos, evit
 ---
 
 ## 8. Checklist de verificación final
+
+Lista de comprobación para este módulo:
 
 - [ ] Las 7 tablas creadas sin errores de sintaxis ni de claves foráneas (`sql/01_creacion_tablas.sql`)
 - [ ] Datos de ejemplo insertados, respetando el orden de dependencias (tablas sin FK primero)
