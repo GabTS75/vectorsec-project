@@ -1,10 +1,8 @@
 # Módulo 2 — Implantación de Sistemas Operativos
 
-**Empresa:** `VectorSec`
-
-**Sector:** `Ciberseguridad` — `auditoría, pentesting y formación en seguridad informática`
-
-**Entorno de trabajo:** documentación conceptual detallada, verificable en VirtualBox/Hyper-V (si se llega a desplegar)
+- **Empresa:** `VectorSec`
+- **Sector:** `Ciberseguridad` — `auditoría, pentesting y formación en seguridad informática`
+- **Entorno de trabajo:** documentación conceptual detallada, verificable en VirtualBox/Hyper-V (si se llega a desplegar)
 
 ## 1. Introducción
 
