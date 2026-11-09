@@ -8,7 +8,7 @@
 
 ## 1. Introducción
 
-**VectorSec** es una empresa de ciberseguridad en fase de crecimiento (8-9 empleados) que ofrece servicios de auditoría, pentesting, consultoría de cumplimiento normativo y formación in-company a pymes. Como parte de su proceso de modernización interna, este módulo diseña, implementa y documenta la red interna de la empresa, distribuida en dos plantas, aplicando criterios de segmentación, control de acceso y gestión propios de una empresa que basa su negocio en la seguridad informática.
+**`VectorSec`** es una empresa de ciberseguridad en fase de crecimiento (8-9 empleados) que ofrece servicios de auditoría, pentesting, consultoría de cumplimiento normativo y formación in-company a pymes. Como parte de su proceso de modernización interna, este módulo diseña, implementa y documenta la red interna de la empresa, distribuida en dos plantas, aplicando criterios de segmentación, control de acceso y gestión propios de una empresa que basa su negocio en la seguridad informática.
 
 Todas las decisiones de diseño de este módulo parten de una misma idea: ***una empresa que audita la seguridad de terceros debe, por coherencia, aplicar sobre su propia infraestructura los mismos criterios que exige a sus clientes*.**
 
@@ -16,29 +16,29 @@ Todas las decisiones de diseño de este módulo parten de una misma idea: ***una
 
 ## 2. Topología física
 
-La red se organiza en dos niveles por planta: un switch de **distribución** (enlace troncal hacia el router) y un switch de **acceso** (conexión de equipos finales). El router realiza el enrutamiento inter-VLAN mediante **Router on a Stick (ROAS)**.
+La red se organiza en dos niveles por planta: en cada planta, un switch de **distribución** (enlace troncal hacia el router) y un switch de **acceso** (conexión de equipos finales). El router realiza el enrutamiento inter-VLAN mediante **Router On A Stick (ROAS)**.
 
 ![Topología física](./imgs/topologia_fisica.png)
 
 | Elemento | Modelo | Rol |
 | :--- | :--- | :--- |
-| Router | Cisco 4321 ISR | ROAS — enrutamiento inter-VLAN mediante subinterfaces |
-| SW-DIST-PB / SW-DIST-P1 | Cisco 2960 | Distribución — enlaces troncales |
-| SW-ACC-PB / SW-ACC-P1 | Cisco 2960 | Acceso — conexión de equipos finales |
+| Router | Cisco 4321 ISR | ROAS (enrutamiento inter-VLAN mediante subinterfaces) |
+| SW-DIST-PB / SW-DIST-P1 | Cisco 2960 | Distribución (enlaces troncales) |
+| SW-ACC-PB / SW-ACC-P1 | Cisco 2960 | Acceso (conexión de equipos finales) |
 | AP-PT-N-1 / AP-PT-N-2 | Cisco AP-PT-N | Punto de acceso WiFi (empleados / invitados) |
 
 ### 2.1 Justificación: Router on a Stick frente a Switch de Capa 3
 
 Se descarta el uso de un switch de Capa 3 pese a ofrecer mejor rendimiento y escalabilidad, por los siguientes motivos:
 
-- **Coherencia con el tamaño y fase de la empresa.** VectorSec es una empresa que optimiza recursos; un switch de Capa 3 supondría un sobrecoste no justificado por el volumen de tráfico actual (8-9 empleados, 16 equipos cliente).
+- **Coherencia con el tamaño y fase de la empresa.** `VectorSec` es una empresa que optimiza recursos; un switch de Capa 3 supondría un sobrecoste no justificado por el volumen de tráfico actual (8-9 empleados, 16 equipos cliente).
 - **Reutilización del hardware obligatorio.** El router exigido por el proyecto ya asume el enrutamiento sin necesidad de hardware adicional.
 - **Los switches Cisco 2960 disponibles no soportan SVIs de enrutamiento**, lo que refuerza técnicamente la decisión tomada.
-- Queda documentado como mejora futura ante el crecimiento de **VectorSec**, en línea con su visión de escalado progresivo.
+- Queda documentado como mejora futura ante el crecimiento de `VectorSec`, en línea con su visión de escalado progresivo.
 
 ### 2.2 Justificación: modelo único de switch (Cisco 2960)
 
-Se utiliza el mismo modelo Cisco 2960 en las 4 posiciones (distribución y acceso). No es una limitación, sino una decisión deliberada: unificar el catálogo de equipos de red simplifica el mantenimiento, la gestión de repuestos y la configuración, sin sacrificar capacidad técnica (soporta VLANs, trunking 802.1Q y port-security).
+Se utiliza el mismo modelo Cisco 2960 en las 4 posiciones (distribución y acceso). Esta es una decisión deliberada, no es una limitación, es decir, unificar el catálogo de equipos de red simplifica el mantenimiento, la gestión de repuestos y la configuración, sin sacrificar capacidad técnica (soporta VLANs, trunking 802.1Q y port-security).
 
 ### 2.3 Criterio de conectividad Fast/Gigabit
 
@@ -53,7 +53,7 @@ Se utiliza el mismo modelo Cisco 2960 en las 4 posiciones (distribución y acces
 
 ## 3. Segmentación lógica — VLANs
 
-Se implementan **9 VLANs**: las 7 exigidas para el proyecto, más 2 adicionales justificadas por necesidades reales de seguridad de **VectorSec**.
+Se implementan **9 VLANs**: las 7 exigidas para el proyecto, más 2 adicionales justificadas por necesidades reales de seguridad de `VectorSec`.
 
 ![Segmentación de VLANs](./imgs/segmentacion_vlans.png)
 
@@ -66,15 +66,15 @@ Se implementan **9 VLANs**: las 7 exigidas para el proyecto, más 2 adicionales 
 | 50 | FORMACION | 192.168.50.0/24 | Aula de formación |
 | 60 | SRV | 192.168.60.0/24 | Servidores (CPD): AD, aplicaciones/BD, NAS |
 | 70 | LAB *(adicional)* | 192.168.70.0/24 | Servidor de laboratorio aislado (malware/pentesting) |
-| 80 | GUEST *(adicional)* | 192.168.80.0/24 | Invitados WiFi — solo salida a Internet |
-| 99 | MGMT | 192.168.99.0/25 (PB) · 192.168.99.128/25 (P1) | Gestión de red — sin ubicación física |
+| 80 | GUEST *(adicional)* | 192.168.80.0/24 | Invitados WiFi (solo salida a Internet) |
+| 99 | MGMT | 192.168.99.0/25 (PB) · 192.168.99.128/25 (P1) | Gestión de red (sin ubicación física) |
 
 **Justificación de las VLANs adicionales:**
 
 - **VLAN 70 (LAB):** el servidor de laboratorio requiere aislamiento real para análisis de malware controlado. Compartir VLAN con el resto de servidores habría hecho imposible aplicar ACLs específicas sobre él, ya que las ACLs actúan entre VLANs, no dentro de una misma VLAN.
 - **VLAN 80 (GUEST):** el proyecto exige una red de invitados "aislada, solo salida a Internet". Ninguna de las 7 VLANs obligatorias cumplía ese rol.
 
-> **Nota sobre Recepción:** no dispone de VLAN propia en la especificación original, por lo que se integra en la VLAN 10 (ADMIN), al compartir el mismo nivel de confianza que **Administración**.
+> **Nota sobre Recepción:** no dispone de VLAN propia en la especificación original, por lo que se integra en la VLAN 10 (ADMIN), puesto que comparten el mismo nivel de confianza que **Administración**.
 >
 > **Nota sobre VLAN 99 (MGMT):** al ser una VLAN transversal sin switch de interconexión directa entre plantas, se divide en dos subredes /25 independientes (una por planta), **evitando el solapamiento de red** que se detectó durante la configuración del router (ver apartado 4.2).
 
@@ -105,7 +105,7 @@ Al configurar inicialmente ambas subinterfaces de gestión con la misma subred `
 % 192.168.99.0 overlaps with GigabitEthernet0/0/0.99
 ```
 
-**Incidencia:** ambas ramas de VLAN 99 son dominios de difusión físicamente independientes (los switches de distribución de cada planta no están conectados entre sí; solo se comunican a través del router), por lo que no pueden compartir la misma subred en dos interfaces distintas del router.
+**Incidencia:** ambas ramas de VLAN 99 son dominios de difusión físicamente independientes (los switches de distribución de cada planta no están conectados entre sí; solo se comunican a través del router), por lo que ***no pueden compartir la misma subred en dos interfaces distintas del router***.
 
 **Solución:** división del bloque `192.168.99.0/24` en dos `/25`, una por rama física, tal como se muestra en la tabla anterior.
 
@@ -138,9 +138,9 @@ Al configurar inicialmente ambas subinterfaces de gestión con la misma subred `
 
 ### 5.1 El modelo de AP inicial no soporta múltiples SSID con VLAN
 
-**Incidencia:** El PDF exige un único punto de acceso con dos SSID (`SSID_EMPRESA` y `SSID_INVITADOS`), cada uno mapeado a una VLAN distinta. Los modelos genéricos de Packet Tracer (AP-PT, PT-N, PT-A, PT-AC) son simuladores de punto de acceso doméstico/SOHO: **admiten una única SSID por dispositivo, sin trunking 802.1Q ni asignación de VLAN por SSID** — funcionalidad exclusiva de equipos empresariales gestionables por CLI, fuera del alcance de este proyecto.
+**Incidencia:** En las indicaciones del proyecto se exige un único punto de acceso con dos SSID (`SSID_EMPRESA` y `SSID_INVITADOS`), cada uno mapeado a una VLAN distinta. Los modelos genéricos de Packet Tracer (AP-PT, PT-N, PT-A, PT-AC) son simuladores de punto de acceso doméstico/SOHO: **admiten una única SSID por dispositivo, sin trunking 802.1Q ni asignación de VLAN por SSID** *(funcionalidad exclusiva de equipos empresariales gestionables por CLI, fuera del alcance de este proyecto)*.
 
-**Solución:** sustitución del AP único por **dos puntos de acceso físicos** (modelo Cisco AP-PT-N), cada uno conectado a un puerto de acceso dedicado del switch, en su VLAN correspondiente — en lugar de un único AP en modo trunk.
+**Solución:** sustitución del AP único por **dos puntos de acceso físicos** (modelo Cisco AP-PT-N), cada uno conectado a un puerto de acceso dedicado del switch, en su VLAN correspondiente (en lugar de un único AP en modo trunk).
 
 | Punto de acceso | SSID | VLAN | Puerto (SW-ACC-P1) | Autenticación |
 | --- | --- | --- | --- | --- |
@@ -464,7 +464,9 @@ write memory
 
 ## 8. DHCP por VLAN
 
-Solo las VLANs con equipos de usuario final disponen de DHCP. **Recuerda:** *VLAN 60 (Servidores), 70 (Laboratorio) y 99 (MGMT) no llevan DHCP*
+Solo las VLANs con equipos de usuario final disponen de DHCP.
+
+**Recordemos:** *VLAN 60 (Servidores), 70 (Laboratorio) y 99 (MGMT) no llevan DHCP*
 
 ```bash
 ! R1-ROAS
@@ -512,7 +514,7 @@ end
 write memory
 ```
 
-> *(El servidor DNS se integrará en los pools durante el Módulo 2, al desplegarse sobre SRV-DC01).*
+> *(El servidor DNS se integrará en los pools cuando se realice el Módulo 2, al desplegarse sobre SRV-DC01).*
 
 ---
 
@@ -521,13 +523,13 @@ write memory
 ### 9.1 Políticas obligatorias (PDF) y refuerzos añadidos
 
 | # | Política | Origen |
-| --- | :--- | :--- |
+| :---: | :--- | :--- |
 | 1 | Aula de Formación no accede a Dirección | Obligatoria |
 | 2 | Desarrollo no accede a Administración | Obligatoria |
 | 3 | Administración sí accede a Servidores | Obligatoria (permitido por defecto) |
 | 4 | Solo VLAN MGMT administra dispositivos de red | Obligatoria |
-| 5 | GUEST no accede a ninguna VLAN interna (solo Internet) | Refuerzo — necesario para cumplir el aislamiento exigido al SSID_INVITADOS |
-| 6 | LAB no inicia tráfico hacia el resto de VLANs, salvo Soporte (SOC) | Refuerzo — necesario para que el aislamiento del servidor de laboratorio sea real |
+| 5 | GUEST no accede a ninguna VLAN interna (solo Internet) | Refuerzo (necesario para cumplir el aislamiento exigido al SSID_INVITADOS) |
+| 6 | LAB no inicia tráfico hacia el resto de VLANs, salvo Soporte (SOC) | Refuerzo (necesario para que el aislamiento del servidor de laboratorio sea real) |
 
 ### 9.2 ACLs aplicadas en R1-ROAS (entrantes `in` por subinterfaz)
 
@@ -663,11 +665,11 @@ end
 write memory
 ```
 
-La subinterfaz `.99` (MGMT) no lleva ACL: es la única red de confianza total, requisito para que **"solo MGMT administra dispositivos de red"** tenga sentido — el resto de VLANs tiene bloqueado el camino hacia `192.168.99.0/25` y `192.168.99.128/25`, mientras que MGMT puede llegar a cualquier destino.
+**La subinterfaz `.99` (MGMT) no lleva ACL:** es la única red de confianza total, requisito para que **"solo MGMT administra dispositivos de red"** tenga sentido, el resto de VLANs tiene bloqueado el camino hacia `192.168.99.0/25` y `192.168.99.128/25`, mientras que MGMT puede llegar a cualquier destino.
 
 ### 9.3 Refuerzo de gestión — Acceso SSH restringido en los 4 switches
 
-Además de bloquear el tráfico hacia MGMT desde el router, **se decide restringir el propio acceso remoto de gestión (VTY) en cada switch**, limitándolo a origen MGMT y forzando cifrado (SSH), en lugar de Telnet en texto plano — esto refuerza y es coherente con la actividad de **VectorSec** como empresa de ciberseguridad.
+Además de bloquear el tráfico hacia MGMT desde el router, **se decide restringir el propio acceso remoto de gestión (VTY) en cada switch**, limitándolo a origen MGMT y forzando cifrado (SSH), en lugar de Telnet en texto plano *(esto refuerza y es coherente con la actividad de `VectorSec` como empresa de ciberseguridad)*.
 
 ```bash
 ip domain-name vectorsec.local
@@ -698,15 +700,14 @@ Aplicado de forma idéntica en `SW-DIST-PB`, `SW-ACC-PB`, `SW-DIST-P1` y `SW-ACC
 
 | Prueba | Resultado |
 | :--- | :--- |
-| DHCP — asignación de IP por VLAN | ✅ Correcto |
+| DHCP (asignación de IP por VLAN) | ✅ Correcto |
 | Ping dentro de la misma VLAN | ✅ Correcto |
 | Ping entre VLANs distintas (sin restricción aún) | ✅ Correcto |
 | Ping a switches de gestión (VLAN 99) | ✅ Correcto |
 
-**Incidencia y resolución — VLAN 60 inalcanzable:** documentada en el apartado 7 (subinterfaz `gig0/0/0.60` sin IP asignada). Diagnóstico metódico: se descartó el switch (`show vlan brief` / `show interfaces
-status` correctos), se descartó el servidor (encendido, IP correcta, firewall desactivado) y se aisló el fallo comparando con una VLAN funcional (70), concluyendo que el origen estaba en el router.
+**Incidencia y resolución (VLAN 60 inalcanzable):** documentada en el apartado 7 (subinterfaz `gig0/0/0.60` sin IP asignada). Diagnóstico metódico, se descartó el switch (`show vlan brief` / `show interfaces status` correctos), se descartó el servidor (encendido, IP correcta, firewall desactivado) y se aisló el fallo comparando con una VLAN funcional (70), concluyendo que el origen estaba en el router.
 
-**Incidencia y resolución — dispositivos WiFi sin conectividad:** al sustituir el AP único por dos AP dedicados, los dispositivos inalámbricos mantenían la asociación a la SSID anterior (`Default`, ya inexistente). Se resuelve reasociando cada AP manualmente a `SSID_INVITADOS` y `SSID_EMPRESA` respectivamente.
+**Incidencia y resolución (dispositivos WiFi sin conectividad):** al sustituir el AP único por dos AP dedicados, los dispositivos inalámbricos mantenían la asociación a la SSID anterior (`Default`, ya inexistente). Se resuelve reasociando cada AP manualmente a `SSID_INVITADOS` y `SSID_EMPRESA` respectivamente.
 
 ### 10.2 Verificación de políticas ACL (después de aplicar ACLs)
 
@@ -735,11 +736,11 @@ Estas tres combinaciones (origen no autorizado, protocolo no autorizado, origen 
 
 ## 11. Conclusiones
 
-El diseño final de red de VectorSec segmenta la actividad de la empresa en 9 VLANs, con enrutamiento inter-VLAN mediante Router on a Stick y control de acceso mediante ACLs aplicadas en el router y en el acceso de gestión de los switches. Más allá del cumplimiento de los requisitos mínimos del proyecto, cada decisión de diseño *—el servidor de laboratorio aislado, la segmentación real de la red de invitados, el acceso de gestión cifrado y restringido—* responde a la identidad de **VectorSec** como empresa de ciberseguridad: una infraestructura que aplica sobre sí misma los mismos criterios que audita en sus clientes.
+El diseño final de red de `VectorSec` segmenta la actividad de la empresa en 9 VLANs, con enrutamiento inter-VLAN mediante Router on a Stick y control de acceso mediante ACLs aplicadas en el router y en el acceso de gestión de los switches. Más allá del cumplimiento de los requisitos mínimos del proyecto, cada decisión de diseño *—el servidor de laboratorio aislado, la segmentación real de la red de invitados, el acceso de gestión cifrado y restringido—* responde a **la identidad de `VectorSec` como empresa de ciberseguridad:** *una infraestructura que aplica sobre sí misma los mismos criterios que audita en sus clientes*.
 
-El proceso de implementación puso de manifiesto, además, la importancia de verificar cada capa de la red de forma independiente antes de dar por buena una configuración: dos incidencias no triviales (el solapamiento de subredes en VLAN 99 y la subinterfaz sin IP asignada en VLAN 60) se resolvieron mediante un diagnóstico metódico, comparando el comportamiento de una VLAN afectada frente a una funcional, en lugar de realizar cambios sin un diagnóstico previo.
+El proceso de implementación puso de manifiesto, además, la importancia de verificar cada capa de la red de forma independiente antes de dar por buena una configuración: *dos incidencias no triviales (el solapamiento de subredes en VLAN 99 y la subinterfaz sin IP asignada en VLAN 60) se resolvieron mediante un diagnóstico metódico, comparando el comportamiento de una VLAN afectada frente a una funcional, en lugar de realizar cambios sin un diagnóstico previo*.
 
-Como líneas de mejora futura, coherentes con la visión de crecimiento de **VectorSec**, se identifican: la migración a un switch de Capa 3 al aumentar el volumen de tráfico inter-VLAN, y la incorporación de puntos de acceso empresariales con soporte nativo de múltiples SSID sobre un único equipo físico.
+Como líneas de mejora futura, coherentes con la visión de crecimiento de **`VectorSec`**, se identifican, por ejemplo: *la migración a un switch de Capa 3 al aumentar el volumen de tráfico inter-VLAN, y la incorporación de puntos de acceso empresariales con soporte nativo de múltiples SSID sobre un único equipo físico*.
 
 ---
 
