@@ -4,8 +4,8 @@
 
 | Parámetro | Valor | Origen / Justificación |
 | :--- | :--- | :--- |
-| Rol | Laboratorio de pentesting + SIEM básico (SOC) | Entorno de análisis de malware controlado y monitorización de seguridad — justifica el aislamiento de red exigido desde el Módulo 1 |
-| Sistema operativo | Kali Linux (última versión estable) | Distribución estándar de la industria para pentesting ético; cualquier evaluador del sector la reconoce de inmediato, y refuerza la identidad de VectorSec como empresa de ciberseguridad |
+| Rol | Laboratorio de pentesting + SIEM básico (SOC) | Entorno de análisis de malware controlado y monitorización de seguridad (justifica el aislamiento de red exigido desde el Módulo 1) |
+| Sistema operativo | Kali Linux (última versión estable) | Distribución estándar de la industria para pentesting ético; cualquier evaluador del sector la reconoce de inmediato, y refuerza la identidad de `VectorSec` como empresa de ciberseguridad |
 | SIEM | Wazuh (manager + dashboard, instalación single-node) | Solución SIEM/XDR de código abierto, ampliamente adoptada, con agente ligero desplegable en el resto de servidores para centralizar alertas de seguridad |
 | Nombre de host | `SRV-LAB01` | Consistente con el diagrama de red del Módulo 3 |
 | IP estática | 192.168.70.10 / 255.255.255.0 | Tabla de direccionamiento, Módulo 3 (VLAN 70 — LAB, aislada) |
@@ -56,11 +56,11 @@
 - Domain name: dejar en blanco (no se une a `vectorsec.local`, **ver nota del apartado 1**)
 - Full name for the new user: `VectorSec SOC`
 - Username: `soc-admin`
-- Choose a password / Re-enter password: contraseña que cumpla complejidad mínima (ej. `S0C-L4b-V3ct0r!`)
+- Choose a password / Re-enter password: contraseña que cumpla complejidad mínima (ejemplo: `S0C-L4b-V3ct0r!`)
 
 **Resultado esperado:** el instalador avanza al particionado de disco tras confirmar ambas contraseñas coincidentes (la de root, si se solicita por separado, y la del usuario `soc-admin`).
 
-**Verificación:** ninguna incidencia — *si las contraseñas no coinciden, el propio instalador muestra un error y no permite avanzar (aprendizaje aplicado del ajuste hecho en `SRV-APP01`)*.
+**Verificación:** ninguna incidencia, si las contraseñas no coinciden, el propio instalador muestra un error y no permite avanzar *(aprendizaje aplicado del ajuste hecho en `SRV-APP01`)*.
 
 ---
 
@@ -124,7 +124,7 @@ Aplicar:
 sudo netplan apply
 ```
 
-> 📌 Aquí la interfaz aparece como `eth0` y no como `enp0s3` (nomenclatura ya explicada en `SRV-APP01.md`) porque puede variar según la imagen y el hipervisor concreto — ***se confirma siempre con* `ip a` *antes de editar el archivo**, en lugar de asumir el nombre por defecto*.
+> 📌 Aquí la interfaz aparece como `eth0` y no como `enp0s3` (nomenclatura ya explicada en `SRV-APP01.md`) porque puede variar según la imagen y el hipervisor concreto *(se debe confirmar siempre con `ip a` antes de editar el archivo, en lugar de asumir el nombre por defecto)*.
 
 **Resultado esperado:** sin salida en consola si aplica correctamente.
 
@@ -135,7 +135,7 @@ ip a show eth0
 ping -c 3 192.168.70.1
 ```
 
-Debe mostrar `inet 192.168.70.10/24` y 3 de 3 paquetes recibidos desde el gateway — *confirma la integración con el router ROAS*.
+Debe mostrar `inet 192.168.70.10/24` y 3 de 3 paquetes recibidos desde el gateway *(esto confirma la integración con el router ROAS)*.
 
 ---
 
@@ -170,7 +170,7 @@ curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh
 sudo bash wazuh-install.sh -a
 ```
 
-**Resultado esperado:** el script instala secuencialmente el *Wazuh indexer*, *Wazuh manager* y *Wazuh dashboard*, mostrando al final un resumen con la contraseña generada para el usuario `admin` del dashboard — ⚠️ ***debe copiarse y guardarse**, ya que no se vuelve a mostrar automáticamente, ¡Ojo!*.
+**Resultado esperado:** el script instala secuencialmente el *Wazuh indexer*, *Wazuh manager* y *Wazuh dashboard*, mostrando al final un resumen con la contraseña generada para el usuario `admin` del dashboard, ⚠️ **Importante:** ***debe copiarse y guardarse, ya que no se vuelve a mostrar automáticamente***.
 
 **Verificación:**
 
@@ -218,7 +218,7 @@ sudo ufw enable
 Firewall is active and enabled on system startup
 ```
 
-> 📌 **Por qué se permite el tráfico saliente por defecto (`allow outgoing`):** este servidor necesita salida a Internet para actualizaciones de firmas, feeds de amenazas y, en el propio ejercicio de laboratorio, descarga controlada de muestras para análisis — *es coherente con el diseño de la ACL del Módulo 3, que bloquea destinos internos pero no bloquea la salida a Internet*.
+> 📌 **Por qué se permite el tráfico saliente por defecto (`allow outgoing`):** este servidor necesita salida a Internet para actualizaciones de firmas, feeds de amenazas y, en el propio ejercicio de laboratorio, descarga controlada de muestras para análisis *(es coherente con el diseño de la ACL del Módulo 3, que bloquea destinos internos pero no bloquea la salida a Internet)*.
 
 **Verificación:**
 
@@ -242,7 +242,7 @@ ssh soc-admin@192.168.70.10
 
 **Resultado esperado:** solicitud de contraseña, seguida de acceso al shell de `SRV-LAB01`.
 
-**Verificación:** conexión establecida sin `timeout` — confirma que tanto la ACL del router como el firewall local coinciden en permitir este origen.
+**Verificación:** conexión establecida sin `timeout` *(esto confirma que tanto la ACL del router como el firewall local coinciden en permitir este origen)*.
 
 ---
 
@@ -264,7 +264,7 @@ ssh: connect to host 192.168.70.10 port 22: Connection timed out
 
 Este resultado, comparado con el éxito del Paso 11, demuestra que el control de acceso depende del **firewall local** en este sentido concreto (**entrante**), reforzando por qué la defensa en profundidad importa: *si el firewall de host no estuviera bien configurado, cualquier VLAN podría intentar acceder por SSH sin que la ACL de red lo evitara en este sentido*.
 
-> **Observación importante:** no hay diferencia entre Administración y Recepción en este caso — *ambos comparten exactamente la misma VLAN 10 (192.168.10.0/24), tal como se ve desde el Módulo 3  - Redes ("Recepción comparte rango con Administración, mismo nivel de confianza")*. Ni la ACL del router ni el firewall local de `SRV-LAB01` distinguen entre departamentos dentro de una misma VLAN — *ambos filtran por red de origen, no por identidad del equipo*.
+> **Observación importante:** no hay diferencia entre Administración y Recepción en este caso, *ambos comparten exactamente la misma VLAN 10 (192.168.10.0/24), tal como se ve desde el Módulo 3 — Redes (Recepción comparte rango con Administración, mismo nivel de confianza)*. Ni la ACL del router ni el firewall local de `SRV-LAB01` distinguen entre departamentos dentro de una misma VLAN, *ambos filtran por red de origen, no por identidad del equipo*.
 >
 > Así que **el escenario real sería:** cualquier equipo de VLAN 10 (tanto Recepción como Administración) intentaría lo mismo, y ambos serían bloqueados igual por el firewall local. Esto es un buen ejemplo de por qué la decisión de "fusionar" Recepción y Administración en la misma VLAN tiene una consecuencia directa aquí: ***comparten literalmente las mismas reglas de seguridad, para bien (mismo permiso a Servidores) y para mal (mismo bloqueo hacia el laboratorio)***.
 >
@@ -282,11 +282,13 @@ ping -c 3 192.168.10.1
 
 **Resultado esperado:** 0 de 3 paquetes recibidos (100% de pérdida).
 
-**Verificación:** confirma que `ACL-LAB-IN`, aplicada en el router (Módulo 3), bloquea correctamente cualquier tráfico saliente desde el laboratorio hacia VLANs internas — *la pieza central del aislamiento que se lleva justificando desde el Módulo 1*.
+**Verificación:** confirma que `ACL-LAB-IN`, aplicada en el router (Módulo 3), bloquea correctamente cualquier tráfico saliente desde el laboratorio hacia VLANs internas *(la pieza central del aislamiento que se lleva justificando desde el Módulo 1)*.
 
 ---
 
 ## 8. Checklist de verificación final
+
+Listado de comprobación para este servidor de laboratorio:
 
 - [ ] Kali Linux instalado, `hostname` = `SRV-LAB01`
 - [ ] IP estática 192.168.70.10/24 configurada vía Netplan, gateway respondiendo
@@ -304,4 +306,4 @@ ping -c 3 192.168.10.1
 
 - El resumen de todos los servicios activos en la infraestructura se consolida en [`servicios.md`](../servicios.md).
 - La gestión de usuarios administradores de este servidor se documenta en [`usuarios-y-permisos.md`](../usuarios-y-permisos.md), en su apartado específico de servidores Linux.
-- Cuando se despliegue el agente de Wazuh en el resto de servidores (mejora recomendada, no obligatoria para el mínimo del proyecto), se documentará como ampliación en este mismo archivo.
+- Cuando se despliegue el agente de Wazuh en el resto de servidores, se documentará como ampliación.
