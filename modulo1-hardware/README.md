@@ -1,9 +1,7 @@
 # Módulo 1 — Fundamentos de Hardware
 
 - **Nombre:** `VectorSec`
-
 - **Sector:** `Ciberseguridad`
-
 - **Campo de acción:** `auditoría de sistemas, pentesting y formación en seguridad informática`
 
 ## 1. Introducción
