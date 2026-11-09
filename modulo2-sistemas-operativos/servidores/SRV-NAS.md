@@ -5,12 +5,12 @@
 | Parámetro | Valor | Origen / Justificación |
 | :--- | :--- | :--- |
 | Rol | Almacenamiento centralizado, RAID 5 con Hot Spare, backups de SRV-DC01 y SRV-APP01 | Definido y justificado desde el Módulo 1 |
-| Sistema operativo | OpenMediaVault (basado en Debian) | Solución NAS madura, gratuita, con interfaz web de gestión y soporte nativo de RAID por software (`mdadm`), pensada específicamente para este rol — no se usa un SO de propósito general |
+| Sistema operativo | OpenMediaVault *(basado en Debian)* | Solución NAS madura, gratuita, con interfaz web de gestión y soporte nativo de RAID por software (`mdadm`), pensada específicamente para este rol *(no se usa un SO de propósito general)* |
 | Nombre de host | `SRV-NAS` | Consistente con el diagrama de red del Módulo 3 |
 | IP estática | 192.168.60.12 / 255.255.255.0 | Tabla de direccionamiento, Módulo 3 |
 | Gateway | 192.168.60.1 | Subinterfaz ROAS (VLAN 60) |
 | DNS | 192.168.60.10 | Apunta a `SRV-DC01` |
-| Configuración de disco | RAID 5, 5 discos de 4 TB (uno como Hot Spare) | Definido en el Módulo 1 — 3 discos activos + 1 paridad + 1 hot spare |
+| Configuración de disco | RAID 5, 5 discos de 4 TB (uno como Hot Spare) | Definido en el Módulo 1 *(3 discos activos + 1 paridad + 1 hot spare)* |
 
 ---
 
@@ -20,7 +20,7 @@
 - **Orden de tareas:** `instalación del SO base` (Debian mínimo) → `instalación de OpenMediaVault` → `configuración de red` → `creación del array RAID 5 con Hot Spare` → `creación de recursos compartidos (SMB)` → `configuración de tareas de backup programadas` → `restricción de acceso` → `verificación`.
 - **Entorno:** máquina virtual con **5 discos virtuales adicionales** de `4 TB` cada uno (además del disco de sistema), `2 vCPU`, `4 GB` RAM mínimo, `20 GB` de disco para el sistema operativo (independiente de los discos del array).
 
-> 📌 **Nota importante sobre el entorno virtualizado:** al tratarse de discos virtuales, la "reconstrucción automática" del Hot Spare ante un fallo real de disco **no puede demostrarse** con un fallo físico genuino — *se documenta el proceso y, si se desea evidenciarlo, se simula marcando un disco como fallido manualmente desde la propia interfaz de OpenMediaVault (ver Paso 12)*.
+> 📌 **Nota importante sobre el entorno virtualizado:** al tratarse de discos virtuales, la "reconstrucción automática" del Hot Spare ante un fallo real de disco **no puede demostrarse** con un fallo físico genuino. *Se documenta el proceso y, si se desea evidenciarlo, se simula marcando un disco como fallido manualmente desde la propia interfaz de OpenMediaVault (ver Paso 12)*.
 
 ---
 
@@ -32,7 +32,7 @@
 
 **Resultado esperado:** menú de arranque con la opción **Install** (o **Graphical Install**).
 
-**Verificación:** el instalador detecta los 6 discos virtuales por separado en la pantalla de particionado — *es muy importante que confirmemos aquí el disco correspondiente, antes de continuar, para no instalar el sistema sobre el disco equivocado*.
+**Verificación:** el instalador detecta los 6 discos virtuales por separado en la pantalla de particionado *(es muy importante que confirmemos aquí el disco correspondiente, antes de continuar, para no instalar el sistema sobre el disco equivocado)*.
 
 ---
 
@@ -50,24 +50,24 @@
 
 **Acción:**
 
-- Contraseña de `root`: contraseña robusta (ej. `NAS-R00t-V3ct0rS3c!`)
+- Contraseña de `root`: contraseña robusta (ejemplo: `NAS-R00t-V3ct0rS3c!`)
 - Nombre completo del nuevo usuario: `VectorSec NAS Admin`
 - Nombre de usuario: `nas-admin`
-- Contraseña del usuario: contraseña robusta y distinta a la de `root` (ej. `NAS-Adm1n-V3ct0rS3c!`)
+- Contraseña del usuario: contraseña robusta y distinta a la de `root` (ejemeplo: `NAS-Adm1n-V3ct0rS3c!`)
 
 **Resultado esperado:** el instalador confirma ambas contraseñas (solicitando cada una dos veces) y avanza al particionado.
 
-**Verificación:** si alguna contraseña no coincide en su confirmación, el instalador lo indicará y en consecuencia no permite avanzar — *mismo comportamiento ya visto en `SRV-LAB01`*.
+**Verificación:** si alguna contraseña no coincide en su confirmación, el instalador lo indicará y en consecuencia no permite avanzar *(mismo comportamiento ya visto en `SRV-LAB01`)*.
 
 ---
 
 ### Paso 4 — Particionado (solo el disco de sistema)
 
-**Acción:** seleccionar **Guided - use entire disk** → elegir **únicamente el disco de `20 GB` destinado al sistema operativo** (no seleccionar ninguno de los 5 discos de 4 TB, que se reservan vacíos para el array RAID) → esquema **All files in one partition**.
+**Acción:** seleccionar **Guided - use entire disk** → elegir **únicamente el disco de `20 GB` destinado al sistema operativo** *(no seleccionar ninguno de los 5 discos de 4 TB, que se reservan vacíos para el array RAID)* → esquema **All files in one partition**.
 
 **Resultado esperado:** el instalador copia los archivos base del sistema y, al finalizar, muestra *"Installation complete"*.
 
-**Verificación:** especialmente importante en este paso — *revisar el resumen de particiones antes de confirmar, asegurando que los 5 discos de 4 TB **no aparecen** en la lista de particiones creadas*.
+**Verificación:** especialmente importante en este paso, *revisar el resumen de particiones antes de confirmar, asegurando que los 5 discos de 4 TB **no aparecen** en la lista de particiones creadas*.
 
 ---
 
@@ -79,9 +79,9 @@
 wget -O - https://raw.githubusercontent.com/openmediavault/installScript/master/install | bash
 ```
 
-**Resultado esperado:** el script instala el repositorio de OpenMediaVault, sus dependencias y el paquete principal, finalizando con un reinicio automático del sistema.
+**Resultado esperado:** el script instala el repositorio de OpenMediaVault, sus dependencias y el paquete principal, finalizando con un reinicio automático del sistema. ⚠️ **Importante:** Anota la `IP` que muestra previo al reinicio.
 
-**Verificación:** tras el reinicio, acceder desde un navegador a `http://<IP-temporal-por-DHCP>` (no olvides anotar el IP que muestra al finalizar la instalación, es la que usarás inicialmente) — *cargará la pantalla de login de OpenMediaVault (usuario por defecto `admin`, contraseña por defecto `openmediavault`, **a cambiar en el primer acceso**)*.
+**Verificación:** tras el reinicio, acceder desde un navegador a `http://<IP-temporal-por-DHCP>` *(no olvides anotar el IP que muestra al finalizar la instalación, es la que usarás inicialmente)*, *cargará la pantalla de login de OpenMediaVault (usuario por defecto `admin`, contraseña por defecto `openmediavault`, **a cambiar en el primer acceso**)*.
 
 ---
 
@@ -93,7 +93,7 @@ wget -O - https://raw.githubusercontent.com/openmediavault/installScript/master/
 
 **Resultado esperado:** mensaje de confirmación *"The password was changed successfully"* (aplicado tras pulsar el botón de guardar y confirmar los cambios pendientes, habitual en la interfaz de OMV).
 
-**Verificación:** cerrar sesión y volver a iniciar con la nueva contraseña — *debe funcionar, y la antigua ya no debe ser válida*.
+**Verificación:** cerrar sesión y volver a iniciar con la nueva contraseña *(debe funcionar, y la antigua ya no debe ser válida)*.
 
 ---
 
@@ -109,7 +109,7 @@ Gateway:      192.168.60.1
 
 En **Network → DNS**, añadir `192.168.60.10` como servidor DNS.
 
-**Resultado esperado:** tras aplicar los cambios pendientes (botón de confirmación superior, característico de OMV), la interfaz se reconfigura sin perder la conexión al panel (si el navegador estaba usando la IP temporal, habrá que reconectar a la nueva IP fija).
+**Resultado esperado:** tras aplicar los cambios pendientes (botón de confirmación superior, característico de OMV), la interfaz se reconfigura sin perder la conexión al panel *(si el navegador estaba usando la IP temporal, habrá que reconectar a la nueva IP fija)*.
 
 **Verificación (por consola):**
 
@@ -132,7 +132,7 @@ Debe mostrar `192.168.60.12/24` y conectividad correcta con el gateway.
 - Level: **RAID 5**
 - Devices: seleccionar **3 de los 5 discos** de 4 TB disponibles
 
-**Resultado esperado:** el array comienza su proceso de sincronización inicial (`resync`), visible en la propia interfaz con una barra de progreso — *en discos virtuales de prueba, este proceso es mucho más rápido que en hardware real*.
+**Resultado esperado:** el array comienza su proceso de sincronización inicial (`resync`), visible en la propia interfaz con una barra de progreso *(en discos virtuales de prueba, este proceso es mucho más rápido que en hardware real)*.
 
 **Verificación:**
 
@@ -158,7 +158,7 @@ mdadm --detail /dev/md0
 
 La sección `Spare Devices` debe mostrar `1`, confirmando que el hot spare está correctamente asignado al array.
 
-> 📌 **Sobre el 5º disco:** queda sin asignar, disponible como repuesto físico adicional o para una futura ampliación — *no se incluye en el array ni como activo ni como spare, ya que el diseño del Módulo 1 contempla 4 discos (3 activos + 1 hot spare) sobre un total de 5 adquiridos*.
+> 📌 **Sobre el 5º disco:** queda sin asignar, disponible como repuesto físico adicional o para una futura ampliación, *no se incluye en el array ni como activo ni como spare, ya que el diseño del Módulo 1 contempla 4 discos (3 activos + 1 hot spare) sobre un total de 5 adquiridos*.
 
 ---
 
@@ -223,7 +223,7 @@ hosts allow = 192.168.60.0/24 192.168.10.0/24
 hosts deny = 0.0.0.0/0
 ```
 
-> 📌 **Justificación:** solo el propio segmento de servidores y Administración (que ya tiene permiso de acceso a Servidores según la política del Módulo 3) pueden alcanzar los recursos compartidos — *el resto de VLANs queda excluido explícitamente a nivel de servicio, reforzando de nuevo la política ya aplicada por las ACLs del router*.
+> 📌 **Justificación:** solo el propio segmento de servidores y Administración (que ya tiene permiso de acceso a Servidores según la política del Módulo 3) pueden alcanzar los recursos compartidos, *el resto de VLANs queda excluido explícitamente a nivel de servicio, reforzando de nuevo la política ya aplicada por las ACLs del router*.
 
 **Resultado esperado:** tras aplicar los cambios, el servicio SMB se reinicia automáticamente.
 
@@ -238,6 +238,8 @@ Debe fallar con un error de conexión rechazada o tiempo de espera agotado.
 ---
 
 ## 8. Checklist de verificación final
+
+Lista de comprobación al montar este servidor:
 
 - [ ] OpenMediaVault instalado sobre el disco de sistema, `hostname` = `SRV-NAS`
 - [ ] IP estática 192.168.60.12/24 configurada, gateway respondiendo
@@ -256,4 +258,4 @@ Debe fallar con un error de conexión rechazada o tiempo de espera agotado.
 
 - El resumen de todos los servicios activos en la infraestructura se consolida en [`servicios.md`](../servicios.md).
 - La gestión de usuarios administradores de este servidor se documenta en [`usuarios-y-permisos.md`](../usuarios-y-permisos.md).
-- Con este documento se completa la implantación de los **4 servidores de VectorSec**; el siguiente bloque del módulo cubre los **16 equipos cliente** en [`equipos-cliente.md`](../equipos-cliente.md).
+- Con este documento se completa la implantación de los **4 servidores de `VectorSec`**; el siguiente bloque del módulo cubre los **16 equipos cliente** en [`equipos-cliente.md`](../equipos-cliente.md).
