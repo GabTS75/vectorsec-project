@@ -748,4 +748,4 @@ Como líneas de mejora futura, coherentes con la visión de crecimiento de **`Ve
 - `README.md` — Este documento
 - Capturas de incidencias y pruebas (carpetas `/imgs/incidents` y `/imgs/test`)
 
-> 📌 **Nota aclaratoria:** todas las contraseñas de configuración propuestas en este módulo (y en otros módulos del proyecto), son credenciales de laboratoriio "no reales", puesto que el presente proyecto ha sido creado a modo de aprendizaje y dichas contraseñas son utilizadas como "ejemplos visibles" de ejecución.
+> 📌 **Nota aclaratoria:** todas las contraseñas de configuración propuestas en este módulo *(y en otros módulos del proyecto)*, son credenciales de laboratorio "no reales", puesto que el presente proyecto ha sido creado a modo de aprendizaje y dichas contraseñas son utilizadas como "ejemplos visibles" de ejecución.
