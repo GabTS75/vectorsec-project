@@ -81,7 +81,7 @@ wget -O - https://raw.githubusercontent.com/openmediavault/installScript/master/
 
 **Resultado esperado:** el script instala el repositorio de OpenMediaVault, sus dependencias y el paquete principal, finalizando con un reinicio automático del sistema. ⚠️ **Importante:** Anota la `IP` que muestra previo al reinicio.
 
-**Verificación:** tras el reinicio, acceder desde un navegador a `http://<IP-temporal-por-DHCP>` *(no olvides anotar el IP que muestra al finalizar la instalación, es la que usarás inicialmente)*, *cargará la pantalla de login de OpenMediaVault (usuario por defecto `admin`, contraseña por defecto `openmediavault`, **a cambiar en el primer acceso**)*.
+**Verificación:** tras el reinicio, acceder desde un navegador a `http://<IP-temporal-por-DHCP>` *(utiliza la IP que muestró al finalizar la instalación, es la que se usará inicialmente)*, *cargará la pantalla de login de OpenMediaVault (usuario por defecto `admin`, contraseña por defecto `openmediavault`, **a cambiar en el primer acceso**)*.
 
 ---
 
