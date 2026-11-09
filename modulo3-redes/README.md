@@ -1,10 +1,8 @@
 # Módulo 3 — Planificación y Administración de Redes
 
-**Empresa:** `VectorSec`
-
-**Sector:** `Ciberseguridad` — `auditoría, pentesting y formación en seguridad informática`
-
-**Entorno de simulación:** Cisco Packet Tracer
+- **Empresa:** `VectorSec`
+- **Sector:** `Ciberseguridad` — `auditoría, pentesting y formación en seguridad informática`
+- **Entorno de simulación:** Cisco Packet Tracer
 
 ## 1. Introducción
 
@@ -749,3 +747,5 @@ Como líneas de mejora futura, coherentes con la visión de crecimiento de **`Ve
 - `DIAGRAMA_VectorSec.pkt` — Archivo de Cisco Packet Tracer con la topología completa
 - `README.md` — Este documento
 - Capturas de incidencias y pruebas (carpetas `/imgs/incidents` y `/imgs/test`)
+
+> 📌 **Nota aclaratoria:** todas las contraseñas de configuración propuestas en este módulo (y en otros módulos del proyecto), son credenciales de laboratoriio "no reales", puesto que el presente proyecto ha sido creado a modo de aprendizaje y dichas contraseñas son utilizadas como "ejemplos visibles" de ejecución.
