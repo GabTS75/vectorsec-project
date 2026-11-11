@@ -20,8 +20,8 @@ El resultado es un entorno **mixto Windows + Linux**, decisión que responde tan
 | SRV-APP01 | Ubuntu Server 22.04 LTS | Base de datos (PostgreSQL) + aplicación de gestión |
 | SRV-LAB01 | Kali Linux | Laboratorio de pentesting + SIEM (Wazuh) |
 | SRV-NAS | OpenMediaVault | Almacenamiento RAID 5 + Hot Spare, backups |
-| 16 PCs cliente | Windows 11 Pro | Estaciones de trabajo, unidas al dominio |
-| 6 PCs del Aula (adicional) | Windows 11 Pro + VirtualBox | Formación general + prácticas de pentesting mediante VM de Kali |
+| 16 PCs cliente en total | Windows 11 Pro | Estaciones de trabajo, unidas al dominio |
+| De esos 16 PCs cliente, 6 corresponden al aula de formación | Windows 11 Pro + VirtualBox | Formación general + prácticas de pentesting mediante VM de Kali |
 
 La justificación detallada de cada elección se encuentra en el apartado 1 de cada documento individual (enlaces en el apartado 5).
 
