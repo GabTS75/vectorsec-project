@@ -4,14 +4,14 @@
 
 ### 1. Qué es este proyecto
 
-En este repositorio se encuentra el diseño, la implementación y documentación de **la infraestructura IT completa de `VectorSec`**, una empresa de ciberseguridad ficticia *(pero deliberadamente realista)* en fase de crecimiento, dedicada a servicios de auditoría de seguridad, pentesting, consultoría de cumplimiento normativo (RGPD/ENS) y formación in-company para pymes.
+En este repositorio se encuentra el diseño y la documentación de **la infraestructura IT completa de `VectorSec`**, una empresa de ciberseguridad ficticia *(pero deliberadamente realista)* en fase de crecimiento, dedicada a servicios de auditoría de seguridad, pentesting, consultoría de cumplimiento normativo (RGPD/ENS) y formación in-company para pymes.
 
 No es una colección de siete ejercicios independientes. Es **un único proyecto**, con una empresa, unos datos y unas decisiones de diseño que se arrastran y se referencian de un módulo a otro: *el mismo esquema de VLANs que separa el laboratorio de pentesting del resto de la red (Módulo 3) es el que justifica un servidor aislado para ese laboratorio (Módulo 1); los mismos datos de clientes y hallazgos que se insertan en PostgreSQL (Módulo 4) son los que se exportan y validan en XML (Módulo 5) y los que viajarían hacia el portal cloud (Módulo 6)*.
 
 El objetivo es doble:
 
 - **Académico:** cubrir de forma integrada los siete módulos del primer curso de ASIR, siguiendo el proceso real que seguiría un administrador de sistemas y redes *(desde el análisis de necesidades hasta la documentación final)* en lugar de tratar cada materia por separado.
-- **Profesional:** servir como pieza de portfolio verificable, con evidencia real de cada configuración, error y corrección evidenciada *(no una narrativa idealizada donde todo funciona a la primera)*.
+- **Profesional:** servir como pieza de portfolio verificable, con evidencia en las pruebas de cada configuración, error y corrección demostrada *(no una narrativa idealizada donde todo funciona a la primera)*.
 
 ---
 
@@ -57,7 +57,7 @@ Este módulo, **define y justifica** el hardware de `VectorSec`: 16 equipos clie
 
 #### [Módulo 3: Planificación y Administración de Redes](modulo3-redes/)
 
-Aquí, se **diseña la red completa** en Cisco Packet Tracer: **9 VLANs** (una por departamento, más una VLAN de laboratorio totalmente aislada y una de invitados), enrutamiento inter-VLAN mediante Router-on-a-Stick, ACLs extendidas que aplican el principio de mínimo privilegio, y gestión de switches restringida a SSH (Telnet deshabilitado). El módulo incluye evidencia real de pruebas (tablas de verificación DHCP, ping intra/inter-VLAN, ACLs y SSH) y la documentación honesta de dos incidencias reales encontradas durante la implementación *(un solapamiento de subredes en la VLAN de gestión y una subinterfaz sin IP asignada)* con su diagnóstico y resolución, no solo el resultado final ya corregido.
+Aquí, se **diseña la red completa** en Cisco Packet Tracer: **9 VLANs** (cinco de usuarios, una de servidores, una de laboratorio, una de invitados y una de gestión), enrutamiento inter-VLAN mediante Router-on-a-Stick, ACLs extendidas que aplican el principio de mínimo privilegio, y gestión de switches restringida a SSH (Telnet deshabilitado). El módulo incluye evidencia de pruebas realizadas (tablas de verificación DHCP, ping intra/inter-VLAN, ACLs y SSH) y la documentación honesta de dos incidencias reales encontradas durante la implementación *(un solapamiento de subredes en la VLAN de gestión y una subinterfaz sin IP asignada)* con su diagnóstico y resolución, no solo el resultado final ya corregido.
 
 > Se desarrolla antes que el Módulo 2 en el orden de trabajo real, porque los sistemas operativos de los servidores **dependen de un direccionamiento de red** ya definido.
 
