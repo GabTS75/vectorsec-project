@@ -247,7 +247,7 @@ El parámetro `--clean` elimina los objetos existentes antes de recrearlos, evit
 
 ## 8. Checklist de verificación final
 
-Lista de comprobación para este módulo:
+Checklist para validar la base de datos al ejecutarla en un servidor PostgreSQL:
 
 - [ ] Las 7 tablas creadas sin errores de sintaxis ni de claves foráneas (`sql/01_creacion_tablas.sql`)
 - [ ] Datos de ejemplo insertados, respetando el orden de dependencias (tablas sin FK primero)
