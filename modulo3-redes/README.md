@@ -481,38 +481,49 @@ ip dhcp excluded-address 192.168.80.1 192.168.80.9
 ip dhcp pool VLAN10-ADMIN
  network 192.168.10.0 255.255.255.0
  default-router 192.168.10.1
+ dns-server 192.168.60.10
+ domain-name vectorsec.local
 exit
 
 ip dhcp pool VLAN20-DIR
  network 192.168.20.0 255.255.255.0
  default-router 192.168.20.1
+ dns-server 192.168.60.10
+ domain-name vectorsec.local
 exit
 
 ip dhcp pool VLAN30-DEV
  network 192.168.30.0 255.255.255.0
  default-router 192.168.30.1
+ dns-server 192.168.60.10
+ domain-name vectorsec.local
 exit
 
 ip dhcp pool VLAN40-SOPORTE
  network 192.168.40.0 255.255.255.0
  default-router 192.168.40.1
+ dns-server 192.168.60.10
+ domain-name vectorsec.local
 exit
 
 ip dhcp pool VLAN50-FORMACION
  network 192.168.50.0 255.255.255.0
  default-router 192.168.50.1
+ dns-server 192.168.60.10
+ domain-name vectorsec.local
 exit
 
 ip dhcp pool VLAN80-GUEST
  network 192.168.80.0 255.255.255.0
  default-router 192.168.80.1
+ dns-server 8.8.8.8
 exit
 
 end
 write memory
 ```
 
-> *(El servidor DNS se integrará en los pools cuando se realice el Módulo 2, al desplegarse sobre SRV-DC01).*
+> *Los pools de las VLANs 10 a 50 entregan como DNS el controlador de dominio `SRV-DC01` (`192.168.60.10`) y el sufijo `vectorsec.local`, necesarios para que los clientes localicen el dominio (Módulo 2). La VLAN de invitados usa un DNS público (`8.8.8.8`) porque su ACL le impide llegar a la VLAN 60.*
 
 ---
 
