@@ -147,7 +147,7 @@ Este procedimiento de montaje es aplicable para ambos equipos, con ciertos matic
 
 ### 8.4 Checklist de verificación previa a la entrega
 
-Lista de verificación si se realiza el despliegue físico:
+Lista de verificación para el montaje físico real. No se ha realizado el montaje; el módulo recoge el diseño y la guía de referencia:
 
 - [ ] POST completada sin errores ni pitidos
 - [ ] RAM total reconocida coincide con la instalada
