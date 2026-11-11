@@ -385,7 +385,7 @@ Debe devolver un número de versión válido.
 
 ## 9. Checklist de verificación final
 
-Listado de verificación para cuando se realice:
+Verificable cuando se despliegue esta guía:
 
 - [ ] Equipo de referencia (`PC-ADM1`) instalado en Modo Auditoría, sin usuarios personalizados creados
 - [ ] Software base común instalado y actualizado

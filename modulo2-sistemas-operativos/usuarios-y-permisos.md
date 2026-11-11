@@ -339,7 +339,7 @@ Debe devolver `True` con acceso de escritura confirmado (crear un archivo de pru
 
 ## 9. Checklist de verificación final
 
-Lista de verificación al realizar estas configuraciones:
+Verificable cuando se despliegue esta guía:
 
 - [ ] Estructura de OUs creada (`VectorSec` → `Usuarios`/`Equipos`/`Grupos`, con 6 subcarpetas de departamento en cada rama)
 - [ ] 6 grupos de seguridad `GG_*` creados

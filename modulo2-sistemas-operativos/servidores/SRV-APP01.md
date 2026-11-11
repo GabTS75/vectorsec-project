@@ -353,7 +353,7 @@ Este resultado confirma que **la capa de seguridad a nivel de base de datos** fu
 
 ## 7. Checklist de verificación final
 
-Listado de comprobación luego de montar el servidor:
+Verificable cuando se despliegue esta guía.:
 
 - [ ] Ubuntu Server 22.04 LTS instalado, `hostname` = `SRV-APP01`
 - [ ] IP estática 192.168.60.11/24 configurada vía Netplan, gateway respondiendo

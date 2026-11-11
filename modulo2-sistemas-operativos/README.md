@@ -95,4 +95,4 @@ Como en los módulos anteriores, las limitaciones del entorno de simulación (im
 ## 7. Entregables
 
 - Los 7 documentos listados en el apartado 5, organizados en la carpeta `modulo2-sistemas-operativos/`
-- Las capturas de configuración y verificación (se incorporarían en la carpeta `/imgs`, si se implementa siguiendo cada guía paso a paso)
+- Las capturas de configuración y verificación (se incorporarían en la carpeta `/imgs`, cuando se despliegue cada guía)

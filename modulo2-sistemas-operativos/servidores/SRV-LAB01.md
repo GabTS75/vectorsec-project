@@ -288,7 +288,7 @@ ping -c 3 192.168.10.1
 
 ## 8. Checklist de verificación final
 
-Listado de comprobación para este servidor de laboratorio:
+Verificable cuando se despliegue esta guía:
 
 - [ ] Kali Linux instalado, `hostname` = `SRV-LAB01`
 - [ ] IP estática 192.168.70.10/24 configurada vía Netplan, gateway respondiendo

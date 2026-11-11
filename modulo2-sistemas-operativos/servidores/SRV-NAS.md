@@ -239,7 +239,7 @@ Debe fallar con un error de conexión rechazada o tiempo de espera agotado.
 
 ## 8. Checklist de verificación final
 
-Lista de comprobación al montar este servidor:
+Verificable cuando se despliegue esta guía:
 
 - [ ] OpenMediaVault instalado sobre el disco de sistema, `hostname` = `SRV-NAS`
 - [ ] IP estática 192.168.60.12/24 configurada, gateway respondiendo

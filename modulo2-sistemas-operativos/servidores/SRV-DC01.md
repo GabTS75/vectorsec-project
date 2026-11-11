@@ -230,7 +230,7 @@ dcdiag /v
 
 ## 7. Checklist de verificación final
 
-Listado de comprobación luego de montar el servidor:
+Verificable cuando se despliegue esta guía:
 
 - [ ] Windows Server 2022 (Desktop Experience) instalado, `hostname` = `SRV-DC01`
 - [ ] IP estática `192.168.60.10/24`, gateway `192.168.60.1` respondiendo a `Test-Connection`
