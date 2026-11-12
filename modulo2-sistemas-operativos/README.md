@@ -2,7 +2,7 @@
 
 - **Empresa:** `VectorSec`
 - **Sector:** `Ciberseguridad` — `auditoría, pentesting y formación en seguridad informática`
-- **Entorno de trabajo:** documentación conceptual detallada, verificable en VirtualBox/Hyper-V (si se llega a desplegar)
+- **Entorno de trabajo:** documentación conceptual detallada, verificable en VirtualBox/Hyper-V cuando se despliegue cada guía.
 
 ## 1. Introducción
 
