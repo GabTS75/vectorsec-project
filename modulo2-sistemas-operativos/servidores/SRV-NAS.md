@@ -130,7 +130,7 @@ Debe mostrar `192.168.60.12/24` y conectividad correcta con el gateway.
 
 - Name: `raid-backups`
 - Level: **RAID 5**
-- Devices: seleccionar **3 de los 5 discos** de 4 TB disponibles
+- Devices: seleccionar **4 de los 5 discos** de 4 TB disponibles
 
 **Resultado esperado:** el array comienza su proceso de sincronización inicial (`resync`), visible en la propia interfaz con una barra de progreso *(en discos virtuales de prueba, este proceso es mucho más rápido que en hardware real)*.
 
@@ -140,13 +140,13 @@ Debe mostrar `192.168.60.12/24` y conectividad correcta con el gateway.
 cat /proc/mdstat
 ```
 
-Debe mostrar el dispositivo `md0` (o similar) en estado `active`, con los 3 discos listados y el progreso de `resync` si aún no ha finalizado.
+Debe mostrar el dispositivo `md0` (o similar) en estado `active`, con los 4 discos listados y el progreso de `resync` si aún no ha finalizado.
 
 ---
 
 ### Paso 9 — Añadir el disco de reserva (Hot Spare)
 
-**Acción:** dentro del mismo array `raid-backups` → **Recover** o gestión de discos del array → añadir el **4º disco** como *spare* (no como disco activo del array).
+**Acción:** dentro del mismo array `raid-backups` → **Recover** o gestión de discos del array → añadir el **5º disco** como *spare* (no como disco activo del array).
 
 **Resultado esperado:** el disco aparece en `cat /proc/mdstat` marcado como `(S)` (spare) junto al resto de discos del array, sin participar activamente en el reparto de datos.
 
@@ -156,9 +156,7 @@ Debe mostrar el dispositivo `md0` (o similar) en estado `active`, con los 3 disc
 mdadm --detail /dev/md0
 ```
 
-La sección `Spare Devices` debe mostrar `1`, confirmando que el hot spare está correctamente asignado al array.
-
-> 📌 **Sobre el 5º disco:** queda sin asignar, disponible como repuesto físico adicional o para una futura ampliación, *no se incluye en el array ni como activo ni como spare, ya que el diseño del Módulo 1 contempla 4 discos (3 activos + 1 hot spare) sobre un total de 5 adquiridos*.
+La sección `Spare Devices` debe mostrar `1`, confirmando que el **hot spare** está correctamente asignado al array.
 
 ---
 
@@ -166,7 +164,7 @@ La sección `Spare Devices` debe mostrar `1`, confirmando que el hot spare está
 
 **Acción:** **Storage → File Systems → Create** → seleccionar el dispositivo `raid-backups` → tipo de sistema de archivos **EXT4** → confirmar.
 
-**Resultado esperado:** el sistema de archivos se crea y se monta automáticamente, apareciendo en la lista con su capacidad disponible ( aproximadamente 8 TB útiles: 3 discos activos × 4 TB, menos el espacio reservado para paridad).
+**Resultado esperado:** el sistema de archivos se crea y se monta automáticamente, apareciendo en la lista con su capacidad disponible ( aproximadamente 12 TB útiles: 4 discos activos × 4 TB, menos el espacio reservado para paridad).
 
 **Verificación:**
 
@@ -174,7 +172,7 @@ La sección `Spare Devices` debe mostrar `1`, confirmando que el hot spare está
 df -h | grep md0
 ```
 
-Debe mostrar el punto de montaje con una capacidad aproximada de 8 TB y 0% de uso (recién creado).
+Debe mostrar el punto de montaje con una capacidad aproximada de 12 TB y 0% de uso (recién creado).
 
 ---
 
@@ -244,9 +242,9 @@ Verificable cuando se despliegue esta guía:
 - [ ] OpenMediaVault instalado sobre el disco de sistema, `hostname` = `SRV-NAS`
 - [ ] IP estática 192.168.60.12/24 configurada, gateway respondiendo
 - [ ] Contraseña por defecto del panel web cambiada
-- [ ] Array RAID 5 creado con 3 discos activos (`md0` en estado `active`)
-- [ ] 4º disco añadido correctamente como Hot Spare (`Spare Devices: 1`)
-- [ ] Sistema de archivos EXT4 creado sobre el array, ~8 TB disponibles
+- [ ] Array RAID 5 creado con 4 discos activos (`md0` en estado `active`)
+- [ ] 5º disco añadido correctamente como Hot Spare (`Spare Devices: 1`)
+- [ ] Sistema de archivos EXT4 creado sobre el array, ~12 TB disponibles
 - [ ] Carpeta compartida `backups-servidores` accesible por SMB
 - [ ] Tareas de backup incremental diario y completo semanal programadas
 - [ ] Acceso SMB restringido a VLAN 60 y VLAN 10 únicamente
