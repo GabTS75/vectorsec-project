@@ -99,15 +99,21 @@ datos_invalido_ejemplo.xml fails to validate
 Código de salida: 3
 ```
 
-> 📌 El validador se detiene en el momento que encuentra una ruptura de secuencia (*el segundo error*), sin llegar a evaluar el tercero (*la severidad `"Urgente"`*) en esa misma pasada *(es el comportamiento normal de un validador XML, no un fallo del esquema)*. Para dejar constancia también de que la restricción de enumeración funciona, se corrigieron los dos primeros errores y se validó de nuevo, aislando el tercero:
+![](./imgs/datos_invalido_ejemplo.png)
+
+> 📌 El validador se detiene en el momento que encuentra una ruptura de secuencia (*el segundo error*), sin llegar a evaluar el tercero (*la severidad `"Urgente"`*) en esa misma pasada *(es el comportamiento normal de un validador XML, no un fallo del esquema)*.
+
+Para dejar constancia también de que la restricción de enumeración funciona, se corrigieron los dos primeros errores y se validó de nuevo, aislando el tercero: [`datos_invalido_severidad.xml`](datos_invalido_severidad.xml)
 
 ```bash
-/tmp/datos_invalido_severidad.xml:16: element Hallazgo: Schemas validity error :
+datos_invalido_severidad.xml:16: element Hallazgo: Schemas validity error :
 Element 'Hallazgo', attribute 'severidad': [facet 'enumeration'] The value 'Urgente'
 is not an element of the set {'Critica', 'Alta', 'Media', 'Baja'}.
 datos_invalido_severidad.xml fails to validate
 Código de salida: 3
 ```
+
+![](./imgs/datos_invalido_severidad.png)
 
 Con esto quedan demostrados, con evidencia y no simulada, los tres tipos de restricción exigidos por el enunciado: **patrón**, **cardinalidad/secuencia** y **enumeración**.
 
@@ -143,5 +149,6 @@ Listado de comprobación de lo ejecutado:
 | [`datos.xml`](datos.xml) | Exportación válida de 2 proyectos finalizados |
 | [`esquema.xsd`](esquema.xsd) | Esquema de validación |
 | [`datos_invalido_ejemplo.xml`](datos_invalido_ejemplo.xml) | Ejemplo con errores deliberados, para demostrar el control del XSD |
+| [`datos_invalido_severidad.xml`](datos_invalido_severidad.xml) | Mismo ejemplo con errores corregidos, dejando el tercero para validar por el XSD |
 | [`evidencias/validacion_correcta.log`](evidencias/validacion_correcta.log) | Salida real de `xmllint` sobre `datos.xml` |
 | [`evidencias/validacion_incorrecta.log`](evidencias/validacion_incorrecta.log) | Salida real de `xmllint` sobre los ejemplos inválidos |

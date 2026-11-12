@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VectorSecExport fechaExportacion="2026-06-01" origen="SRV-APP01 - vectorsec_gestion">
+  <Proyecto id="1" estado="Finalizado">
+    <Cliente>
+      <NombreEmpresa>Clínica Dental Sonrisas S.L.</NombreEmpresa>
+      <CIF>B12345671</CIF>
+      <Sector>Sanidad</Sector>
+    </Cliente>
+    <Servicio>
+      <NombreServicio>Auditoría de seguridad perimetral</NombreServicio>
+      <Tipo>Auditoria</Tipo>
+    </Servicio>
+    <FechaInicio>2026-04-01</FechaInicio>
+    <FechaFinReal>2026-04-14</FechaFinReal>
+    <Hallazgos>
+      <Hallazgo id="1" severidad="Urgente" estado="Cerrado">
+        <Titulo>Puerto RDP expuesto a Internet</Titulo>
+        <FechaDeteccion>2026-04-05</FechaDeteccion>
+      </Hallazgo>
+    </Hallazgos>
+    <Informe version="1.0" fecha="2026-04-14">
+      <Autor>Sara Iglesias</Autor>
+      <RutaArchivo>/informes/2026/clinica-sonrisas-auditoria-v1.pdf</RutaArchivo>
+    </Informe>
+  </Proyecto>
+
+</VectorSecExport>
