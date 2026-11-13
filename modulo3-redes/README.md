@@ -684,7 +684,7 @@ Además de bloquear el tráfico hacia MGMT desde el router, **se decide restring
 ip domain-name vectorsec.local
 username admin privilege 15 secret VectorSec2026!
 crypto key generate rsa
-! (cuando lo pida, ingresar tamaño de clave: 1024)
+! (cuando lo pida, ingresar tamaño de clave: 2048)
 ip ssh version 2
 
 ip access-list standard ACL-MGMT-ONLY
