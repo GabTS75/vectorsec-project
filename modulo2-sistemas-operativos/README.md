@@ -6,7 +6,7 @@
 
 ## 1. Introducción
 
-Con el hardware definido (Módulo 1) y la red diseñada, configurada y verificada (Módulo 3), este módulo decide, implanta y documenta el software base de `VectorSec`: *qué sistema operativo lleva cada equipo, qué servicios ejecuta y cómo se gestionan sus usuarios y permisos*.
+Con el hardware definido (Módulo 1) y la red diseñada, configurada y verificada (Módulo 3), este módulo decide, diseña la implantación y documenta el software base de `VectorSec`: *qué sistema operativo lleva cada equipo, qué servicios ejecuta y cómo se gestionan sus usuarios y permisos*.
 
 El resultado es un entorno **mixto Windows + Linux**, decisión que responde tanto a criterios técnicos (cada sistema se elige por su idoneidad para el rol que desempeña) como a la propia identidad de `VectorSec` como empresa de ciberseguridad, donde el uso de software abierto y auditable en sistemas propios es una práctica coherente con lo que la empresa audita en sus clientes.
 
@@ -47,14 +47,14 @@ El orden de implantación sigue una lógica de dependencias, no un orden arbitra
 7. Permisos NTFS sobre recursos compartidos, basados en los grupos ya creados
 ```
 
-Los servidores Linux (`SRV-APP01`, `SRV-LAB01`, `SRV-NAS`) se implantan en paralelo tras `SRV-DC01`, ya que no dependen entre sí ni requieren estar unidos al dominio (decisión justificada individualmente en cada documento).
+En los servidores Linux (`SRV-APP01`, `SRV-LAB01`, `SRV-NAS`) se plantea implantar en paralelo tras `SRV-DC01`, ya que no dependen entre sí ni requieren estar unidos al dominio (decisión justificada individualmente en cada documento).
 
 ### 3.1 Método de instalación
 
 | Grupo | Método | Motivo |
 | :--- | :--- | :--- |
-| 4 servidores | Instalación manual, individualizada | Cada uno tiene un rol y una configuración de servicios distinta *(no hay nada que clonar entre ellos)* |
-| 16 PCs cliente | Imagen de referencia (Modo Auditoría + Sysprep) + clonación (Clonezilla) | Mismo sistema operativo y base común en los 16 equipos *(instalar manualmente 16 veces repetiría el mismo trabajo sin necesidad)* |
+| 4 servidores | Procedimiento previsto para la instalación manual, individualizada | Cada uno tiene un rol y una configuración de servicios distinta *(no hay nada que clonar entre ellos)* |
+| 16 PCs cliente | Procedimiento previsto para la creación de la imagen de referencia (Modo Auditoría + Sysprep) + clonación (Clonezilla) | Mismo sistema operativo y base común en los 16 equipos *(instalar manualmente 16 veces repetiría el mismo trabajo sin necesidad)* |
 
 ---
 
@@ -65,7 +65,7 @@ Este módulo no se ha desarrollado de forma aislada *(cada decisión reutiliza o
 - **Direccionamiento IP:** todos los servidores usan las IPs ya fijadas en la tabla de direccionamiento del Módulo 3, sin ninguna reasignación.
 - **Nombre de dominio:** `vectorsec.local` ya se había introducido en el Módulo 3 (configuración SSH de los switches) y se reutiliza aquí como dominio de Active Directory, en lugar de introducir un segundo nombre de dominio sin motivo.
 - **Defensa en profundidad:** las políticas de acceso ya aplicadas por ACL en el Módulo 3 (router) se refuerzan a nivel de host en `SRV-APP01` (`pg_hba.conf`), `SRV-LAB01` (firewall UFW) y `SRV-NAS` (restricción SMB por red) *(la misma política de seguridad, aplicada en dos capas independientes)*.
-- **DHCP:** se decide explícitamente no migrarlo a Windows Server, por estar ya implementado y verificado en el Módulo 3 (detalle en `servicios.md`, apartado 3).
+- **DHCP:** se decide explícitamente no migrarlo a Windows Server, por estar ya configurado y verificado en Cisco Packet Tracer del Módulo 3 (detalle en `servicios.md`, apartado 3).
 - **Segmentación por departamento:** la estructura de OUs y grupos de Active Directory replica la misma segmentación por departamento ya usada en el Módulo 3 (VLANs) y en el Módulo 1 (Hardware), *mismo criterio organizativo en toda la infraestructura*.
 
 ---
@@ -86,7 +86,7 @@ Este módulo no se ha desarrollado de forma aislada *(cada decisión reutiliza o
 
 ## 6. Conclusiones
 
-La implantación de sistemas operativos de VectorSec combina Windows y Linux según el rol de cada equipo, evitando tanto la *homogeneidad forzada* (todo Windows, o todo Linux, "porque sí") como la *dispersión sin criterio*. Cada decisión de sistema operativo, método de despliegue y configuración de seguridad queda justificada y, siempre que ha sido posible, verificada con una prueba concreta y reproducible, *desde el bloqueo de acceso no autorizado a PostgreSQL, hasta la comprobación de que el laboratorio aislado no puede iniciar tráfico hacia el resto de la red ni siquiera a nivel de sistema operativo*.
+La implantación de sistemas operativos de `VectorSec` combina Windows y Linux según el rol de cada equipo, evitando tanto la *homogeneidad forzada* (todo Windows, o todo Linux, "porque sí") como la *dispersión sin criterio*. Cada decisión de sistema operativo, como el diseño en el método de despliegue y la configuración de seguridad quedan justificadas y, siempre se pueden verificar con una prueba concreta y reproducible, *desde el bloqueo de acceso no autorizado a PostgreSQL, hasta la comprobación de que el laboratorio aislado no puede iniciar tráfico hacia el resto de la red ni siquiera a nivel de sistema operativo*.
 
 Como en los módulos anteriores, las limitaciones del entorno de simulación (imposibilidad de provocar un fallo de disco real en el NAS, por ejemplo) se han documentado de forma explícita en lugar de omitirse, *manteniendo la misma coherencia y honestidad técnica aplicada durante todo el proyecto*.
 
