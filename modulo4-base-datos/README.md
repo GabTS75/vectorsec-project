@@ -8,7 +8,7 @@
 
 ## 1. Introducción
 
-Este módulo diseña, implementa y administra la base de datos que sustenta la aplicación de gestión interna de `VectorSec`, ya anticipada en el Módulo 2 (`servidores/SRV-APP01.md`) como el "activo más crítico" de la empresa. En consecuencia, se modela específicamente lo que una consultora de ciberseguridad necesita gestionar: *clientes, proyectos de auditoría/pentesting, hallazgos de seguridad detectados y los informes que se entregan como resultado*.
+Este módulo diseña y documenta la base de datos que sustenta la aplicación de gestión interna de `VectorSec`, ya anticipada en el Módulo 2 (`servidores/SRV-APP01.md`) como el "activo más crítico" de la empresa. En consecuencia, se modela específicamente lo que una consultora de ciberseguridad necesita gestionar: *clientes, proyectos de auditoría/pentesting, hallazgos de seguridad detectados y los informes que se entregan como resultado*.
 
 ---
 
