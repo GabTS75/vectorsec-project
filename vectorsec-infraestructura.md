@@ -33,14 +33,14 @@ Esa última **idea** *(la coherencia interna como principio de diseño, no como 
 
 ```text
 vectorsec-project/
-├── mejoras-futuras/                    → Mejoras futuras, basadas en el "feeback" recibido luego de finalizar el proyecto
-├── modulo1-hardware/                   → Equipos cliente, servidores, almacenamiento y red (catálogo y justificación)
-├── modulo2-sistemas-operativos/        → Instalación y configuración de cada servidor, imagen de los 16 clientes, AD y permisos
-├── modulo3-redes/                      → Topología, VLANs, direccionamiento, ACLs, hardening SSH, evidencia de pruebas
-├── modulo4-base-datos/                 → Modelo E-R, scripts SQL, roles de acceso, copia de seguridad
-├── modulo5-documentacion-web/          → XML + XSD (entregable evaluable) y web corporativa (pieza adicional de marketing)
-├── modulo6-cloud-aws/                  → Extensión de la infraestructura on-premise hacia AWS
-└── modulo7-empleabilidad-portfolio/    → Entregables de empleabilidad, CV, carta de presentación y sección del proyecto para el portfolio
+├── mejoras-futuras/                  → Mejoras futuras, basadas en el "feeback" recibido luego de finalizar el proyecto
+├── modulo1-hardware/                 → Equipos cliente, servidores, almacenamiento y red (catálogo y justificación)
+├── modulo2-sistemas-operativos/      → Diseño de instalación y configuración de cada servidor, imagen de los 16 clientes, AD y permisos
+├── modulo3-redes/                    → Topología, VLANs, direccionamiento, ACLs, hardening SSH, evidencia de pruebas
+├── modulo4-base-datos/               → Modelo E-R, scripts SQL, roles de acceso, copia de seguridad
+├── modulo5-documentacion-web/        → XML + XSD (entregable evaluable) y web corporativa (pieza adicional de marketing)
+├── modulo6-cloud-aws/                → Extensión de la infraestructura on-premise hacia AWS
+└── modulo7-empleabilidad-portfolio/  → Entregables de empleabilidad, CV, carta de presentación y sección del proyecto para el portfolio
 ```
 
 Cada carpeta tiene su propio `README.md`, autocontenido y enlazable de forma independiente. A continuación, presento **un mapa** de "cómo encajan entre sí", no es un resumen de cada uno *(para mayor detalle, entrar en la carpeta correspondiente)*.
@@ -63,7 +63,7 @@ Aquí, se **diseña la red completa** en Cisco Packet Tracer: **9 VLANs** (cinco
 
 #### [Módulo 2: Implantación de Sistemas Operativos](modulo2-sistemas-operativos/)
 
-Se **instala y configura** cada servidor sobre la base de red del Módulo 3: Windows Server 2022 + Active Directory en `SRV-DC01`, Ubuntu Server + PostgreSQL en `SRV-APP01`, Kali Linux + Wazuh (SIEM) en `SRV-LAB01`, y OpenMediaVault con RAID 5 + hot spare en `SRV-NAS`. Incluye el diseño de la estructura de Unidades Organizativas, usuarios y grupos de seguridad en AD, y una guía completa "paso a paso" para clonar e implantar los 16 equipos cliente.
+Se **diseña la instalación y configuración** de cada servidor sobre la base de red del Módulo 3: Windows Server 2022 + Active Directory en `SRV-DC01`, Ubuntu Server + PostgreSQL en `SRV-APP01`, Kali Linux + Wazuh (SIEM) en `SRV-LAB01`, y OpenMediaVault con RAID 5 + hot spare en `SRV-NAS`. Incluye el diseño de la estructura de Unidades Organizativas, usuarios y grupos de seguridad en AD, y una guía completa "paso a paso" para clonar e implantar los 16 equipos cliente.
 
 >La guía de clonación se realiza mediante el uso de `Sysprep` en modo auditoría y **Clonezilla** *(explicada desde cero, sin dar por hecho conocimiento previo)*.
 
