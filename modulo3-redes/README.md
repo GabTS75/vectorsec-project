@@ -6,7 +6,7 @@
 
 ## 1. Introducción
 
-**`VectorSec`** es una empresa de ciberseguridad en fase de crecimiento (8-9 empleados) que ofrece servicios de auditoría, pentesting, consultoría de cumplimiento normativo y formación in-company a pymes. Como parte de su proceso de modernización interna, este módulo diseña, implementa y documenta la red interna de la empresa, distribuida en dos plantas, aplicando criterios de segmentación, control de acceso y gestión propios de una empresa que basa su negocio en la seguridad informática.
+**`VectorSec`** es una empresa de ciberseguridad en fase de crecimiento (8-9 empleados) que ofrece servicios de auditoría, pentesting, consultoría de cumplimiento normativo y formación in-company a pymes. Como parte de su proceso de modernización interna, este módulo diseña, simula en Cisco Packet Tracer y documenta la red interna de la empresa, distribuida en dos plantas, aplicando criterios de segmentación, control de acceso y gestión propios de una empresa que basa su negocio en la seguridad informática.
 
 Todas las decisiones de diseño de este módulo parten de una misma idea: ***una empresa que audita la seguridad de terceros debe, por coherencia, aplicar sobre su propia infraestructura los mismos criterios que exige a sus clientes*.**
 
@@ -51,7 +51,7 @@ Se utiliza el mismo modelo Cisco 2960 en las 4 posiciones (distribución y acces
 
 ## 3. Segmentación lógica — VLANs
 
-Se implementan **9 VLANs**: las 7 exigidas para el proyecto, más 2 adicionales justificadas por necesidades reales de seguridad de `VectorSec`.
+Se configuran **9 VLANs** (en CPT): las 7 exigidas para el proyecto, más 2 adicionales justificadas por necesidades reales de seguridad de `VectorSec`.
 
 ![Segmentación de VLANs](./imgs/segmentacion_vlans.png)
 
@@ -749,7 +749,7 @@ Estas tres combinaciones (origen no autorizado, protocolo no autorizado, origen 
 
 El diseño final de red de `VectorSec` segmenta la actividad de la empresa en 9 VLANs, con enrutamiento inter-VLAN mediante Router on a Stick y control de acceso mediante ACLs aplicadas en el router y en el acceso de gestión de los switches. Más allá del cumplimiento de los requisitos mínimos del proyecto, cada decisión de diseño *—el servidor de laboratorio aislado, la segmentación real de la red de invitados, el acceso de gestión cifrado y restringido—* responde a **la identidad de `VectorSec` como empresa de ciberseguridad:** *una infraestructura que aplica sobre sí misma los mismos criterios que audita en sus clientes*.
 
-El proceso de implementación puso de manifiesto, además, la importancia de verificar cada capa de la red de forma independiente antes de dar por buena una configuración: *dos incidencias no triviales (el solapamiento de subredes en VLAN 99 y la subinterfaz sin IP asignada en VLAN 60) se resolvieron mediante un diagnóstico metódico, comparando el comportamiento de una VLAN afectada frente a una funcional, en lugar de realizar cambios sin un diagnóstico previo*.
+El proceso de configuración y simulación puso de manifiesto, además, la importancia de verificar cada capa de la red de forma independiente antes de dar por buena una configuración: *dos incidencias no triviales (el solapamiento de subredes en VLAN 99 y la subinterfaz sin IP asignada en VLAN 60) se resolvieron mediante un diagnóstico metódico, comparando el comportamiento de una VLAN afectada frente a una funcional, en lugar de realizar cambios sin un diagnóstico previo*.
 
 Como líneas de mejora futura, coherentes con la visión de crecimiento de **`VectorSec`**, se identifican, por ejemplo: *la migración a un switch de Capa 3 al aumentar el volumen de tráfico inter-VLAN, y la incorporación de puntos de acceso empresariales con soporte nativo de múltiples SSID sobre un único equipo físico*.
 
